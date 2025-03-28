@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-cover bg-center z-0" 
            style={{ 
              backgroundImage: "url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')", 
-             backgroundPosition: "center",
+             backgroundPosition: "center -14%",
              backgroundSize: "cover",
              backgroundRepeat: "no-repeat"
            }}>
@@ -26,15 +26,15 @@ const Hero = () => {
               Law Suvidha provides expert legal services tailored to your needs. Our team of experienced attorneys is committed to delivering justice and peace of mind through comprehensive legal representation.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button className="btn-primary bg-white text-[#403E43] hover:bg-gray-100">
+            <Button variant="outline" className="btn-secondary border-white text-black hover:bg-white/20">
                 Get Free Consultation
               </Button>
-              <Button variant="outline" className="btn-secondary border-white text-white hover:bg-white/20">
-                Learn More
+              <Button variant="outline" className="btn-secondary border-white text-black hover:bg-white/20">
+                Know More
               </Button>
             </div>
           </div>
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
             <div className="relative animate-scale-in">
               <div className="w-full h-[500px] bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden shadow-xl border border-white/20">
                 <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-black/30"></div>
@@ -44,7 +44,7 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

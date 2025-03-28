@@ -13,7 +13,7 @@ const Footer = () => {
               <Logo />
             </div>
             <p className="text-gray-400 mb-6">
-              Providing expert legal services with integrity and excellence since 2010.
+              Providing expert legal services with integrity and excellence since 2025.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
@@ -62,9 +62,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4">
+              
               <li className="flex">
                 <MapPin className="w-5 h-5 mr-3 text-gray-400" />
-                <span className="text-gray-400">123 Legal Avenue, New Delhi, India 110001</span>
+                <span className="text-gray-400">123 Legal Avenue, Hyderabad, India 505050</span>
               </li>
               <li className="flex">
                 <Phone className="w-5 h-5 mr-3 text-gray-400" />

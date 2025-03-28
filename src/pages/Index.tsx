@@ -7,7 +7,7 @@ import Expertise from '@/components/Expertise';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
-import Faq from '@/components/Faq';
+import FAQSection from '@/components/Faq';
 
 const Index = () => {
   return (
@@ -19,7 +19,7 @@ const Index = () => {
         <Expertise />
         <Testimonials />
         <div id="faq">
-          <Faq />
+          <FAQSection />
         </div>
       </main>
       <Footer />

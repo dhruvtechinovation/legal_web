@@ -1,101 +1,98 @@
 
-import React, { useState } from 'react';
-import { HelpCircle, X, ChevronDown, ChevronUp } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const Faq = () => {
-  const [isOpen, setIsOpen] = useState(false);
+type FAQItem = {
+  question: string;
+  answer: string;
+};
 
-  const faqItems = [
-    {
-      question: "What areas of law does Law Suvidha specialize in?",
-      answer: "Law Suvidha specializes in family law, corporate law, criminal law, and labour law. Our experienced attorneys provide comprehensive legal services across these practice areas to meet diverse client needs."
-    },
-    {
-      question: "How can I schedule a consultation with a lawyer?",
-      answer: "You can schedule a consultation by calling our office, using the chat feature on our website, or filling out the contact form. We offer both in-person and virtual consultations to accommodate your schedule."
-    },
-    {
-      question: "What information should I prepare for my first consultation?",
-      answer: "For your first consultation, please bring any relevant documents related to your case, a timeline of events, contact information of involved parties, and a list of questions you'd like to ask. This helps us provide more accurate guidance."
-    },
-    {
-      question: "How much do your legal services cost?",
-      answer: "Our fees vary depending on the nature and complexity of your case. We offer transparent pricing and will discuss all potential costs during your initial consultation. We also provide flexible payment options for many services."
-    },
-    {
-      question: "Do you offer pro bono legal services?",
-      answer: "Yes, Law Suvidha is committed to community service and allocates a portion of our resources to pro bono cases. Eligibility is determined case by case based on financial need and case merit."
-    },
-    {
-      question: "How long will my legal matter take to resolve?",
-      answer: "The timeline varies significantly depending on the type of case, complexity, court schedules, and whether settlement is possible. During your consultation, we can provide an estimated timeline based on similar cases we've handled."
-    },
-    {
-      question: "Can I switch to Law Suvidha if I already have another lawyer?",
-      answer: "Yes, you have the right to change legal representation at any time. We can guide you through this transition process to ensure it's handled professionally and with minimal disruption to your case."
-    }
-  ];
+const faqs: FAQItem[] = [
+  {
+    question: "What areas of law does Law Suvidha specialize in?",
+    answer: "Law Suvidha specializes in various areas including Family Law, Corporate Law, Labour Law, and Criminal Law. Our team of experienced attorneys provides comprehensive legal solutions tailored to your specific needs."
+  },
+  {
+    question: "How do I schedule a consultation with a lawyer?",
+    answer: "You can schedule a consultation by filling out the contact form on our website, using our chat service, or calling our office directly. We offer both in-person and virtual consultations to accommodate your preferences."
+  },
+  {
+    question: "What are your fees and payment options?",
+    answer: "Our fees vary depending on the nature and complexity of your case. We offer transparent pricing structures including hourly rates, flat fees for specific services, and contingency arrangements for certain cases. We accept various payment methods including credit/debit cards, bank transfers, and digital payment options."
+  },
+  {
+    question: "How long does it typically take to resolve a legal case?",
+    answer: "The duration varies significantly based on the type of case, its complexity, court schedules, and whether a settlement is possible. During your initial consultation, we can provide a more specific timeline based on your particular situation."
+  },
+  {
+    question: "Do you offer pro bono or reduced-fee legal services?",
+    answer: "Yes, Law Suvidha is committed to providing access to justice. We dedicate a portion of our practice to pro bono work and offer reduced-fee arrangements for clients with financial constraints who meet certain criteria."
+  },
+  {
+    question: "What documentation should I prepare for my first consultation?",
+    answer: "It's helpful to bring any documents relevant to your case, such as contracts, correspondence, court papers, police reports, or financial records. Also, prepare a chronological summary of events related to your legal issue."
+  },
+  {
+    question: "How do I know if I have a valid legal case?",
+    answer: "During your initial consultation, our attorneys will evaluate the facts, evidence, and applicable laws to determine if you have a viable legal claim. We provide honest assessments and only recommend proceeding if there's a reasonable basis for legal action."
+  },
+  {
+    question: "Can you represent me in another city or state?",
+    answer: "Our attorneys are licensed to practice in specific jurisdictions. We can directly represent you within those jurisdictions and can often coordinate with local counsel in other areas when necessary."
+  }
+];
+
+const FAQSection = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
-    <div className="fixed bottom-6 left-6 z-40">
-      {/* FAQ button */}
-      <Button 
-        onClick={() => setIsOpen(true)}
-        className="bg-black text-white shadow-lg h-14 w-14 rounded-full"
-      >
-        <HelpCircle className="h-6 w-6" />
-      </Button>
-
-      {/* FAQ modal */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[80vh] overflow-hidden animate-scale-in">
-            <div className="bg-black text-white p-4 flex justify-between items-center">
-              <h2 className="text-xl font-semibold">Frequently Asked Questions</h2>
-              <Button 
-                variant="ghost" 
-                size="icon"
-                className="text-white hover:bg-white/10"
-                onClick={() => setIsOpen(false)}
+    <section id="faq-section" className="bg-white section-spacing">
+      <div className="legal-container">
+        <div className="text-center mb-12">
+          <span className="inline-block px-4 py-1 rounded-full bg-legal-light text-legal-DEFAULT font-medium text-sm mb-4">
+            Got Questions?
+          </span>
+          <h2 className="heading-lg mb-4">Frequently Asked Questions</h2>
+          <p className="text-legal-muted max-w-2xl mx-auto">
+            Find answers to common questions about our legal services and processes. If you can't find what you're looking for, don't hesitate to contact us.
+          </p>
+        </div>
+        
+        <div className="max-w-3xl mx-auto bg-white rounded-lg overflow-hidden">
+          {faqs.map((faq, index) => (
+            <div key={index} className="border-b border-legal-border last:border-0">
+              <button
+                className="w-full py-4 px-6 text-left flex justify-between items-center focus:outline-none"
+                onClick={() => toggleFAQ(index)}
               >
-                <X />
-              </Button>
-            </div>
-            
-            <div className="p-6 overflow-y-auto max-h-[calc(80vh-64px)]">
-              <Accordion type="single" collapsible className="space-y-4">
-                {faqItems.map((item, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg p-1">
-                    <AccordionTrigger className="px-4 py-3 hover:no-underline text-left font-medium">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="px-4 pb-4 pt-1 text-gray-600">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-              
-              <div className="mt-8 pt-6 border-t">
-                <h3 className="font-semibold text-lg mb-3">Still have questions?</h3>
-                <p className="text-gray-600 mb-4">Our team is here to help. Contact us directly or use our chat support for personalized assistance.</p>
-                <div className="flex flex-wrap gap-3">
-                  <Button onClick={() => setIsOpen(false)} className="bg-black text-white">
-                    Contact Us
-                  </Button>
-                  <Button variant="outline" onClick={() => setIsOpen(false)}>
-                    Close
-                  </Button>
+                <span className="font-medium">{faq.question}</span>
+                {openIndex === index ? (
+                  <ChevronUp className="text-legal-accent" size={20} />
+                ) : (
+                  <ChevronDown className="text-legal-DEFAULT" size={20} />
+                )}
+              </button>
+              <div
+                className={cn(
+                  "overflow-hidden transition-all duration-300 ease-in-out",
+                  openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                )}
+              >
+                <div className="p-6 pt-0 text-legal-muted">
+                  {faq.answer}
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      )}
-    </div>
+      </div>
+    </section>
   );
 };
 
-export default Faq;
+export default FAQSection;

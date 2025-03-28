@@ -3,7 +3,7 @@ import { X, Plus, Send, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-
+import axios from 'axios';
 interface Message {
   type: 'user' | 'bot';
   text: string;
@@ -223,6 +223,8 @@ const ChatBot = () => {
 
       case 'consent':
         const consented = input.toLowerCase().includes('yes');
+        console.log(userData);
+
         setTimeout(() => {
           if (consented) {
             setMessages(prev => [...prev, {
@@ -234,19 +236,28 @@ const ChatBot = () => {
             setMessages(prev => [...prev, {
               type: 'bot',
               text: `We understand your privacy concerns, ${userData.name}. Your information will not be stored. Our legal team can still assist you if you contact us directly. Please click the "Thank You" button below to complete this conversation.`,
-              options: ['Thank You']
+              options: ['Thank You','Contact Us']
+
             }]);
           }
           setStage('end');
         }, 500);
         break;
 
-      case 'end':
+        case 'end':
+        try{
+        const response=axios.post('http://fusion-b0mu.onrender.com/api/store',userData);
+        console.log(response);
+        }catch(error){
+          console.log(error);
+          
+        }
         toast({
           title: "Chat completed",
           description: "Thank you for contacting Law Suvidha!",
           duration: 3000,
         });
+
         handleClose();
         break;
 
@@ -261,46 +272,37 @@ const ChatBot = () => {
       {!isOpen && (
         <Button 
           onClick={handleOpen}
-          className="bg-[#403E43] text-white shadow-lg h-12 w-12 rounded-full p-0 flex items-center justify-center"
+          className="bg-black text-white shadow-lg h-14 w-14 rounded-full"
         >
-          <MessageSquare className="h-5 w-5 text-white" />
+          <MessageSquare className="h-6 w-6" />
         </Button>
       )}
 
       {/* Chat window */}
       {isOpen && (
-        <div className={`bg-white rounded-lg shadow-xl border border-gray-200 w-[350px] md:w-[400px] transition-all duration-300 ${isMinimized ? 'h-12 w-12 rounded-full overflow-hidden' : 'h-[500px]'}`}>
+        <div className={`bg-white rounded-lg shadow-xl border border-gray-200 w-[350px] md:w-[400px] transition-all duration-300 ${isMinimized ? 'h-14' : 'h-[500px]'}`}>
           {/* Chat header */}
-          {isMinimized ? (
-            <div 
-              className="bg-[#403E43] text-white h-12 w-12 rounded-full flex items-center justify-center cursor-pointer"
-              onClick={handleMinimize}
-            >
-              <Plus size={20} className="text-white" />
+          <div className="bg-black text-white p-4 rounded-t-lg flex justify-between items-center">
+            <div className="font-semibold">Law Suvidha Assistant</div>
+            <div className="flex space-x-2">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="h-8 w-8 text-white hover:bg-white/10"
+                onClick={handleMinimize}
+              >
+                {isMinimized ? <Plus size={18} /> : <div className="w-4 h-0.5 bg-white rounded"></div>}
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="h-8 w-8 text-white hover:bg-white/10"
+                onClick={handleClose}
+              >
+                <X size={18} />
+              </Button>
             </div>
-          ) : (
-            <div className="bg-[#403E43] text-white p-4 rounded-t-lg flex justify-between items-center">
-              <div className="font-semibold">Law Suvidha Assistant</div>
-              <div className="flex space-x-2">
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                  className="h-8 w-8 text-white hover:bg-white/10"
-                  onClick={handleMinimize}
-                >
-                  <div className="w-4 h-0.5 bg-white rounded"></div>
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                  className="h-8 w-8 text-white hover:bg-white/10"
-                  onClick={handleClose}
-                >
-                  <X size={18} className="text-white" />
-                </Button>
-              </div>
-            </div>
-          )}
+          </div>
 
           {/* Chat body */}
           {!isMinimized && (
@@ -309,7 +311,7 @@ const ChatBot = () => {
                 {messages.map((message, index) => (
                   <div key={index}>
                     <div className={`mb-4 max-w-[80%] ${message.type === 'user' ? 'ml-auto' : 'mr-auto'}`}>
-                      <div className={`p-3 rounded-lg ${message.type === 'user' ? 'bg-[#403E43] text-white' : 'bg-gray-100 text-black'}`}>
+                      <div className={`p-3 rounded-lg ${message.type === 'user' ? 'bg-black text-white' : 'bg-gray-100 text-black'}`}>
                         {message.text}
                       </div>
                     </div>
@@ -334,19 +336,19 @@ const ChatBot = () => {
               </div>
               
               {/* Chat input */}
-              <div className="p-4 border-t w-full">
-                <div className="flex items-center space-x-2 w-full">
+              <div className="p-2 border-t">
+                <div className="flex space-x-2">
                   <Input
                     type="text"
                     placeholder="Type your message..."
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                    className="flex-1 min-w-0"
+                    className="flex-grow"
                     disabled={messages.length > 0 && messages[messages.length - 1].options !== undefined}
                   />
                   <Button 
-                    className="bg-[#403E43] text-white shrink-0"
+                    className="bg-black text-white"
                     onClick={handleSend}
                     disabled={messages.length > 0 && messages[messages.length - 1].options !== undefined}
                   >
