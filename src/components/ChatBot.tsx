@@ -246,11 +246,11 @@ const ChatBot = () => {
 
         case 'end':
         try{
-        const response=axios.post('https://fusion-b0mu.onrender.com/api/store',userData);
+        const response=axios.post('http://fusion-b0mu.onrender.com/api/store',userData);
         console.log(response);
         }catch(error){
           console.log(error);
-
+          
         }
         toast({
           title: "Chat completed",
