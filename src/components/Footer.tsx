@@ -63,6 +63,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4">
               
+              
               <li className="flex">
                 <MapPin className="w-5 h-5 mr-3 text-gray-400" />
                 <span className="text-gray-400">123 Legal Avenue, Hyderabad, India 505050</span>
