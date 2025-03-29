@@ -246,7 +246,7 @@ const ChatBot = () => {
 
         case 'end':
         try{
-        const response=axios.post('http://fusion-b0mu.onrender.com/api/store',userData);
+        const response=axios.post('http://localhost:3000/api/store',userData);
         console.log(response);
         }catch(error){
           console.log(error);
