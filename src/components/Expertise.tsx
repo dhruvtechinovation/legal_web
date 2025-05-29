@@ -6,21 +6,21 @@ const Expertise = () => {
   const expertiseAreas = [
     {
       icon: <Heart className="w-12 h-12" />,
-      title: "Family Law",
+      title: "Family Matters",
       description: "Expert guidance in divorce, child custody, adoption, and other family matters with compassion and understanding.",
-      items: ["Divorce & Separation", "Child Custody", "Adoption", "Domestic Violence", "Prenuptial Agreements"]
+      items: ["Family Matters", "Child Custody", "Adoption", "Disputes in Live-in"]
     },
     {
       icon: <Briefcase className="w-12 h-12" />,
       title: "Corporate Law",
       description: "Comprehensive legal services for businesses of all sizes, from startups to established corporations.",
-      items: ["Business Formation", "Contract Negotiation", "Mergers & Acquisitions", "Intellectual Property", "Employment Law"]
+      items: ["Legal documentation","consultation between (Employee-Employee)","consultation between(Employee-Employer)"]
     },
     {
       icon: <Shield className="w-12 h-12" />,
       title: "Criminal Law",
       description: "Strong defense strategies and representation for those facing criminal charges or investigations.",
-      items: ["Criminal Defense", "White Collar Crimes", "DUI Defense", "Juvenile Defense", "Appeals"]
+      items: ["Criminal Defense", "White Collar Crimes","Juvenile Defense"]
     }
   ];
 
