@@ -43,7 +43,7 @@ const ChatBot = () => {
       "Are you seeking a divorce or separation?",
       "Are there children involved in your case?",
       "Is there any property or assets to be divided?",
-      "Have you tried mediation or counseling?",
+      "Have you tried mediation or  counseling?",
     ],
     'Corporate Law': [
       "What is the nature of your business?",
