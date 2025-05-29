@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import axios from 'axios';
+import { Socket } from 'dgram';
+import {io} from "socket.io-client"
+
 interface Message {
-  type: 'user' | 'bot';
+  type: 'user' | 'bot' | 'system';
   text: string;
   options?: string[];
 }
@@ -15,6 +18,7 @@ type ChatStage =
   | 'name' 
   | 'contact' 
   | 'location' 
+  | 'agent'
   | 'caseType' 
   | 'questions' 
   | 'consent' 
@@ -36,7 +40,11 @@ const ChatBot = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-
+  const socketRef=useRef<any>(null)
+  const [input, setInput] = useState("");
+  const [custId, setCustId] = useState(null); 
+  const cidref=useRef<any>(null) // reference to the current connected custoemr id
+  const sessionref=useRef<any>(null)
   // Case type specific questions
   const caseTypeQuestions: Record<string, string[]> = {
     'Family Law': [
@@ -65,6 +73,8 @@ const ChatBot = () => {
     ]
   };
 
+  const caseRef=useRef(null)
+
   // Initialize chat
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -82,7 +92,14 @@ const ChatBot = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-
+  useEffect(() => {
+    return () => {
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+      }
+    };
+  }, []);
+  
   const handleOpen = () => {
     setIsOpen(true);
     setIsMinimized(false);
@@ -102,6 +119,11 @@ const ChatBot = () => {
       answers: {}
     });
     setCurrentQuestionIndex(0);
+    setCustId(null);
+  if (socketRef.current) {
+    socketRef.current.disconnect();
+    socketRef.current = null;
+  }
   };
 
   const handleMinimize = () => {
@@ -110,15 +132,32 @@ const ChatBot = () => {
 
   const handleSend = () => {
     if (!userInput.trim()) return;
+    if(socketRef.current)
+    {
+      const sessionId=sessionref.current
+      const data={sessionId,toId:cidref.current,message:userInput}
+      socketRef.current.emit("send_message",data);
+      console.log('message for customer to ',cidref.current)
+      // setMessages((prev)=>[
+      //   ...prev,{type:"user",text:userInput}
+      // ])
+      setMessages(prev => [...prev, newUserMessage]);
+      setUserInput('');
+    }
+    else{
+      setMessages(prev => [...prev, newUserMessage]);
+       processUserInput(userInput);
+       setUserInput('');
+    }
 
     const newUserMessage: Message = {
       type: 'user',
       text: userInput
     };
-
-    setMessages(prev => [...prev, newUserMessage]);
-    processUserInput(userInput);
     setUserInput('');
+
+    // processUserInput(userInput);
+    
   };
 
   const handleOptionSelect = (option: string) => {
@@ -143,7 +182,7 @@ const ChatBot = () => {
           setStage('contact');
         }, 500);
         break;
-
+  
       case 'contact':
         setUserData(prev => ({ ...prev, contact: input }));
         setTimeout(() => {
@@ -154,43 +193,66 @@ const ChatBot = () => {
           setStage('location');
         }, 500);
         break;
-
+  
       case 'location':
         setUserData(prev => ({ ...prev, location: input }));
         setTimeout(() => {
           setMessages(prev => [...prev, {
             type: 'bot',
-            text: "Thank you for providing your details. What type of legal assistance do you need?",
+            text: "What type of legal assistance do you need?",
             options: ['Family Law', 'Corporate Law', 'Criminal Law', 'Labour Law']
           }]);
           setStage('caseType');
         }, 500);
         break;
-
+  
       case 'caseType':
         setUserData(prev => ({ ...prev, caseType: input }));
         setCurrentQuestionIndex(0);
         setTimeout(() => {
-          if (caseTypeQuestions[input] && caseTypeQuestions[input].length > 0) {
+          setMessages(prev => [...prev, {
+            type: 'bot',
+            text: "Would you like to speak with someone from our team?",
+            options: ['Yes', 'No']
+          }]);
+          setStage('agent');
+        }, 500);
+        break;
+  
+      case 'agent':
+        setUserData(prev => ({ ...prev, wantsAgent: input }));
+        setTimeout(() => {
+          if (input.toLowerCase() === 'yes') {
+            // ⚡️ Handle websocket agent connection here
             setMessages(prev => [...prev, {
               type: 'bot',
-              text: caseTypeQuestions[input][0]
+              text: "Connecting you to an agent now... Please wait.",
+              // options: ['Thank You']
             }]);
-            setStage('questions');
+            // setStage('end');
+            handleAgent()
           } else {
-            // If no questions for this case type
-            setMessages(prev => [...prev, {
-              type: 'bot',
-              text: "Do you consent to Law Suvidha storing your information to better assist you?",
-              options: ['Yes, I consent', 'No, I do not consent']
-            }]);
-            setStage('consent');
+            // Start case-specific questions
+            if (userData.caseType && caseTypeQuestions[userData.caseType]?.length > 0) {
+              setMessages(prev => [...prev, {
+                type: 'bot',
+                text: caseTypeQuestions[userData.caseType][0]
+              }]);
+              setStage('questions');
+            } else {
+              // No specific questions — go straight to consent
+              setMessages(prev => [...prev, {
+                type: 'bot',
+                text: "Do you consent to Law Suvidha storing your information to better assist you?",
+                options: ['Yes, I consent', 'No, I do not consent']
+              }]);
+              setStage('consent');
+            }
           }
         }, 500);
         break;
-
+  
       case 'questions':
-        // Store answer to current question
         setUserData(prev => ({
           ...prev,
           answers: {
@@ -198,8 +260,7 @@ const ChatBot = () => {
             [caseTypeQuestions[userData.caseType][currentQuestionIndex]]: input
           }
         }));
-
-        // Move to next question or to consent stage
+  
         const nextIndex = currentQuestionIndex + 1;
         if (userData.caseType && caseTypeQuestions[userData.caseType] && nextIndex < caseTypeQuestions[userData.caseType].length) {
           setCurrentQuestionIndex(nextIndex);
@@ -220,11 +281,11 @@ const ChatBot = () => {
           }, 500);
         }
         break;
-
+  
       case 'consent':
         const consented = input.toLowerCase().includes('yes');
         console.log(userData);
-
+  
         setTimeout(() => {
           if (consented) {
             setMessages(prev => [...prev, {
@@ -235,37 +296,92 @@ const ChatBot = () => {
           } else {
             setMessages(prev => [...prev, {
               type: 'bot',
-              text: `We understand your privacy concerns, ${userData.name}. Your information will not be stored. Our legal team can still assist you if you contact us directly. Please click the "Thank You" button below to complete this conversation.`,
-              options: ['Thank You','Contact Us']
-
+              text: `We understand your privacy concerns, ${userData.name}. Your information will not be stored. Our legal team can still assist you if you contact us directly.`,
+              options: ['Thank You', 'Contact Us']
             }]);
           }
           setStage('end');
         }, 500);
         break;
-
-        case 'end':
-        try{
-        const response=axios.post('http://localhost:3000/api/store',userData);
-        console.log(response);
-        }catch(error){
+  
+      case 'end':
+        try {
+          axios.post('http://localhost:3000/api/store', userData);
+        } catch (error) {
           console.log(error);
-          
         }
         toast({
           title: "Chat completed",
           description: "Thank you for contacting Law Suvidha!",
           duration: 3000,
         });
-
         handleClose();
         break;
-
+  
       default:
         break;
     }
   };
+  
+ const handleAgent=()=>{
+  setMessages((prev) => [
+    ...prev,
+    {
+      type: 'user',
+      text: 'I want to talk to a human agent.',
+    },
+    {
+      type: 'bot',
+      text: 'Sure! Connecting you to a human agent. Please wait a moment...',
+    }
+    
+  ]);
+    socketRef.current=io("http://localhost:5001",{
+      query:{
+        userId:'cust',
+        role:'customer'
+      }
+    })
+    socketRef.current.on("connect",()=>{
+      console.log("connected as legal customer")
+      socketRef.current.emit("register", {userType:'cust',mobile:'123456789',userId: socketRef.current.id });
+    })
+  socketRef.current.on("receive",(data)=>{
+    setMessages((prev)=>[
+      ...prev,
+      {type:"bot",text:data.message}
+    ])
+    console.log("message received from chat service : ",data)
+})
 
+socketRef.current.on("assign_agent", ({ agentId,session_id }) => {
+  console.log(` agent connected: ${agentId}`);
+  console.log("session id is ",session_id)
+  sessionref.current=session_id
+  cidref.current=agentId
+  setMessages((prev)=>[
+    ...prev,
+    {
+    type: 'system',
+    text: 'Connected to chat support'
+    },
+  ])
+  setCustId(cidref.current);  // Store customerId in state
+  console.log("agent id is",cidref.current)
+});
+socketRef.current.on("agent_disconnected", (data:any) => {
+  // Show message in chat UI
+  setMessages((prev)=>[
+    ...prev,
+    {
+    type: 'system',
+      text: data
+    },
+  ])
+  console.log("agent disconnected we will try to connect to another agent")
+});
+ }
+ 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
       {/* Chat button */}
@@ -276,8 +392,7 @@ const ChatBot = () => {
         >
           <MessageSquare className="h-6 w-6" />
         </Button>
-      )}
-
+      )} 
       {/* Chat window */}
       {isOpen && (
         <div className={`bg-white rounded-lg shadow-xl border border-gray-200 w-[350px] md:w-[400px] transition-all duration-300 ${isMinimized ? 'h-14' : 'h-[500px]'}`}>
@@ -354,6 +469,7 @@ const ChatBot = () => {
                   >
                     <Send size={18} />
                   </Button>
+                  <Button onClick={handleAgent}>Contact Agent</Button>
                 </div>
               </div>
             </>
