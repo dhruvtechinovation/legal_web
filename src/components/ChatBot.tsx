@@ -469,7 +469,7 @@ socketRef.current.on("agent_disconnected", (data:any) => {
                   >
                     <Send size={18} />
                   </Button>
-                  <Button onClick={handleAgent}>Contact Agent</Button>
+                  <Button onClick={handleAgent}>Contact Agentss</Button>
                 </div>
               </div>
             </>
