@@ -17,7 +17,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed w-full bg-white/10 backdrop-blur-md z-50 border-b border-gray-200">
+    <header className="fixed w-full bg-white/100 backdrop-blur-md z-50 border-b border-gray-200">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           <Logo />
@@ -33,7 +33,7 @@ const Navbar = () => {
             </Button>
           </div>
           
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-10">
             {menuItems.map((item, index) => (
               <a 
                 key={index}
@@ -53,7 +53,7 @@ const Navbar = () => {
             </Link>
             <Link 
               to="/signup" 
-              className="flex items-center space-x-1 px-4 py-2 rounded-md bg-legal-DEFAULT text-white hover:bg-legal-accent base-transition"
+              className="flex items-center space-x-1 px-4 py-2 rounded-md border border-legal-DEFAULT hover:bg-legal-DEFAULT hover:text-white base-transition"
             >
               <UserPlus size={18} />
               <span>Sign Up</span>

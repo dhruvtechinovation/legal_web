@@ -11,6 +11,8 @@ interface Message {
   type: 'user' | 'bot' | 'system';
   text: string;
   options?: string[];
+  opt?:boolean;
+  phone?:boolean
 }
 
 type ChatStage = 
@@ -47,25 +49,25 @@ const ChatBot = () => {
   const sessionref=useRef<any>(null)
   // Case type specific questions
   const caseTypeQuestions: Record<string, string[]> = {
-    'Family Law': [
+    'Family Issue': [
       "Are you seeking a divorce or separation?",
       "Are there children involved in your case?",
       "Is there any property or assets to be divided?",
       "Have you tried mediation or  counseling?",
     ],
-    'Corporate Law': [
+    'Corporate Issue': [
       "What is the nature of your business?",
       "Is this related to contract negotiation or review?",
       "Are you dealing with intellectual property issues?",
       "Is this regarding employment or labor disputes?",
     ],
-    'Criminal Law': [
+    'Criminal Issue': [
       "What charges are you facing?",
       "Have you been arrested?",
       "Do you have a court date scheduled?",
       "Have you been questioned by the police?",
     ],
-    'Labour Law': [
+    'Labour Issue': [
       "Are you an employer or employee?",
       "Is this regarding termination or layoffs?",
       "Are you dealing with workplace discrimination?",
@@ -166,7 +168,18 @@ const ChatBot = () => {
       text: option
     };
 
-    setMessages(prev => [...prev, newUserMessage]);
+    setMessages(prev => {
+      const updated = [...prev];
+      // Mark the last message (with options) as selected
+      const lastIndex = updated.length - 1;
+      if (updated[lastIndex].options) {
+        updated[lastIndex] = {
+          ...updated[lastIndex],
+          opt: true
+        };
+      }
+      return [...updated, newUserMessage];
+    });
     processUserInput(option);
   };
 
@@ -184,11 +197,20 @@ const ChatBot = () => {
         break;
   
       case 'contact':
+        const phoneRegex = /^[0-9]{10}$/;
+  if (!phoneRegex.test(input)) {
+    setMessages(prev => [...prev, {
+      type: 'bot',
+      text: "Please enter a valid 10-digit phone number."
+    }]);
+   return
+  }
         setUserData(prev => ({ ...prev, contact: input }));
         setTimeout(() => {
           setMessages(prev => [...prev, {
             type: 'bot',
-            text: "Thank you. What is your location or city?"
+            text: "Thank you. What is your location or city?",
+            phone:true
           }]);
           setStage('location');
         }, 500);
@@ -200,7 +222,7 @@ const ChatBot = () => {
           setMessages(prev => [...prev, {
             type: 'bot',
             text: "What type of legal assistance do you need?",
-            options: ['Family Law', 'Corporate Law', 'Criminal Law', 'Labour Law']
+            options: ['Family Law', 'Corporate Law', 'Criminal Law', 'Labour Law'],
           }]);
           setStage('caseType');
         }, 500);
@@ -324,18 +346,18 @@ const ChatBot = () => {
   };
   
  const handleAgent=()=>{
-  setMessages((prev) => [
-    ...prev,
-    {
-      type: 'user',
-      text: 'I want to talk to a human agent.',
-    },
-    {
-      type: 'bot',
-      text: 'Sure! Connecting you to a human agent. Please wait a moment...',
-    }
+  // setMessages((prev) => [
+  //   ...prev,
+  //   {
+  //     type: 'user',
+  //     text: 'I want to talk to a human agent.',
+  //   },
+  //   {
+  //     type: 'bot',
+  //     text: 'Sure! Connecting you to a human agent. Please wait a moment...',
+  //   }
     
-  ]);
+  // ]);
     socketRef.current=io("http://localhost:5001",{
       query:{
         userId:'cust',
@@ -437,8 +459,10 @@ socketRef.current.on("agent_disconnected", (data:any) => {
                             key={option}
                             variant="outline"
                             size="sm"
+                            disabled={message.opt}
                             onClick={() => handleOptionSelect(option)}
                             className="text-sm"
+
                           >
                             {option}
                           </Button>
@@ -469,7 +493,7 @@ socketRef.current.on("agent_disconnected", (data:any) => {
                   >
                     <Send size={18} />
                   </Button>
-                  <Button onClick={handleAgent}>Contact Agent</Button>
+                  {/* <Button onClick={handleAgent}>Contact Agent</Button> */}
                 </div>
               </div>
             </>

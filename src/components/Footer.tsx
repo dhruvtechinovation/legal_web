@@ -74,7 +74,7 @@ const Footer = () => {
               </li>
               <li className="flex">
                 <Mail className="w-5 h-5 mr-3 text-gray-400" />
-                <a href="mailto:info@lawsuvidha.com" className="text-gray-400 hover:text-white transition-colors">info@lawsuvidha.com</a>
+                <a href="mailto:info@jplawsuvidha.com" className="text-gray-400 hover:text-white transition-colors">info@jplawsuvidha.com</a>
               </li>
             </ul>
           </div>
@@ -82,7 +82,7 @@ const Footer = () => {
         
         <div className="border-t border-white/10 pt-8">
           <div className="text-gray-400 text-sm text-center md:text-left">
-            &copy; {new Date().getFullYear()} Law Suvidha. All rights reserved.
+            &copy; {new Date().getFullYear()} JP Law Suvidha. All rights reserved.
           </div>
         </div>
       </div>
