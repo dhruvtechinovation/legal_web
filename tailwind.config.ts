@@ -4,10 +4,10 @@ import type { Config } from "tailwindcss";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./pages/**/*.{ts,tsx,jsx,js}",
+		"./components/**/*.{ts,tsx,js,jsx}",
+		"./app/**/*.{ts,tsx,js,jsx}",
+		"./src/**/*.{ts,tsx,jsx,js}",
 	],
 	prefix: "",
 	theme: {
@@ -16,12 +16,17 @@ export default {
 			padding: '2rem',
 			screens: {
 				'2xl': '1400px'
+				//  'mx':"1000px"
 			}
 		},
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				serif: ['Playfair Display', 'serif'],
+			},
+			screens:
+			{
+				mx:'1000px'
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -101,8 +106,17 @@ export default {
 				'scale-in': {
 					'0%': { transform: 'scale(0.9)', opacity: '0' },
 					'100%': { transform: 'scale(1)', opacity: '1' }
+				},
+				'blink': {
+					'0%,100%': {backgroundColor: '#dc2626' },
+					'50%': { backgroundColor: '#facc15' },
+				},
+				'blink1': {
+					'0%,100%': {backgroundColor: '#facc15' },
+					'50%': { backgroundColor: '#facc15' },
 				}
-			},
+
+			},	
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
@@ -110,7 +124,9 @@ export default {
 				'fade-out': 'fade-out 0.3s ease-out forwards',
 				'slide-in': 'slide-in 0.6s ease-out forwards',
 				'slide-up': 'slide-up 0.5s ease-out forwards',
-				'scale-in': 'scale-in 0.4s ease-out forwards'
+				'scale-in': 'scale-in 0.4s ease-out forwards',
+				'blink': 'blink 1.5s linear infinite',
+				'blink1': 'blink1 1s step-start infinite'
 			}
 		}
 	},
