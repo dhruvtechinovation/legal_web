@@ -23,7 +23,7 @@ const Hero = () => {
               Professional Legal Solutions for Every Challenge
             </h1>
             <p className="paragraph mb-8 text-white/90">
-              Law Suvidha provides expert legal services tailored to your needs. Our team of experienced attorneys is committed to delivering justice and peace of mind through comprehensive legal representation.
+              JP Law Suvidha provides expert legal services tailored to your needs. Our team of experienced attorneys is committed to delivering justice and peace of mind through comprehensive legal representation.
             </p>
             <div className="flex flex-wrap gap-4">
             <Button variant="outline" className="btn-secondary border-white text-black hover:bg-white/20">

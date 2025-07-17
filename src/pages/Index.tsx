@@ -8,10 +8,12 @@ import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 import FAQSection from '@/components/Faq';
+import DisclaimerModal from '@/pages/Disclaimer'
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
+      <DisclaimerModal/>
       <Navbar />
       <main>
         <Hero />
@@ -23,7 +25,7 @@ const Index = () => {
         </div>
       </main>
       <Footer />
-      <ChatBot />
+      {/* <ChatBot /> */}
     </div>
   );
 };

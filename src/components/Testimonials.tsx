@@ -11,49 +11,49 @@ const Testimonials = () => {
     {
       name: "Rajesh Kumar",
       position: "Business Owner",
-      image: "/placeholder.svg",
+      image: "/ ",
       stars: 5,
       text: "Law Suvidha provided exceptional legal support for my business. Their corporate law expertise helped us navigate complex regulatory requirements with ease."
     },
     {
       name: "Priya Sharma",
       position: "Client",
-      image: "/placeholder.svg",
+      image: "/ ",
       stars: 5,
       text: "During my divorce proceedings, the compassionate approach from Law Suvidha made a difficult time much easier. Their family law team was supportive and professional."
     },
     {
       name: "Amit Singh",
       position: "Client",
-      image: "/placeholder.svg",
+      image: "/ ",
       stars: 4,
       text: "The criminal defense representation I received was outstanding. Their strategic approach and attention to detail resulted in a favorable outcome for my case."
     },
     {
       name: "Rajesh Kumar",
       position: "Business Owner",
-      image: "/placeholder.svg",
+      image: "/ ",
       stars: 5,
       text: "Law Suvidha provided exceptional legal support for my business. Their corporate law expertise helped us navigate complex regulatory requirements with ease."
     },
     {
       name: "Priya Sharma",
       position: "Client",
-      image: "/placeholder.svg",
+      image: "/ ",
       stars: 5,
       text: "During my divorce proceedings, the compassionate approach from Law Suvidha made a difficult time much easier. Their family law team was supportive and professional."
     },
     {
       name: "Rajesh Kumar",
       position: "Business Owner",
-      image: "/placeholder.svg",
+      image: "/ ",
       stars: 5,
       text: "Law Suvidha provided exceptional legal support for my business. Their corporate law expertise helped us navigate complex regulatory requirements with ease."
     },
     {
       name: "Priya Sharma",
       position: "Client",
-      image: "/placeholder.svg",
+      image: "/ ",
       stars: 5,
       text: "During my divorce proceedings, the compassionate approach from Law Suvidha made a difficult time much easier. Their family law team was supportive and professional."
     }

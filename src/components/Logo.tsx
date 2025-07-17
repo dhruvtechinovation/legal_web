@@ -8,7 +8,7 @@ const Logo = () => {
         LS
       </div>
       <div className="font-serif font-bold text-xl">
-        Law Suvidha
+        JP Law Suvidha
       </div>
     </div>
   );
