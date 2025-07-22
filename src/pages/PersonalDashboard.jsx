@@ -336,6 +336,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Hyderabad',
     court: 'District Court',
+    assignedDate: '2025-07-01',
   },
   {
     id: 2,
@@ -346,6 +347,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Warangal',
     court: 'Family Court',
+    assignedDate: '2025-07-02',
   },
   {
     id: 3,
@@ -356,6 +358,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Nizamabad',
     court: 'District Court',
+    assignedDate: '2025-07-03',
   },
   {
     id: 4,
@@ -366,6 +369,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Karimnagar',
     court: 'Civil Court',
+    assignedDate: '2025-07-04',
   },
   {
     id: 5,
@@ -376,6 +380,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Khammam',
     court: 'Labor Court',
+    assignedDate: '2025-07-05',
   },
   {
     id: 6,
@@ -386,6 +391,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Nalgonda',
     court: 'Family Court',
+    assignedDate: '2025-07-06',
   },
   {
     id: 7,
@@ -396,6 +402,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Mahbubnagar',
     court: 'District Court',
+    assignedDate: '2025-07-07',
   },
   {
     id: 8,
@@ -406,6 +413,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Adilabad',
     court: 'District Court',
+    assignedDate: '2025-07-08',
   },
   {
     id: 9,
@@ -416,6 +424,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Siddipet',
     court: 'Consumer Court',
+    assignedDate: '2025-07-09',
   },
   {
     id: 10,
@@ -426,6 +435,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Karimnagar',
     court: 'Family Court',
+    assignedDate: '2025-07-10',
   },
   {
     id: 11,
@@ -436,6 +446,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Hyderabad',
     court: 'High Court (Telangana)',
+    assignedDate: '2025-07-11',
   },
   {
     id: 12,
@@ -446,6 +457,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Warangal',
     court: 'Session Court',
+    assignedDate: '2025-07-12',
   },
   {
     id: 13,
@@ -456,6 +468,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Hyderabad',
     court: 'Cyber Crime Cell',
+    assignedDate: '2025-07-13',
   },
   {
     id: 14,
@@ -466,6 +479,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Khammam',
     court: 'Family Court',
+    assignedDate: '2025-07-14',
   },
   {
     id: 15,
@@ -476,6 +490,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Nizamabad',
     court: 'Tribunal Court',
+    assignedDate: '2025-07-15',
   },
   {
     id: 16,
@@ -486,6 +501,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Mahbubnagar',
     court: 'Family Court',
+    assignedDate: '2025-07-16',
   },
   {
     id: 17,
@@ -496,6 +512,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Hyderabad',
     court: 'Labor Court',
+    assignedDate: '2025-07-17',
   },
   {
     id: 18,
@@ -506,6 +523,7 @@ const mockLeads = [
     status: 'Completed',
     location: 'Adilabad',
     court: 'Family Court',
+    assignedDate: '2025-07-18',
   },
   {
     id: 19,
@@ -516,6 +534,7 @@ const mockLeads = [
     status: 'Pending',
     location: 'Hyderabad',
     court: 'Company Court',
+    assignedDate: '2025-07-19',
   },
   {
     id: 20,
@@ -526,8 +545,10 @@ const mockLeads = [
     status: 'Completed',
     location: 'Nalgonda',
     court: 'Consumer Court',
+    assignedDate: '2025-07-20',
   }
 ];
+
 
 
 function PersonalDashboard() {
@@ -958,6 +979,7 @@ function PersonalDashboard() {
                 <th className='p-4 border'>CaseType</th>
                 <th className="p-4 border">Status</th>
                 <th className='p-4 border'>Details</th>
+                <th className='p-4 border'>LeadDate</th>
               </tr>
             </thead>
             <tbody>
@@ -990,6 +1012,7 @@ function PersonalDashboard() {
                       Details
                     </button>
                   </td>
+                  <td className="p-4 border">{lead.assignedDate}</td>
                 </tr>
               ))}
             </tbody>
@@ -1111,12 +1134,12 @@ function PersonalDashboard() {
             </form>
 
             <div className="mt-6 flex justify-end gap-2">
-              <button
+              {/* <button
                 onClick={() => setShowModal(false)}
                 className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
               >
                 Cancel
-              </button>
+              </button> */}
               <button
                 onClick={() => {
                   if (!disconnectInfo.reason) {
@@ -1190,12 +1213,12 @@ function PersonalDashboard() {
             </form>
 
             <div className="mt-6 flex justify-end gap-2">
-              <button
+              {/* <button
                 onClick={() => setShowYesModal(false)}
                 className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
               >
                 Cancel
-              </button>
+              </button> */}
               <button
                 onClick={() => {
                   if (!connectInfo.status) {

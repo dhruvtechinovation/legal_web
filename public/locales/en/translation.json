@@ -1,0 +1,18 @@
+{
+    "services": {
+      "section_title": "Our Legal Services",
+      "section_desc": "Comprehensive legal solutions tailored to meet your unique requirements with precision and care.",
+      "consultation": {
+        "title": "Legal Consultation",
+        "desc": "Expert advice on legal matters with a personalized approach tailored to your specific situation and needs."
+      },
+      "representation": {
+        "title": "Legal Representation",
+        "desc": "Professional representation in court proceedings, negotiations, and other legal forums to protect your interests."
+      },
+      "drafting": {
+        "title": "Document Drafting",
+        "desc": "Precise drafting of legal documents including contracts, agreements, wills, and other important paperwork."
+      }
+    }
+  }

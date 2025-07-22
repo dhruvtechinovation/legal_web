@@ -62,7 +62,7 @@ const isSubscribeDisabled = true;
             </Link> */}
               <Link
                 to="/signup"
-                className="flex items-center space-x-1 px-4 py-2 rounded-md border border-legal-DEFAULT hover:bg-legal-DEFAULT hover:text-white hover:animate-blink1 base-transition"
+                className="flex items-center space-x-1 px-4 py-2 rounded-md border border-legal-DEFAULT hover:bg-legal-DEFAULT hover:text-white hover:animate-blink1 base-transition notranslate"
               >
                 <UserPlus size={18} />
                 <span>Subscribe</span>

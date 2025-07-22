@@ -60,6 +60,8 @@ import Payments from "./pages/Payments";
 import ProtectedRoute from "./components/Protected";
 import PersonalDashboard from "./pages/PersonalDashboard";
 import { BrowserRouter } from "react-router-dom";
+// import LanguageSwitcher from "./components/i18n";
+// import GoogleTranslate from "./components/GoogleTranslation";
 
 const queryClient = new QueryClient();
 
@@ -102,6 +104,7 @@ const App = () => {
   useTawkControl(location.pathname);
 
   return (
+    
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
