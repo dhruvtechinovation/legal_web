@@ -50,7 +50,7 @@ const Expertise = () => {
                     className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
                   >
                     <div className="font-medium text-lg mb-2">{item}</div>
-                    <div className="h-1 w-12 bg-black rounded-full"></div>
+                    {/* <div className="h-1 w-12 bg-black rounded-full"></div> */}
                   </div>
                 ))}
               </div>

@@ -54,8 +54,8 @@ const Footer = () => {
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Family Law</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Corporate Law</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Criminal Law</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Labour Law</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tax Law</a></li>
+              {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Labour Law</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tax Law</a></li> */}
             </ul>
           </div>
           

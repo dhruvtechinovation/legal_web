@@ -9,7 +9,7 @@ const Languagechecker = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 absolute right-0">
       {/* 🌐 Language Switcher */}
       <div className="mb-4">
         <select

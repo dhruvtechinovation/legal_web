@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Menu, CircleUserRound, Inbox, Users, Settings, LogOut, FileText, MapPin, Gavel, Landmark, Tag, Hourglass } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 // const mockLeads = [
 //   {
@@ -570,6 +571,7 @@ function PersonalDashboard() {
   const [clickCount, setClickCount] = useState(0)
   const [response,setResponse] = useState(false)
   const itemsPerPage = 15;
+  const navigate=useNavigate()
   useEffect(() => {
     const stored = localStorage.getItem('leads');
     if (stored) {
@@ -771,6 +773,9 @@ function PersonalDashboard() {
   const maskPhone = (phone) => {
     return phone.replace(/^(\d{4})\d{6}$/, '$1******');
   }
+  const handleProfile=()=>{
+    navigate('/profile')
+  }
 
 
   return (
@@ -947,7 +952,8 @@ function PersonalDashboard() {
                 </li> */}
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   <button className="w-full text-left text-gray-700 hover:text-blue-600"
-                  // onClick={handleProfile}
+                  disabled
+                  onClick={handleProfile}
                   >
                     Profile
                   </button>

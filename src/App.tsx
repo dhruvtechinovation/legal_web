@@ -60,6 +60,8 @@ import Payments from "./pages/Payments";
 import ProtectedRoute from "./components/Protected";
 import PersonalDashboard from "./pages/PersonalDashboard";
 import { BrowserRouter } from "react-router-dom";
+import Profile from "./pages/Profile";
+import SubscriptionForm from "./pages/Advregister";
 // import LanguageSwitcher from "./components/i18n";
 // import GoogleTranslate from "./components/GoogleTranslation";
 
@@ -115,6 +117,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SubscriptionPlans />} />
           <Route path="/payments/" element={<Payments />} />
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/Advregister" element={<SubscriptionForm/>}/>
           <Route
             path="/personal_dashboard"
             element={
