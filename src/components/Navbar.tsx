@@ -5,6 +5,7 @@ import Logo from './Logo';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { User, UserPlus } from 'lucide-react';
+import Languagechecker from './languagechecker';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,6 +68,10 @@ const isSubscribeDisabled = true;
                 <UserPlus size={18} />
                 <span>Subscribe</span>
               </Link>
+              <div className='absolute top-1 right-1'>
+              {/* <div> */}
+              <Languagechecker/>
+              </div>
 
               {/* <Link
                 to={isLoginDisabled ? "#" : "/login"}

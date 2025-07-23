@@ -20,7 +20,7 @@ const Index = () => {
       {/* <GoogleTranslate /> */}
       <main>
         <Hero />
-      <Languagechecker/>
+      {/* <Languagechecker/> */}
         <Services />
         <Expertise />
         <Testimonials />

@@ -1,332 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Menu, CircleUserRound, Inbox, Users, Settings, LogOut, FileText, MapPin, Gavel, Landmark, Tag, Hourglass } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
-// const mockLeads = [
-//   {
-//     id: 1,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 2,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 3,
-//     name: 'John Doe',
-//     phone: '9999999999',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 4,
-//     name: 'Jane Smith',
-//     phone: '9988998899',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 5,
-//     name: 'John Doe',
-//     phone: '1234567890',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 6,
-//     name: 'Jane Smith',
-//     phone: '',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 7,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 8,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 9,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 10,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 11,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 12,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 13,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 14,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 15,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 16,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 17,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 18,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 19,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 20,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 21,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 22,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 23,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 24,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 25,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 26,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 27,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 28,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 29,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 30,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-//   {
-//     id: 31,
-//     name: 'John Doe',
-//     phone: '9876543210',
-//     connected: false,
-//     caseType: 'Criminal',
-//     status: 'Pending',
-//     location: 'Hyderabad',
-//     court: 'District Court',
-//   },
-//   {
-//     id: 32,
-//     name: 'Jane Smith',
-//     phone: '9123456780',
-//     connected: true,
-//     caseType: "Family",
-//     status: 'Completed',
-//     location: 'Delhi',
-//     court: 'High Court',
-//   },
-
-// ];
-
-
 const mockLeads = [
   {
     id: 1,
@@ -569,9 +243,10 @@ function PersonalDashboard() {
   const [connectInfo, setConnectInfo] = useState({})
   const [currentPage, setCurrentPage] = useState(1);
   const [clickCount, setClickCount] = useState(0)
-  const [response,setResponse] = useState(false)
+  const [response, setResponse] = useState(false)
   const itemsPerPage = 15;
-  const navigate=useNavigate()
+  const navigate = useNavigate()
+  const [sortOrder, setSortOrder] = useState('desc');
   useEffect(() => {
     const stored = localStorage.getItem('leads');
     if (stored) {
@@ -596,12 +271,12 @@ function PersonalDashboard() {
       e.preventDefault();
       e.returnValue = ''; // Required for Chrome to show the confirmation dialog
     };
-  
+
     if (visiblePhone && !response) {
       // alert("Please respond before navigating away.");
       window.addEventListener('beforeunload', handleBeforeUnload);
     }
-  
+
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
@@ -614,42 +289,17 @@ function PersonalDashboard() {
         window.history.pushState(null, "", window.location.href);
       }
     };
-  
+
     if (visiblePhone && !response) {
       // Push a new history entry so popstate will trigger on back
       window.history.pushState(null, "", window.location.href);
       window.addEventListener("popstate", handlePopState);
     }
-  
+
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
   }, [visiblePhone, response]);
-
-  // useEffect(() => {
-  //   console.log('disconnectInfo changed:', disconnectInfo);
-  //   localStorage.setItem('reason', disconnectInfo)
-  // }, [disconnectInfo]);
-
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     if (disconnectInfo.notes) {
-  //       console.log("notes updated:", disconnectInfo.notes);
-  //     }
-  //   }, 500); // wait 500ms after last change
-
-  //   return () => clearTimeout(timeout);
-  // }, [disconnectInfo.notes]);
-
-  // useEffect(() => { // ******* UNDER TESTING *******
-  //   const timeout = setTimeout(() => {
-  //     console.log('disconnectInfo changed:', disconnectInfo);
-  //     // localStorage.setItem('reason', JSON.stringify(disconnectInfo));
-  //   }, 500); // delay the effect after user pauses typing
-
-  //   return () => clearTimeout(timeout);
-  // }, [disconnectInfo]);
-
   const courtOptions = useMemo(() => {
     const courts = leads.map(lead => lead.court);
     return Array.from(new Set(courts));
@@ -663,25 +313,6 @@ function PersonalDashboard() {
     const statustype = leads.map(lead => lead.status)
     return Array.from(new Set(statustype))
   }, [leads])
-  // const handleConnectedChange = (id, value) => {
-  //   setLeads(prev =>
-  //     prev.map(lead =>
-  //       lead.id === id ? { ...lead, connected: value === 'Yes' } : lead
-  //     )
-  //   );
-  // };
-
-
-  // const handleLeadsChange=(phone,value)=>{ // ******* UNDER TESTING *******
-  //   setLeads(prev =>
-  //     prev.map(lead =>
-  //       lead.phone === phone ? { ...lead, connected: value } : lead
-  //     )
-  //   );
-  //   setVisiblePhone(null)
-
-  // }
-
   const handleYes = (phone, value) => {
     const decision = 'yes'
     setResponse(true)
@@ -693,69 +324,31 @@ function PersonalDashboard() {
       ...prev,
       [phone]: updatedClicks
     }));
-  
+
     setConnectInfo({
       phone,
       clicks: updatedClicks
     });
-  
-    // localStorage.setItem("clickCounts", JSON.stringify({
-    //   ...clickCount,
-    //   [phone]: updatedClicks
-    // }));
     setShowYesModal(value)
     setVisiblePhone(null)
   }
-  // const handleConnectedChange = (phone, value) => { // ******* UNDET TESTING *******
-  //   if (value === false) {
-  //     setShowModal(true)
-  //     setDisconnectingPhone(phone)
-  //   }
-  //   setVisiblePhone(null); // close popup
-  // };
-  // const handleNo = (phone, value) => {
-  //   const decision = 'no'
-  //   setShowModal(true)
-  //   setDisconnectInfo({ phone })
-  //   setClickCount(prev => {
-  //     const current = prev[phone] || { yes: 0, no: 0 };
-  //     const updated = {
-  //       ...prev,
-  //       [phone]: {
-  //         ...current,
-  //         [decision]: current[decision] + 1
-  //       }
-  //     };
-  //     localStorage.setItem("clickCountsold", JSON.stringify(updated));
-  //     return updated;
-  //   });
-  //   setVisiblePhone(null)
-  // }
   const handleNo = (phone, value) => {
     const decision = 'no';
     setResponse(true)
-  
+
     const updatedClicks = {
       ...clickCount[phone],
       [decision]: (clickCount[phone]?.[decision] || 0) + 1
     };
-  
+
     setClickCount(prev => ({
       ...prev,
       [phone]: updatedClicks
     }));
-  
     setDisconnectInfo({ phone, clicks: updatedClicks });
-  
-    // localStorage.setItem("clickCounts", JSON.stringify({
-    //   ...clickCount,
-    //   [phone]: updatedClicks
-    // }));
-  
     setShowModal(true);
     setVisiblePhone(null);
   };
-
 
   const filteredLeads = leads.filter(lead => {
     return (
@@ -765,15 +358,23 @@ function PersonalDashboard() {
       (statusFilter ? lead.status === statusFilter : true)
     );
   });
+  const sortedLeads = useMemo(() => {
+    return [...filteredLeads].sort((a, b) => {
+      const dateA = new Date(a.assignedDate);
+      const dateB = new Date(b.assignedDate);
+      return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+  }, [filteredLeads, sortOrder]);
+  
   const totalPages = Math.ceil(filteredLeads.length / itemsPerPage);
-  const paginatedLeads = filteredLeads.slice(
+  const paginatedLeads = sortedLeads.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
   const maskPhone = (phone) => {
     return phone.replace(/^(\d{4})\d{6}$/, '$1******');
   }
-  const handleProfile=()=>{
+  const handleProfile = () => {
     navigate('/profile')
   }
 
@@ -819,15 +420,6 @@ function PersonalDashboard() {
                 )}
               </div>
               {sidebarOpen && (
-                // <select
-                //   className="w-full mt-1 border border-gray-300 px-3 py-2 rounded text-sm bg-white"
-                //   value={locationFilter}
-                //   onChange={(e) => setLocationFilter(e.target.value)}
-                // >
-                //   <option value="">All Locations</option>
-                //   <option value="Hyderabad">Hyderabad</option>
-                //   <option value="Delhi">Delhi</option>
-                // </select>
                 <select
                   className="w-full mt-1 border border-gray-300 px-3 py-2 rounded text-sm bg-white"
                   value={locationFilter}
@@ -892,8 +484,6 @@ function PersonalDashboard() {
             </li>
             <li className="relative group flex flex-col gap-1 p-2 rounded hover:bg-gray-100 cursor-pointer">
               <div className="flex items-center gap-2">
-                {/* <Gavel size={20} /> */}
-                {/* <Tag size={20} className="text-gray-600" /> */}
                 <Hourglass size={18} className="text-yellow-700" />
                 {sidebarOpen && <span className="text-sm font-medium">Status</span>}
                 {!sidebarOpen && (
@@ -945,21 +535,16 @@ function PersonalDashboard() {
                 <p className="text-sm text-gray-500">Advocate</p>
               </div>
               <ul className="py-2 text-sm text-gray-700">
-                {/* <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  <button className="w-full text-left text-gray-700 hover:text-blue-600">
-                    Upgrade Plan
-                  </button>
-                </li> */}
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   <button className="w-full text-left text-gray-700 hover:text-blue-600"
-                  disabled
-                  onClick={handleProfile}
+                  
+                    onClick={handleProfile}
                   >
                     Profile
                   </button>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <button className="w-full text-left text-gray-700 hover:text-blue-600">
+                  <button className="w-full text-left text-gray-700 hover:text-blue-600">
                     Settings
                   </button>
                 </li>
@@ -985,7 +570,12 @@ function PersonalDashboard() {
                 <th className='p-4 border'>CaseType</th>
                 <th className="p-4 border">Status</th>
                 <th className='p-4 border'>Details</th>
-                <th className='p-4 border'>LeadDate</th>
+                <th
+                  className="p-4 border cursor-pointer select-none"
+                  onClick={() => setSortOrder(prev => (prev === 'asc' ? 'desc' : 'asc'))}
+                >
+                  LeadDate {sortOrder === 'asc' ? '🔼' : '🔽'}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -1002,7 +592,6 @@ function PersonalDashboard() {
                   </td>
                   <td className="p-4 border">
                     <button
-                      // onClick={() => handleConnectedChange(lead.id, !lead.connected)}
                       className={`px-3 py-1 rounded font-medium transition ${lead.connected
                         ? 'bg-green-100 text-green-800 hover:bg-green-200'
                         : 'bg-red-100 text-red-800 hover:bg-red-200'
@@ -1124,7 +713,7 @@ function PersonalDashboard() {
               ))}
               <p>
 
-               No: {clickCount[disconnectInfo.phone]?.no || 0}
+                No: {clickCount[disconnectInfo.phone]?.no || 0}
               </p>
               {disconnectInfo.reason === 'Other' && (
                 <textarea
@@ -1140,12 +729,6 @@ function PersonalDashboard() {
             </form>
 
             <div className="mt-6 flex justify-end gap-2">
-              {/* <button
-                onClick={() => setShowModal(false)}
-                className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-              >
-                Cancel
-              </button> */}
               <button
                 onClick={() => {
                   if (!disconnectInfo.reason) {
@@ -1165,12 +748,6 @@ function PersonalDashboard() {
                   setShowModal(false);
                   console.log('Disconnect Info', disconnectInfo)
                   localStorage.setItem('DisconnectInfo', JSON.stringify(disconnectInfo))
-
-                  // handleLeadsChange(disconnectingPhone, false); // update lead as not connected
-                  // setShowModal(false);
-                  // setDisconnectingPhone(null); // clear state
-                  // localStorage.setItem('reason', JSON.stringify(disconnectInfo));
-                  // setDisconnectInfo({ reason: '', notes: '' }); // reset form
                 }}
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
               >
@@ -1205,9 +782,9 @@ function PersonalDashboard() {
                   {status}
                 </label>
               ))}
-            <p className="mt-2 text-sm text-gray-500">
-            Yes: {clickCount[connectInfo.phone]?.yes || 0}
-                </p>
+              <p className="mt-2 text-sm text-gray-500">
+                Yes: {clickCount[connectInfo.phone]?.yes || 0}
+              </p>
               <textarea
                 placeholder="Additional notes (optional)..."
                 className="border px-2 py-1 rounded w-full mt-2 text-sm"
@@ -1219,12 +796,6 @@ function PersonalDashboard() {
             </form>
 
             <div className="mt-6 flex justify-end gap-2">
-              {/* <button
-                onClick={() => setShowYesModal(false)}
-                className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-              >
-                Cancel
-              </button> */}
               <button
                 onClick={() => {
                   if (!connectInfo.status) {

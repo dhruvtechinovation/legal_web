@@ -14,7 +14,7 @@ const Expertise = () => {
       icon: <Briefcase className="w-12 h-12" />,
       title: "Corporate Law",
       description: "Comprehensive legal services for businesses of all sizes, from startups to established corporations.",
-      items: ["Legal documentation","consultation between (Employee-Employee)","consultation between(Employee-Employer)"]
+      items: ["Legal documentation","consultation (Employee-Employee)","consultation (Employee-Employer)"]
     },
     {
       icon: <Shield className="w-12 h-12" />,
@@ -36,7 +36,7 @@ const Expertise = () => {
           {expertiseAreas.map((area, index) => (
             <div 
               key={index} 
-              className={`flex flex-col md:flex-row gap-8 items-start ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+              className={`flex flex-col md:flex-row gap-7 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             >
               <div className="md:w-1/3 bg-gray-50 p-8 rounded-xl flex flex-col items-center text-center">
                 <div className="mb-6 text-black">{area.icon}</div>

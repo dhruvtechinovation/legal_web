@@ -113,6 +113,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Pencil } from 'lucide-react';
 
 const Profile = () => {
   const [profile, setProfile] = useState({
@@ -141,15 +142,15 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 py-10 px-4">
-        <Link
-          to="/personal_dashboard"
-          className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition"
-        >
-          <ArrowLeft className="mr-2" size={18} />
-          Back to Home
-        </Link>
-      <div className="max-w-3xl mx-auto">
+      <Link
+        to="/personal_dashboard"
+        className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition"
+      >
+        <ArrowLeft className="mr-2" size={18} />
+        Back to Home
+      </Link>
 
+      <div className="max-w-3xl mx-auto">
         <div className="bg-white shadow-xl rounded-2xl p-8">
           <div className="flex flex-col items-center mb-6">
             <img
@@ -161,35 +162,111 @@ const Profile = () => {
             <p className="text-gray-600">{profile.email}</p>
           </div>
 
-          <div className="space-y-6">
-            {/* Phone Number */}
+          <div className="space-y-10">
+            {/* 1. Personal Details */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-              {editMode ? (
-                <input
-                  type="text"
-                  value={profile.phone}
-                  onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
-                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
-              ) : (
-                <p className="text-gray-800">{profile.phone || '-'}</p>
-              )}
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Personal Details</h3>
+              <div className="space-y-2">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Full Name</label>
+                  <p className="text-gray-800">{profile.name || '-'}</p>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Email</label>
+                  <p className="text-gray-800">{profile.email || '-'}</p>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Bar Council ID</label>
+                  <p className="text-gray-800">{profile.barCouncilId || '-'}</p>
+                </div>
+              </div>
             </div>
 
-            {/* Address */}
+            {/* 2. Demographic Details */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
-              {editMode ? (
-                <textarea
-                  rows={3}
-                  value={profile.address}
-                  onChange={(e) => setProfile({ ...profile, address: e.target.value })}
-                  className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
-              ) : (
-                <p className="text-gray-800 whitespace-pre-line">{profile.address || '-'}</p>
-              )}
+              <div className='flex gap-4'>
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Demographic Details</h3>
+              <div className='mt-1'>
+                <button
+                  onClick={() => setEditMode(!editMode)}
+                  className="text-gray-500 hover:text-gray-700 transition"
+                  aria-label="Edit Demographic Details"
+                >
+                  <Pencil size={18} />
+                </button>
+              </div>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
+                  {editMode ? (
+                    <input
+                      type="text"
+                      value={profile.state}
+                      onChange={(e) => setProfile({ ...profile, state: e.target.value })}
+                      className="w-full border border-gray-300 rounded-md px-4 py-2"
+                    />
+                  ) : (
+                    <p className="text-gray-800">{profile.state || '-'}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Zip Code</label>
+                  {editMode ? (
+                    <input
+                      type="text"
+                      value={profile.zipcode}
+                      onChange={(e) => setProfile({ ...profile, zipcode: e.target.value })}
+                      className="w-full border border-gray-300 rounded-md px-4 py-2"
+                    />
+                  ) : (
+                    <p className="text-gray-800">{profile.zipcode || '-'}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                  {editMode ? (
+                    <textarea
+                      rows={3}
+                      value={profile.address}
+                      onChange={(e) => setProfile({ ...profile, address: e.target.value })}
+                      className="w-full border border-gray-300 rounded-md px-4 py-2"
+                    />
+                  ) : (
+                    <p className="text-gray-800 whitespace-pre-line">{profile.address || '-'}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  {editMode ? (
+                    <input
+                      type="text"
+                      value={profile.phone}
+                      onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
+                      className="w-full border border-gray-300 rounded-md px-4 py-2"
+                    />
+                  ) : (
+                    <p className="text-gray-800">{profile.phone || '-'}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Credentials */}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Credentials</h3>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <p className="text-gray-800">
+                  ••••••••{" "}
+                  <Link
+                    to="/reset_password"
+                    className="text-blue-600 hover:underline ml-2"
+                  >
+                    Reset Password
+                  </Link>
+                </p>
+              </div>
             </div>
 
             {/* Buttons */}
@@ -214,7 +291,7 @@ const Profile = () => {
                   onClick={() => setEditMode(true)}
                   className="text-blue-600 font-medium hover:text-blue-800 transition"
                 >
-                  Edit Profile
+                  Edit Demographic Details
                 </button>
               )}
             </div>
