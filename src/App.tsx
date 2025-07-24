@@ -69,7 +69,7 @@ const queryClient = new QueryClient();
 
 const useTawkControl = (pathname: string) => {
   useEffect(() => {
-    const hidePaths = ["/signup","/personal_dashboard"];
+    const hidePaths = ["/signup","/personal_dashboard","/profile"];
 
     const shouldHide = hidePaths.includes(pathname);
 

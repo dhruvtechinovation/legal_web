@@ -284,7 +284,7 @@ function PersonalDashboard() {
   useEffect(() => {
     const handlePopState = (event) => {
       if (visiblePhone && !response) {
-        alert("Please respond before navigating away.");
+        alert("Kindly make a selection before moving forward. Please choose 'Yes' or 'No' ");
         // Push the same state back so the user stays on this page
         window.history.pushState(null, "", window.location.href);
       }
@@ -549,7 +549,9 @@ function PersonalDashboard() {
                   </button>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  <button className="w-full text-left text-gray-700 hover:text-red-600">
+                  <button className="w-full text-left text-gray-700 hover:text-red-600"
+                  onClick={()=>{navigate('/')}}
+                  >
                     Logout
                   </button>
                 </li>

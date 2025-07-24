@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Pencil } from 'lucide-react';
+import PhotoUpdateModal from '../components/Webcapture';
 
 const Profile = () => {
   const [profile, setProfile] = useState({
@@ -13,6 +14,8 @@ const Profile = () => {
   });
 
   const [editMode, setEditMode] = useState(false);
+  const [edit, setedit] = useState(true)
+  const [showModal, setShowModal] = useState(false);
 
   // Load from localStorage
   useEffect(() => {
@@ -26,65 +29,110 @@ const Profile = () => {
   const handleSave = () => {
     localStorage.setItem('advocate_profile', JSON.stringify(profile));
     setEditMode(false);
+    setedit(!edit)
+  };
+  const handleImageUpdate = (imageData) => {
+    const updatedProfile = { ...profile, photo: imageData };
+    setProfile(updatedProfile);
+  
+    // Save to localStorage
+    localStorage.setItem('advocate_profile', JSON.stringify(updatedProfile));
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 py-10 px-4">
-      <Link
-        to="/personal_dashboard"
-        className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition"
-      >
-        <ArrowLeft className="mr-2" size={18} />
-        Back to Home
-      </Link>
+      <div className='absolute left-0 top-2'>
+
+        <Link
+          to="/personal_dashboard"
+          className="inline-flex items-center text-black hover:text-blue-800 mb-6 transition"
+        >
+          <ArrowLeft size={18} />
+          Back to Dashboard
+        </Link>
+      </div>
 
       <div className="max-w-3xl mx-auto">
         <div className="bg-white shadow-xl rounded-2xl p-8">
-          <div className="flex flex-col items-center mb-6">
-            <img
-              src={profile.photo}
-              alt="Advocate"
-              className="w-28 h-28 rounded-full object-cover mb-4 border-4 border-blue-200"
-            />
+          <div className="flex flex-col items-center mb-6 relative">
+            {/* Profile Photo with Upload Overlay */}
+            <div className="relative group w-28 h-28 mb-4">
+              <img
+                src={profile.photo}
+                alt="Advocate"
+                className="w-full h-full rounded-full object-cover border-4 border-blue-200"
+              />
+
+              <button
+               onClick={() => setShowModal(true)}
+                className="absolute bottom-1 right-1 bg-white rounded-full p-1 shadow-md cursor-pointer"
+                title="Edit photo"
+              >
+                <Pencil className="w-4 h-4 text-gray-700" />
+              </button>
+              {showModal && (
+        <PhotoUpdateModal
+          onClose={() => setShowModal(false)}
+          onImageSelect={handleImageUpdate}
+        />
+      )}
+            </div>
+
+            {/* Name & Email */}
             <h2 className="text-2xl font-bold text-gray-800">{profile.name}</h2>
             <p className="text-gray-600">{profile.email}</p>
           </div>
-
-          <div className="space-y-10">
+          <div className="space-y-7">
             {/* 1. Personal Details */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Personal Details</h3>
-              <div className="space-y-2">
+            <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-200">
+              <h3 className="text-xl font-bold text-gray-800 mb-6 border-b pb-2">Personal Details</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Full Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Full Name</label>
-                  <p className="text-gray-800">{profile.name || '-'}</p>
+                  <label className="block text-sm font-medium text-gray-500 mb-1">Full Name</label>
+                  <div className="text-gray-800 border border-gray-300 rounded-xl p-4 bg-gray-50 shadow-sm">
+                    {profile.name || '-'}
+                  </div>
                 </div>
+
+                {/* Email */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Email</label>
-                  <p className="text-gray-800">{profile.email || '-'}</p>
+                  <label className="block text-sm font-medium text-gray-500 mb-1">Email</label>
+                  <div className="text-gray-800 border border-gray-300 rounded-xl p-4 bg-gray-50 shadow-sm">
+                    {profile.email || '-'}
+                  </div>
                 </div>
+
+                {/* Bar Council ID */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Bar Council ID</label>
-                  <p className="text-gray-800">{profile.barCouncilId || '-'}</p>
+                  <label className="block text-sm font-medium text-gray-500 mb-1">Bar Council ID</label>
+                  <div className="text-gray-800 border border-gray-300 rounded-xl p-4 bg-gray-50 shadow-sm">
+                    {profile.barCouncilId || '-'}
+                  </div>
                 </div>
               </div>
             </div>
+            <hr />
 
             {/* 2. Demographic Details */}
-            <div>
-              <div className='flex gap-4'>
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">Demographic Details</h3>
-              <div className='mt-1'>
-                <button
-                  onClick={() => setEditMode(!editMode)}
-                  className="text-gray-500 hover:text-gray-700 transition"
-                  aria-label="Edit Demographic Details"
-                >
-                  <Pencil size={18} />
-                </button>
+            <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-200">
+              <div className='flex  gap-4'>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">Demographic Details</h3>
+                <div className='mt-1'>
+                  <button
+                    onClick={() => {
+                      setEditMode(!editMode);
+                      setedit(!edit)
+                    }}
+                    className="text-gray-500 hover:text-gray-700 transition"
+                    aria-label="Edit Demographic Details"
+                  >
+                    {edit && <Pencil size={18} />}
+                  </button>
+                </div>
               </div>
-              </div>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
                   {editMode ? (
@@ -95,7 +143,7 @@ const Profile = () => {
                       className="w-full border border-gray-300 rounded-md px-4 py-2"
                     />
                   ) : (
-                    <p className="text-gray-800">{profile.state || '-'}</p>
+                    <p className="text-gray-800 border border-gray-300 rounded-lg p-4 shadow-sm bg-white">{profile.state || '-'}</p>
                   )}
                 </div>
                 <div>
@@ -108,7 +156,7 @@ const Profile = () => {
                       className="w-full border border-gray-300 rounded-md px-4 py-2"
                     />
                   ) : (
-                    <p className="text-gray-800">{profile.zipcode || '-'}</p>
+                    <p className="text-gray-800 border border-gray-300 rounded-lg p-4 shadow-sm bg-white">{profile.zipcode || '-'}</p>
                   )}
                 </div>
                 <div>
@@ -121,7 +169,7 @@ const Profile = () => {
                       className="w-full border border-gray-300 rounded-md px-4 py-2"
                     />
                   ) : (
-                    <p className="text-gray-800 whitespace-pre-line">{profile.address || '-'}</p>
+                    <p className="text-gray-800 whitespace-pre-line border border-gray-300 rounded-lg p-4 shadow-sm bg-white">{profile.address || '-'}</p>
                   )}
                 </div>
                 <div>
@@ -134,14 +182,36 @@ const Profile = () => {
                       className="w-full border border-gray-300 rounded-md px-4 py-2"
                     />
                   ) : (
-                    <p className="text-gray-800">{profile.phone || '-'}</p>
+                    <p className="text-gray-800 border border-gray-300 rounded-lg p-4 shadow-sm bg-white">{profile.phone || '-'}</p>
                   )}
                 </div>
               </div>
             </div>
+            <div className="flex justify-end space-x-4">
+              {editMode && (
+                <>
+                  <button
+                    onClick={handleSave}
+                    className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditMode(false);
+                      setedit(!edit)
+                    }}
+                    className="text-gray-600 hover:text-gray-800 transition"
+                  >
+                    Cancel
+                  </button>
+                </>)
+              }
+            </div>
+            <hr />
 
             {/* 3. Credentials */}
-            <div>
+            <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-200">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Credentials</h3>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
@@ -158,31 +228,6 @@ const Profile = () => {
             </div>
 
             {/* Buttons */}
-            <div className="flex justify-end space-x-4 pt-4">
-              {editMode ? (
-                <>
-                  <button
-                    onClick={handleSave}
-                    className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition"
-                  >
-                    Save
-                  </button>
-                  <button
-                    onClick={() => setEditMode(false)}
-                    className="text-gray-600 hover:text-gray-800 transition"
-                  >
-                    Cancel
-                  </button>
-                </>
-              ) : (
-                <button
-                  onClick={() => setEditMode(true)}
-                  className="text-blue-600 font-medium hover:text-blue-800 transition"
-                >
-                  Edit Demographic Details
-                </button>
-              )}
-            </div>
           </div>
         </div>
       </div>
