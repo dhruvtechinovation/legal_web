@@ -57,13 +57,16 @@ function SubscriptionPlans() {
 
   return (
     <div className=" flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 items-center justify-center md:px-12">
+      <div className='underline p-4'>
+
       <Link
     to="/"
-    className="absolute top-4 left-4 flex items-center text-blue-600 hover:underline"
+    className="absolute top-4 left-4 flex items-center text-black hover:underline"
   >
-    <ArrowLeft size={18} className="mr-1" />
+    <ArrowLeft size={18} className="mr-1 " />
     Back to Home
   </Link>
+      </div>
       <div className="flex flex-col items-center justify-center w-full">
         <h1 className="text-3xl font-bold text-center mb-12  text-gray-800">
           Choose Your Plan

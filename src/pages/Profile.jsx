@@ -41,7 +41,7 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-200 via-white to-gray-400 py-10 px-4">
-      <div className='absolute left-0 top-2'>
+      <div className='absolute left-0 top-2 underline'>
 
         <Link
           to="/personal_dashboard"

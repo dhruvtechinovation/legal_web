@@ -51,13 +51,13 @@ const SubscriptionForm = () => {
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Subscription Form - {selectedPlan}
         </h2>
-       <div className='absolute left-0 top-2'>
+       <div className='absolute left-1 top-2 underline p-4'>
        
                <Link
                  to="/signup"
-                 className="inline-flex items-center text-black hover:text-blue-800 mb-6 transition"
+                 className="inline-flex items-center text-black hover:text-blue-700 mb-6 transition"
                >
-                 <ArrowLeft size={18} className='mr-2 ml-1' />
+                 <ArrowLeft size={18} className='mr-2' />
                  Back to Subscription
                </Link>
              </div>
@@ -210,10 +210,16 @@ const SubscriptionForm = () => {
             <button
               type="submit"
               className="w-full bg-black text-white font-medium py-2 rounded-md  transition"
+              disabled
             >
               Request Payment
             </button>
           </div>
+          <div className="mt-4 p-3 bg-muted rounded-lg">
+                 <p className="text-xs text-muted-foreground text-center">
+                   🔒 Your connection is secure and encrypted. All data is protected according to legal industry standards.
+               </p>
+              </div>
         </form>
       </div>
       {/* Popup */}

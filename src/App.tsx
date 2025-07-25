@@ -46,7 +46,7 @@
 
 // App.tsx
 import { useLocation, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
@@ -69,7 +69,7 @@ const queryClient = new QueryClient();
 
 const useTawkControl = (pathname: string) => {
   useEffect(() => {
-    const hidePaths = ["/signup","/personal_dashboard","/profile","/Advregister","/payments"];
+    const hidePaths = ["/personal_dashboard","/profile","/Advregister"];
 
     const shouldHide = hidePaths.includes(pathname);
 
@@ -103,8 +103,7 @@ const useTawkControl = (pathname: string) => {
 
 const App = () => {
   const location = useLocation();
-
-  
+  useTawkControl(location.pathname);
 
   return (
     
