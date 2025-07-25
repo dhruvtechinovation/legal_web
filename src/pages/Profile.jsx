@@ -40,14 +40,14 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-200 via-white to-gray-400 py-10 px-4">
       <div className='absolute left-0 top-2'>
 
         <Link
           to="/personal_dashboard"
           className="inline-flex items-center text-black hover:text-blue-800 mb-6 transition"
         >
-          <ArrowLeft size={18} />
+          <ArrowLeft size={18} className='mr-2 ml-1' />
           Back to Dashboard
         </Link>
       </div>

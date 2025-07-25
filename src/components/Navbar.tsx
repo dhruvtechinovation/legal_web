@@ -20,7 +20,7 @@ const isSubscribeDisabled = true;
   ];
 
   return (
-    <header className="fixed w-full bg-white/100 backdrop-blur-md z-50 border-b border-gray-200">
+    <header className="fixed w-full bg-white/100 backdrop-blur-md z-50 border-b border-gray-200 dark:bg-black dark:text-white">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
           <Logo />
@@ -49,7 +49,7 @@ const isSubscribeDisabled = true;
             <div className="flex items-center space-x-4 ml-4">
             <Link 
               to="/login" 
-              className="flex items-center space-x-1 px-4 py-2 rounded-md border border-legal-DEFAULT hover:bg-gray-700 hover:text-white base-transition "
+              className="flex items-center space-x-1 px-4 py-2 rounded-md border transform hover:scale-105 transition-transform duration-200 border-legal-DEFAULT hover:bg-gray-700 hover:text-white base-transition "
             >
               <User size={18} />
               <span>Login</span>
@@ -63,7 +63,7 @@ const isSubscribeDisabled = true;
             </Link> */}
               <Link
                 to="/signup"
-                className="flex items-center space-x-1 px-4 py-2 rounded-md border border-legal-DEFAULT hover:bg-legal-DEFAULT hover:text-white hover:animate-blink1 base-transition notranslate"
+                className="flex items-center space-x-1 px-4 py-2 transform hover:scale-105 transition-transform duration-200 rounded-lg border border-gray hover:bg-legal-DEFAULT hover:text-white hover:animate-blink1 base-transition notranslate"
               >
                 <UserPlus size={18} />
                 <span>Subscribe</span>
@@ -119,7 +119,7 @@ const isSubscribeDisabled = true;
               <div className="flex flex-col space-y-2 pt-2">
                 <Button
                   variant="outline"
-                  className="text-[#403E43] border-[#403E43] hover:bg-[#403E43] hover:text-white w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="text-[#403E43] border-[#403E43] hover:bg-[#403E43] hover:text-white w-full  disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled
                 >
                   Login

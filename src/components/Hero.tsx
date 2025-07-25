@@ -22,7 +22,7 @@ const Hero = () => {
             <h1 className="heading-xl mb-6 text-white">
               Professional Legal Solutions for Every Challenge
             </h1>
-            <p className="paragraph mb-8 text-white/90">
+            <p className="paragraph mb-8 text-white/90 dark:text-white">
               JP Law Suvidha provides expert legal services tailored to your needs. Our team of experienced attorneys is committed to delivering justice and peace of mind through comprehensive legal representation.
             </p>
             <div className="flex flex-wrap gap-4">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import TermsAndConditionsModalSubscription from '@/components/Terms_conditions';
+import { ArrowLeft } from 'lucide-react';
 
 const SubscriptionForm = () => {
   const navigate = useNavigate();
@@ -45,11 +46,21 @@ const SubscriptionForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-lg">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-200 via-white to-gray-400 px-4 ">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Subscription Form - {selectedPlan}
         </h2>
+       <div className='absolute left-0 top-2'>
+       
+               <Link
+                 to="/signup"
+                 className="inline-flex items-center text-black hover:text-blue-800 mb-6 transition"
+               >
+                 <ArrowLeft size={18} className='mr-2 ml-1' />
+                 Back to Subscription
+               </Link>
+             </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Lawyer Name */}
@@ -198,7 +209,7 @@ const SubscriptionForm = () => {
           <div className="pt-4">
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white font-medium py-2 rounded-md hover:bg-blue-700 transition"
+              className="w-full bg-black text-white font-medium py-2 rounded-md  transition"
             >
               Request Payment
             </button>

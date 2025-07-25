@@ -99,7 +99,7 @@ function SubscriptionPlans() {
               {/* <button className='px-10' >
               Subscribe
             </button> */}
-              <button onClick={() => { subscribehandler(plan.price) }} className="block mx-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-white-700 transition">
+              <button onClick={() => { subscribehandler(plan.price) }} className="block mx-auto bg-black text-white px-6 py-2 rounded-lg hover:bg-white-700 transition">
                 Subscribe
               </button>
             </div>

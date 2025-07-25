@@ -50,11 +50,16 @@ const PhotoUpdateModal = ({ onClose, onImageSelect }) => {
       alert('Please upload an image under 5MB');
     }
   };
+  const handleClose = () => {
+    const stream = videoRef.current?.srcObject;
+    stream?.getTracks().forEach(track => track.stop());
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md relative">
-        <button onClick={onClose} className="absolute top-2 right-3 text-gray-600 text-2xl">&times;</button>
+        <button onClick={handleClose} className="absolute top-2 right-3 text-gray-600 text-2xl">&times;</button>
 
         {!showCamera ? (
           <div className="space-y-4">

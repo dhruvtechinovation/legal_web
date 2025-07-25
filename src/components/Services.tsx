@@ -74,7 +74,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-16 bg-gray-50">
+    <section id="services" className="py-16 bg-gray-50 dark:bg-black dark:text-white">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="heading-lg mb-4">{t('services.section_title')}</h2>
@@ -85,7 +85,7 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:transform hover:-translate-y-1"
+              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:transform hover:-translate-y-1 dark:bg-black dark:text-white"
             >
               <div className="mb-6 text-black">{service.icon}</div>
               <h3 className="heading-sm mb-4">{service.title}</h3>

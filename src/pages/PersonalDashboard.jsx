@@ -522,7 +522,7 @@ function PersonalDashboard() {
             className="w-10 h-10 rounded-full overflow-hidden border border-gray-300 hover:ring-2 hover:ring-blue-400"
           >
             <img
-              src="https://ui-avatars.com/api/?name=John+Doe"
+              src="https://ui-avatars.com/api/?name=John+King"
               alt="User Avatar"
               className="w-full h-full object-cover"
             />
@@ -545,7 +545,7 @@ function PersonalDashboard() {
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   <button className="w-full text-left text-gray-700 hover:text-blue-600">
-                    Settings
+                    Change Password
                   </button>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
