@@ -12,6 +12,11 @@ const Expertise = () => {
     items: string[];
   };
   const expertiseAreas = t('expertise.areas', { returnObjects: true }) as ExpertiseArea[];
+  const icons = [
+    <Heart className="w-12 h-12" />,
+    <Briefcase className="w-12 h-12" />,
+    <Shield className="w-12 h-12" />
+  ];
   // const expertiseAreas = [
   //   {
   //     icon: <Heart className="w-12 h-12" />,
@@ -48,16 +53,19 @@ const Expertise = () => {
           {expertiseAreas.map((area, index) => (
             <React.Fragment key={index}>
               <div className={`flex flex-col md:flex-row gap-7 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                <div className="md:w-1/3 bg-gray-50 p-8 rounded-xl flex flex-col items-center text-center">
-                  <div className="mb-6 text-black">{area.icon}</div>
+                <div className=" group md:w-1/3 bg-gray-50 p-8 rounded-xl flex flex-col items-center text-center  hover:shadow-xl transition-all duration-400 ">
+                  <div className=" w-16 h-16 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    {icons[index]}
+                  </div>
                   <h3 className="heading-md mb-4">{area.title}</h3>
                   <p className="text-gray-600">{area.description}</p>
+                  <div className="mt-6 h-0.5 w-0 bg-primary transition-all duration-700 group-hover:w-full"></div>
                 </div>
                 <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {area.items.map((item, itemIndex) => (
                     <div
                       key={itemIndex}
-                      className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
+                      className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300"
                     >
                       <div className="font-medium text-lg mb-2">{item}</div>
                     </div>

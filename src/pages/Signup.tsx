@@ -47,7 +47,7 @@ const Signup = () => {
     // Simulate API call
     setTimeout(() => {
       // This is where you would make the actual API call
-      console.log('Signup attempt with:', formData);
+      // console.log('Signup attempt with:', formData);
       
       // For demo purposes, let's show an error
       setError('This email is already registered. Please try a different email or login instead.');

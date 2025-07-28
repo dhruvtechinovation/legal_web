@@ -13,9 +13,9 @@ import Languagechecker from '@/components/languagechecker';
 // import GoogleTranslate from '@/components/GoogleTranslation';
 
 const Index = () => {
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle('dark');
-  };
+  // const toggleTheme = () => {
+  //   document.documentElement.classList.toggle('dark');
+  // };
   return (
     <div className="min-h-screen bg-white dark:bg-black dark:text-white">
       {/* <button
@@ -24,7 +24,7 @@ const Index = () => {
 >
   Toggle Theme
 </button> */}
-      <DisclaimerModal/>
+      {/* <DisclaimerModal/> */}
       <Navbar />
       {/* <GoogleTranslate /> */}
       <main>

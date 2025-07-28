@@ -748,7 +748,7 @@ function PersonalDashboard() {
                     )
                   );
                   setShowModal(false);
-                  console.log('Disconnect Info', disconnectInfo)
+                  // console.log('Disconnect Info', disconnectInfo)
                   localStorage.setItem('DisconnectInfo', JSON.stringify(disconnectInfo))
                 }}
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
@@ -815,7 +815,7 @@ function PersonalDashboard() {
                     )
                   );
                   setShowYesModal(false);
-                  console.log('connect Info', connectInfo)
+                  // console.log('connect Info', connectInfo)
                   localStorage.setItem('connectInfo', JSON.stringify(connectInfo))
                 }}
                 className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"

@@ -47,7 +47,7 @@ function SubscriptionPlans() {
     },
   ];
   const subscribehandler=(price)=>{
-    console.log(`selected ${price}`)
+    // console.log(`selected ${price}`)
       navigate('/Advregister',
         {
           state: { price },

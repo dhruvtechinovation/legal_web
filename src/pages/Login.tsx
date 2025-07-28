@@ -30,7 +30,8 @@ const Login = () => {
     // Simulate API call
     setTimeout(() => {
       // This is where you would make the actual API call
-      console.log('Login attempt with:', { email, password });
+
+      // console.log('Login attempt with:', { email, password });
 
       // For demo purposes, let's just show an error
       // setError('Invalid email or password. Please try again.');
@@ -64,7 +65,7 @@ const Login = () => {
 
       {/* <Navbar /> */}
 
-      {/* <div className="p-4 w-full bg-white rounded-md"> */}
+      <div className="w-full bg-pink-300 rounded">
         <div className='underline p-4'>
 
         <Link
@@ -74,8 +75,9 @@ const Login = () => {
           <ArrowLeft size={18} className="mr-2" />
           Back to Home
         </Link>
+        <div className='absolute top-0 right-0 p-4'>logo</div>
         </div>
-      {/* </div> */}
+      </div>
 
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-7 animate-fade-in">

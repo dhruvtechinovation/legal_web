@@ -84,14 +84,27 @@ const Services = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div 
-              key={index} 
-              className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:transform hover:-translate-y-1 dark:bg-black dark:text-white"
+            key={index}
+            className={`
+              group bg-card p-7 rounded-xl border gray-400
+              transition-all duration-400 ease-out
+              hover:scale-100 hover:shadow-xl 
+              animate-slide-up
+              transform-gpu will-change-transform
+            `}
+            // style={{
+            //   animationDelay: `${index * 0.15}s`,
+            //   animationFillMode: 'both'
+            // }}
             >
-              <div className="mb-6 text-black">{service.icon}</div>
+              <div className="mb-6 text-primary transition-transform duration-400 group-hover:scale-110 group-hover:rotate-2">{service.icon}</div>
               <h3 className="heading-sm mb-4">{service.title}</h3>
               <p className="text-gray-600">{service.description}</p>
+              <div className="mt-6 h-0.5 w-0 bg-primary transition-all duration-700 group-hover:w-full"></div>
             </div>
+            
           ))}
+          
         </div>
       </div>
     </section>

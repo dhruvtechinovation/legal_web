@@ -8,7 +8,7 @@ i18n
   .init({
     fallbackLng: 'en',
     lng: 'en',
-    debug: true,
+    debug: false,
     backend: {
       loadPath: '/~ohokgmuc/locales/{{lng}}/translation.json',
     },
