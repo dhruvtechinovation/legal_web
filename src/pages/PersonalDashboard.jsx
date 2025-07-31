@@ -244,6 +244,28 @@ function PersonalDashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [clickCount, setClickCount] = useState(0)
   const [response, setResponse] = useState(false)
+  const [password,setpassword]=useState(false)
+  const [form, setForm] = useState({ current: '', newPass: '', confirm: '' });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (form.newPass !== form.confirm) {
+      alert('Passwords do not match!');
+      return;
+    }
+    // Call backend API or handler
+    console.log('Password changed:', form);
+    setForm({
+      current: "",
+      newPass: "",
+      confirm: "",
+    });
+    setpassword(false);
+  };
+
   const itemsPerPage = 15;
   const navigate = useNavigate()
   const [sortOrder, setSortOrder] = useState('desc');
@@ -377,6 +399,10 @@ function PersonalDashboard() {
   const handleProfile = () => {
     navigate('/profile')
   }
+  const handlechangePassword=()=>{
+    setpassword(!password)
+  }
+ 
 
 
   return (
@@ -544,7 +570,8 @@ function PersonalDashboard() {
                   </button>
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  <button className="w-full text-left text-gray-700 hover:text-blue-600">
+                  <button className="w-full text-left text-gray-700 hover:text-blue-600"
+                  onClick={handlechangePassword}>
                     Change Password
                   </button>
                 </li>
@@ -827,7 +854,58 @@ function PersonalDashboard() {
         </div>
       )
       }
+   {password &&  (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white w-full max-w-md p-6 rounded-xl shadow-lg relative">
+            <h2 className="text-xl font-semibold mb-4">Change Password</h2>
 
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="password"
+                name="current"
+                placeholder="Current Password"
+                className="w-full px-4 py-2 border rounded-lg"
+                value={form.current}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="password"
+                name="newPass"
+                placeholder="New Password"
+                className="w-full px-4 py-2 border rounded-lg"
+                value={form.newPass}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="password"
+                name="confirm"
+                placeholder="Confirm New Password"
+                className="w-full px-4 py-2 border rounded-lg"
+                value={form.confirm}
+                onChange={handleChange}
+                required
+              />
+              <div className="flex justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  className="px-4 py-2 bg-gray-200 rounded-lg"
+                  onClick={() => setpassword(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

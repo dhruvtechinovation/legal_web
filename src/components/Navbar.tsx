@@ -46,6 +46,13 @@ const isSubscribeDisabled = true;
                 {item.label}
               </a>
             ))}
+            <Link 
+            to="/about" 
+            // className="flex items-center space-x-1 px-4 py-2 rounded-md border transform hover:scale-105 transition-transform duration-200 border-legal-DEFAULT hover:bg-gray-700 hover:text-white base-transition "
+            className="text-sm font-medium hover:text-gray-600 transition-colors"
+          >
+            <span>AboutUs</span>
+          </Link>
             <div className="flex items-center space-x-4 ml-4">
             <Link 
               to="/login" 
@@ -54,6 +61,7 @@ const isSubscribeDisabled = true;
               <User size={18} />
               <span>Login</span>
             </Link>
+
             {/* <Link 
               to="/signup" 
               className="flex items-center space-x-1 px-4 py-2 rounded-md border border-legal-DEFAULT hover:bg-legal-DEFAULT hover:text-white base-transition"

@@ -2,21 +2,47 @@
 import React from 'react';
 import { Heart, Briefcase, Shield } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import * as LucideIcons from 'lucide-react';
 
+const Card = ({ title, services }: { title: string; services: string[] }) => (
+  <div className="bg-white rounded-xl p-6 shadow-md border hover:shadow-lg transition-shadow duration-300">
+    <h3 className="text-xl font-bold text-primary mb-4">{title}</h3>
+    <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 leading-relaxed">
+      {services.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
+  </div>
+);
 const Expertise = () => {
   const { t } = useTranslation();
-  type ExpertiseArea = {
-    icon: JSX.Element;
+  type Service = {
     title: string;
     description: string;
-    items: string[];
+    icon: string;
   };
-  const expertiseAreas = t('expertise.areas', { returnObjects: true }) as ExpertiseArea[];
+  
+  type ExpertiseArea = {
+    category: string;
+    icon: string;
+    services: Service[];
+  };
+  const expertiseAreas = t('expertise.legalServices', { returnObjects: true }) as ExpertiseArea[];
   const icons = [
     <Heart className="w-12 h-12" />,
     <Briefcase className="w-12 h-12" />,
     <Shield className="w-12 h-12" />
   ];
+  const renderIcon = (iconName: string, className = 'w-6 h-6 text-primary') => {
+    // Convert kebab-case or snake_case to PascalCase to match Lucide component names
+    const pascalCase = iconName
+      .replace(/[-_](.)/g, (_, c) => c.toUpperCase())
+      .replace(/^(.)/, (_, c) => c.toUpperCase());
+  
+    const IconComponent = (LucideIcons as any)[pascalCase];
+  
+    return IconComponent ? <IconComponent className={className} aria-hidden="true" /> : null;
+  };
   // const expertiseAreas = [
   //   {
   //     icon: <Heart className="w-12 h-12" />,
@@ -39,49 +65,53 @@ const Expertise = () => {
   // ];
 
   return (
-    <section id="expertise" className="py-16">
-      <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          {/* <h2 className="heading-lg mb-4">Areas of Expertise</h2>
-          <p className="paragraph">Specialized knowledge and experience across various legal disciplines to address your specific needs.</p> */}
-          <h2 className="heading-lg mb-4">{t('expertise.section_title')}</h2>
-          <p className="paragraph">{t('expertise.section_desc')}</p>
+    <section id="expertise" className="py-16 bg-gray-50">
+      <div className="container-custom px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
+            {t('expertise.section_title')}
+          </h2>
+          <p className="text-lg text-gray-600">{t('expertise.section_desc')}</p>
         </div>
 
-        <div className="space-y-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  {expertiseAreas.map((area, index) => {
+    // Apply special layout for the 3rd card (index 2)
+    const isCenterCard = index === 6;
 
-          {expertiseAreas.map((area, index) => (
-            <React.Fragment key={index}>
-              <div className={`flex flex-col md:flex-row gap-7 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                <div className=" group md:w-1/3 bg-gray-50 p-8 rounded-xl flex flex-col items-center text-center  hover:shadow-xl transition-all duration-400 ">
-                  <div className=" w-16 h-16 bg-primary text-primary-foreground rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    {icons[index]}
-                  </div>
-                  <h3 className="heading-md mb-4">{area.title}</h3>
-                  <p className="text-gray-600">{area.description}</p>
-                  <div className="mt-6 h-0.5 w-0 bg-primary transition-all duration-700 group-hover:w-full"></div>
-                </div>
-                <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {area.items.map((item, itemIndex) => (
-                    <div
-                      key={itemIndex}
-                      className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300"
-                    >
-                      <div className="font-medium text-lg mb-2">{item}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {index < expertiseAreas.length - 1 && (
-                <hr className="border-t border-gray-300" />
-              )}
-            </React.Fragment>
-          ))}
+    return (
+      <div
+        key={index}
+        className={`
+          ${isCenterCard ? 'col-span-2 justify-self-center w-2/3' : ''}
+          bg-white rounded-2xl p-6 shadow hover:shadow-xl transition-shadow duration-300 border
+        `}
+      >
+        <div className="flex items-center gap-2 mb-4">
+          {renderIcon(area.icon, 'w-7 h-7 text-primary')}
+          <h3 className="text-xl font-semibold text-gray-700">{area.category}</h3>
         </div>
+        <ul className="space-y-4">
+  {area.services.map((service, sIdx) => (
+    <li
+      key={sIdx}
+      className="border border-gray-200 rounded-2xl px-4 py-4 bg-white shadow-lg ">
+      {/* Optional icon rendering */}
+      {/* <div className="mb-2">{renderIcon(service.icon, 'w-5 h-5 text-primary')}</div> */}
+      
+      <div>
+        <h4 className="text-base font-semibold text-primary mb-2">{service.title}</h4>
+        <p className="text-sm text-gray-700 leading-relaxed">{service.description}</p>
       </div>
-    </section >
-  );
-};
-
+    </li>
+  ))}
+</ul>
+      </div>
+    );
+  })}
+</div>
+      </div>
+    </section>
+    )
+  }
 export default Expertise;

@@ -13,7 +13,8 @@ const Footer = () => {
               <Logo />
             </div>
             <p className="text-gray-400 mb-6">
-              Providing expert legal services with integrity and excellence since 2025.
+            {/* JP LAW SUVIDHA is a secure, tech-powered platform that seamlessly connects clients with verified legal experts. We streamline access to legal support through smart tools and deep domain expertise. */}
+            JP LAW SUVIDHA is a trusted, tech-driven platform that effortlessly connects clients with verified legal experts for fast, reliable support.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
@@ -51,9 +52,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Practice Areas</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Family Law</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Corporate Law</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Criminal Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Family Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Corporate Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Criminal Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Civil Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Business Law</a></li>
               {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Labour Law</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tax Law</a></li> */}
             </ul>

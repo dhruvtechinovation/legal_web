@@ -62,6 +62,8 @@ import PersonalDashboard from "./pages/PersonalDashboard";
 import { BrowserRouter } from "react-router-dom";
 import Profile from "./pages/Profile";
 import SubscriptionForm from "./pages/Advregister";
+import Aboutus from "./components/Aboutus"
+import ScrollToTop from "./components/Scrolltotop";
 // import LanguageSwitcher from "./components/i18n";
 // import GoogleTranslate from "./components/GoogleTranslation";
 
@@ -108,6 +110,7 @@ const App = () => {
   return (
     
     <QueryClientProvider client={queryClient}>
+      <ScrollToTop/>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -119,6 +122,7 @@ const App = () => {
           <Route path="/payments/" element={<Payments />} />
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/Advregister" element={<SubscriptionForm/>}/>
+          <Route path='/about' element={<Aboutus/>}/>
           <Route
             path="/personal_dashboard"
             element={
