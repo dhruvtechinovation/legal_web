@@ -81,31 +81,6 @@ const Navbar = () => {
                 {/* <Languagechecker/> */}
               </div>
 
-              {/* <Link
-                to={isLoginDisabled ? "#" : "/login"}
-                onClick={(e) => isLoginDisabled && e.preventDefault()}
-                className={`flex items-center space-x-1 px-4 py-2 rounded-md border border-legal-DEFAULT base-transition ${isLoginDisabled
-                    ? "pointer-events-none opacity-50 cursor-not-allowed"
-                    : "hover:bg-legal-DEFAULT hover:text-white"
-                  }`}
-              >
-                <User size={18} />
-                <span>Login</span>
-              </Link>
-
-              <Link
-                to={isSubscribeDisabled ? "#" : "/signup"}
-                onClick={(e) => isSubscribeDisabled && e.preventDefault()}
-                className={`flex items-center space-x-1 px-4 py-2 rounded-md border border-legal-DEFAULT base-transition ${isSubscribeDisabled
-                    ? "pointer-events-none opacity-50 cursor-not-allowed"
-                    : "hover:bg-legal-DEFAULT hover:text-white hover:animate-blink1"
-                  }`}
-              >
-                <UserPlus size={18} />
-                <span>Subscribe</span>
-              </Link> */}
-
-
             </div>
           </nav>
         </div>
