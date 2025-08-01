@@ -62,8 +62,10 @@ import PersonalDashboard from "./pages/PersonalDashboard";
 import { BrowserRouter } from "react-router-dom";
 import Profile from "./pages/Profile";
 import SubscriptionForm from "./pages/Advregister";
-import Aboutus from "./components/Aboutus"
+import AboutUs from "./components/Aboutus"
 import ScrollToTop from "./components/Scrolltotop";
+import Disclaimers from "./components/Disclaimers";
+import UserDisclaimers from "./components/UserDisclaimers";
 // import LanguageSwitcher from "./components/i18n";
 // import GoogleTranslate from "./components/GoogleTranslation";
 
@@ -122,7 +124,9 @@ const App = () => {
           <Route path="/payments/" element={<Payments />} />
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/Advregister" element={<SubscriptionForm/>}/>
-          <Route path='/about' element={<Aboutus/>}/>
+          <Route path='/about' element={<AboutUs/>}/>
+          <Route path='disclaimers' element={<Disclaimers/>}/>
+          <Route path='/userdisclaimers' element={<UserDisclaimers/>}/>
           <Route
             path="/personal_dashboard"
             element={

@@ -34,6 +34,7 @@ export default function DisclaimerModal() {
           I Understand
         </button>
       </div>
+      
     </div>
   );
 }

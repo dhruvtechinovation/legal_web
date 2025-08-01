@@ -82,8 +82,8 @@ const Services = () => {
     <section id="services" className="py-16 bg-gray-50 dark:bg-black dark:text-white">
       <div className="container-custom">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="heading-lg mb-4">{t('services.section_title')}</h2>
-          <p className="paragraph">{t('services.section_desc')}</p>
+          <h2 className="heading-lg font-bold tracking-tight sm:text-4xl mb-4">{t('services.section_title')}</h2>
+          <p className="paragraph text-gray-700">{t('services.section_desc')}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-7">
@@ -135,7 +135,7 @@ const Services = () => {
               </button> */}
                <div className="flex items-center gap-2 text-xs text-gray-700 font-medium group-hover:gap-2 transition-all mt-2">
           <span>Know More</span>
-          <ArrowRight className="w-3 h-3 group-hover:-translate-x-1 transition-transform" />
+          <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
         </div>
              </div>
               {/* <a

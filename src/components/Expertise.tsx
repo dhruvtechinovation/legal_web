@@ -3,6 +3,7 @@ import React from 'react';
 import { Heart, Briefcase, Shield } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import * as LucideIcons from 'lucide-react';
+import { useLoaderData, useLocation } from 'react-router-dom';
 
 const Card = ({ title, services }: { title: string; services: string[] }) => (
   <div className="bg-white rounded-xl p-6 shadow-md border hover:shadow-lg transition-shadow duration-300">
@@ -16,6 +17,8 @@ const Card = ({ title, services }: { title: string; services: string[] }) => (
 );
 const Expertise = () => {
   const { t } = useTranslation();
+  const {pathname}=useLocation()
+  console.log('pathname from expertise',pathname)
   type Service = {
     title: string;
     description: string;
@@ -68,10 +71,10 @@ const Expertise = () => {
     <section id="expertise" className="py-16 bg-gray-50">
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
+          <h2 className="heading-lg font-bold tracking-tight sm:text-4xl mb-4">
             {t('expertise.section_title')}
           </h2>
-          <p className="text-lg text-gray-600">{t('expertise.section_desc')}</p>
+          <p className="paragraph text-gray-600">{t('expertise.section_desc')}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -84,12 +87,12 @@ const Expertise = () => {
         key={index}
         className={`
           ${isCenterCard ? 'col-span-2 justify-self-center w-2/3' : ''}
-          bg-white rounded-2xl p-6 shadow hover:shadow-xl transition-shadow duration-300 border
+          bg-white rounded-2xl p-6  shadow hover:shadow-lg transition-shadow duration-300 border
         `}
       >
-        <div className="flex items-center gap-2 mb-4">
-          {renderIcon(area.icon, 'w-7 h-7 text-primary')}
-          <h3 className="text-xl font-semibold text-gray-700">{area.category}</h3>
+        <div className="flex items-center justify-center gap-2 mb-4">
+          {/* {renderIcon(area.icon, 'w-7 h-7 text-primary')} */}
+          <h3 className="heading-sm">{area.category}</h3>
         </div>
         <ul className="space-y-4">
   {area.services.map((service, sIdx) => (

@@ -402,7 +402,9 @@ function PersonalDashboard() {
   const handlechangePassword=()=>{
     setpassword(!password)
   }
- 
+ const handlelogout=()=>{
+     navigate('/',{replace:true})
+ }
 
 
   return (
@@ -577,7 +579,7 @@ function PersonalDashboard() {
                 </li>
                 <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                   <button className="w-full text-left text-gray-700 hover:text-red-600"
-                  onClick={()=>{navigate('/')}}
+                  onClick={handlelogout}
                   >
                     Logout
                   </button>
