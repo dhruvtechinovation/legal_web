@@ -68,7 +68,7 @@ const plans = [
       price: "0",
       originalPrice: "1299",
       period: "try free for 7 Days",
-      description: "Ideal for practicing advocates aiming to significantly grow their clientele.",
+      description: "Ideal for advocates beginning their client journey.",
       features: [
         { label: "01 Verified Lead", status: true },
         { label: "CRM support", status: true },
@@ -88,8 +88,12 @@ const plans = [
       // price: "1999",
       // originalPrice: "2799",
       // period: "month",
-      description: "Ideal for practicing advocates aiming to significantly grow their clientele.",
+      description: "Legal solutions designed for corporates with expert help and prompt service.",
       features: [
+        { label: "Book a Demo", status: true },
+        { label: "Chat with Customer Support", status: true },
+        { label: "Call us at 12345678901", status: true },
+        { label: "Mail us at contact@jplawsuvidha.com", status: true },
         // { label: "Up to 15 Verified Leads/month", status: true },
         // { label: "CRM support", status: true },
         // { label: "Priority Support (24-48hrs)", status: true },
@@ -102,7 +106,7 @@ const plans = [
       ],
       highlight: false,
       icon: "Building",
-      color: "from-gray-100 to-gray-400",
+      color: "from-gray-100 to-orange-200",
       borderColor: "border-gray-200",
       badge: "Exclusive for Corporate",
       savings: "Save 10%"
