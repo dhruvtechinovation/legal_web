@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "allowJs": true,
     "noUnusedLocals": false,
+    // allowJs:true,
     "strictNullChecks": false
   }
 }

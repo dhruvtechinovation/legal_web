@@ -22,17 +22,19 @@ const Hero = () => {
             <h1 className="heading-xl mb-6 text-white">
               Professional Legal Solutions for Every Challenge
             </h1>
-            <p className="paragraph mb-8 text-white/90">
-              JP Law Suvidha provides expert legal services tailored to your needs. Our team of experienced attorneys is committed to delivering justice and peace of mind through comprehensive legal representation.
+            <p className="paragraph mb-8 text-white/90 dark:text-white">
+              {/* JP Law Suvidha provides expert legal services tailored to your needs. Our team of experienced attorneys is committed to delivering justice and peace of mind through comprehensive legal representation. */}
+              JP LAW SUVIDHA is a secure, tech-enabled platform designed to connect clients with the right legal professionals. We combine advanced digital tools with deep legal industry insight to simplify communication and ensure timely, effective access to legal support.
+
             </p>
-            <div className="flex flex-wrap gap-4">
+            {/* <div className="flex flex-wrap gap-4">
             <Button variant="outline" className="btn-secondary border-white text-black hover:bg-white/20">
                 Get Free Consultation
               </Button>
               <Button variant="outline" className="btn-secondary border-white text-black hover:bg-white/20">
                 Know More
               </Button>
-            </div>
+            </div> */}
           </div>
           {/* <div className="hidden md:block">
             <div className="relative animate-scale-in">

@@ -9,14 +9,27 @@ import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
 import FAQSection from '@/components/Faq';
 import DisclaimerModal from '@/pages/Disclaimer'
+import Languagechecker from '@/components/languagechecker';
+// import GoogleTranslate from '@/components/GoogleTranslation';
 
 const Index = () => {
+  // const toggleTheme = () => {
+  //   document.documentElement.classList.toggle('dark');
+  // };
   return (
-    <div className="min-h-screen bg-white">
-      <DisclaimerModal/>
+    <div className="min-h-screen bg-white dark:bg-black dark:text-white">
+      {/* <button
+  onClick={toggleTheme}
+  className="bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded"
+>
+  Toggle Theme
+</button> */}
+      {/* <DisclaimerModal/> */}
       <Navbar />
+      {/* <GoogleTranslate /> */}
       <main>
         <Hero />
+      {/* <Languagechecker/> */}
         <Services />
         <Expertise />
         <Testimonials />
@@ -26,6 +39,7 @@ const Index = () => {
       </main>
       <Footer />
       {/* <ChatBot /> */}
+      
     </div>
   );
 };

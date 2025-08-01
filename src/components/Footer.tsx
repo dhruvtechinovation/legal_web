@@ -2,6 +2,7 @@
 import React from 'react';
 import Logo from './Logo';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -13,7 +14,8 @@ const Footer = () => {
               <Logo />
             </div>
             <p className="text-gray-400 mb-6">
-              Providing expert legal services with integrity and excellence since 2025.
+              {/* JP LAW SUVIDHA is a secure, tech-powered platform that seamlessly connects clients with verified legal experts. We streamline access to legal support through smart tools and deep domain expertise. */}
+              JP LAW SUVIDHA is a trusted, tech-driven platform that effortlessly connects clients with verified legal experts for fast, reliable support.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
@@ -36,7 +38,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
@@ -47,26 +49,28 @@ const Footer = () => {
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-6">Practice Areas</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Family Law</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Corporate Law</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Criminal Law</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Labour Law</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tax Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Family Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Corporate Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Criminal Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Civil Law</a></li>
+              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Business Law</a></li>
+              {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Labour Law</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tax Law</a></li> */}
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4">
-              
-              
-              <li className="flex">
+
+
+              <li className="flex ">
                 <MapPin className="w-5 h-5 mr-3 text-gray-400" />
-                <span className="text-gray-400">123 Legal Avenue, Hyderabad, India 505050</span>
+                <span className="text-gray-400">Vanasthalipuram Hyderabad</span>
               </li>
               <li className="flex">
                 <Phone className="w-5 h-5 mr-3 text-gray-400" />
@@ -79,10 +83,14 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
-        <div className="border-t border-white/10 pt-8">
+
+        <div className="border-t border-white/20 pt-7 flex gap-10">
           <div className="text-gray-400 text-sm text-center md:text-left">
             &copy; {new Date().getFullYear()} JP Law Suvidha. All rights reserved.
+          </div>
+          <div className="flex gap-10">
+            <Link to="/privacy" className="underline">Privacy Policy</Link>
+            <Link to="/disclaimers" className="underline">Disclaimer</Link>
           </div>
         </div>
       </div>
