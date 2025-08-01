@@ -1,147 +1,12 @@
-// import React from 'react'
-// import { Eye, EyeOff, ArrowLeft } from 'lucide-react';
-// import { Link } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
-
-// function SubscriptionPlans() {
-//   const navigate=useNavigate()
-//   const plans = [
-//     {
-//       name: "Starter",
-//       price: "499/month",
-//       description: "For new advocates getting started with online leads.",
-//       features: [
-//         "Up to 10 Verified Leads/month",
-//         "Direct Client Chat Access",
-//         "Basic Profile Listing",
-//         "Email Notifications",
-//         "Standard Support",
-//       ],
-//       highlight: false,
-//     },
-//     {
-//       name: "Growth",
-//       price: "1999/month",
-//       description: "For practicing advocates aiming to grow their clientele.",
-//       features: [
-//         "Up to 40 Verified Leads/month",
-//         "Priority Listing in Search",
-//         "Direct Client Chat Access",
-//         "Lead Insights Dashboard",
-//         "Priority Support",
-//       ],
-//       highlight: true,
-//     },
-//     {
-//       name: "Pro Plus",
-//       price: "2999/month",
-//       description: "For top advocates who want maximum visibility and lead volume.",
-//       features: [
-//         "Unlimited Verified Leads",
-//         "Top Placement in Listings",
-//         "Real-time Lead Alerts",
-//         "Dedicated Account Manager",
-//         "24/7 Premium Support",
-//       ],
-//       highlight: false,
-//     },
-//   ];
-//   const subscribehandler=(price)=>{
-//     // console.log(`selected ${price}`)
-//       navigate('/Advregister',
-//         {
-//           state: { price },
-//         });
-
-//   }
-
-//   return (
-//     <div className=" flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 items-center justify-center md:px-12">
-//       <div className='underline p-4'>
-
-//       <Link
-//     to="/"
-//     className="absolute top-4 left-4 flex items-center text-black hover:underline"
-//   >
-//     <ArrowLeft size={18} className="mr-1 " />
-//     Back to Home
-//   </Link>
-//       </div>
-//       <div className="flex flex-col items-center justify-center w-full">
-//         <h1 className="text-3xl font-bold text-center mb-12  text-gray-800">
-//           Choose Your Plan
-//         </h1>
-//         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-//           {plans.map((plan) => (
-//             <div
-//               key={plan.name}
-//               className={`relative rounded-2xl border transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl p-8 bg-white ${plan.highlight
-//                   ? "border-gray-200 ring-2 ring-yellow-700"
-//                   : "border-gray-200"
-//                 }`}
-//             >
-//               {plan.highlight && (
-//                 <div className="absolute top-0 right-0 px-3 py-1 text-black text-xs font-bold rounded-tr-2xl rounded-bl-2xl animate-blink">
-//                 Most Popular
-//               </div>
-
-//               )}
-//               <h2 className="text-2xl font-bold text-gray-800">{plan.name}</h2>
-//               <p className="text-4xl font-extrabold text-blue-600 mt-2">
-//               &#8377;{plan.price}
-//               </p>
-//               <p className="text-gray-500 mt-2 mb-6">{plan.description}</p>
-//               <ul className="mb-6 space-y-3">
-//                 {plan.features.map((feature, idx) => (
-//                   <li key={idx} className="flex items-center text-gray-700">
-//                     <span className="text-green-500 mr-2">✓</span>
-//                     <span>{feature}</span>
-//                   </li>
-//                 ))}
-//               </ul>
-//               {/* <button className='px-10' >
-//               Subscribe
-//             </button> */}
-//               <button onClick={() => { subscribehandler(plan.price) }} className="block mx-auto bg-black text-white px-6 py-2 rounded-lg hover:bg-white-700 transition">
-//                 Subscribe
-//               </button>
-//             </div>
-//           ))}
-//         </div>
-//         <div />
-//       </div>
-//     </div>
-//       );
-// };
-//       export default SubscriptionPlans
 import React, { useState } from 'react';
-import { ArrowLeft, Check, Star, Shield, Users, Zap, Crown, Award, Phone, X, Building } from 'lucide-react';
+import { ArrowLeft, Check, Star, Shield, Users, Zap, Crown, Award, Phone, X, Building, Scale } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link, useNavigate } from 'react-router-dom';
 import plans from '@/Data/plans_data';
 import Footer from '../components/Footer';
-// Mock navigation function
-// const mockNavigate = (path: string, options?: any) => {
-//   console.log(`Navigating to: ${path}`, options);
-//   alert(`Navigation to ${path} would happen here with data: ${JSON.stringify(options?.state || {})}`);
-// };
 
-// const mockLink = ({ to, children, className, onClick }: { to: string; children: React.ReactNode; className?: string; onClick?: (e: React.MouseEvent) => void }) => (
-//   <button 
-//     className={className} 
-//     onClick={(e) => {
-//       if (onClick) {
-//         onClick(e);
-//       } else {
-//         mockNavigate(to);
-//       }
-//     }}
-//   >
-//     {children}
-//   </button>
-// );
 
 function SubscriptionPlans() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
@@ -155,76 +20,6 @@ function SubscriptionPlans() {
     Building
   };
 
-  // const plans = [
-  //   {
-  //     name: "Starter",
-  //     price: "999",
-  //     originalPrice: "699",
-  //     period: "month",
-  //     description: "Perfect for new advocates getting started with online client acquisition.",
-  //     features: [
-  //       "Up to 10 Verified Leads/month",
-  //       "Direct Client Chat Access",
-  //       "Basic Profile Listing",
-  //       "Email Notifications",
-  //       "Standard Support (48hrs)",
-  //       "Legal Document Templates",
-  //     ],
-  //     highlight: false,
-  //     icon: "Users",
-  //     color: "from-blue-50 to-indigo-50",
-  //     borderColor: "border-blue-200",
-  //     badge: "Best for Beginners",
-  //     savings: "Save 30%"
-  //   },
-  //   {
-  //     name: "Growth",
-  //     price: "1999",
-  //     originalPrice: "2799",
-  //     period: "month",
-  //     description: "Ideal for practicing advocates aiming to significantly grow their clientele.",
-  //     features: [
-  //       "Up to 40 Verified Leads/month",
-  //       "Priority Listing in Search Results",
-  //       "Advanced Client Chat with Video Calls",
-  //       "Lead Insights & Analytics Dashboard",
-  //       "Priority Support (24hrs)",
-  //       "Advanced Legal Templates",
-  //       "Client Management System",
-  //       "Custom Profile Showcase",
-  //     ],
-  //     highlight: true,
-  //     icon: "Zap",
-  //     color: "from-orange-50 to-yellow-50",
-  //     borderColor: "border-orange-300",
-  //     badge: "Most Popular",
-  //     savings: "Save 40%"
-  //   },
-  //   {
-  //     name: "Pro Plus",
-  //     price: "4999",
-  //     originalPrice: "9999",
-  //     period: "month",
-  //     description: "Premium solution for top advocates who want maximum visibility and unlimited growth.",
-  //     features: [
-  //       "Unlimited Verified Leads",
-  //       "Top Placement in All Listings",
-  //       "Real-time Lead Alerts & Notifications",
-  //       "Dedicated Account Manager",
-  //       "24/7 Premium Support",
-  //       "Complete Legal Practice Suite",
-  //       "Advanced Analytics & Reporting",
-  //       "White-label Client Portal",
-  //       "Marketing Campaign Tools",
-  //     ],
-  //     highlight: false,
-  //     icon: "Crown",
-  //     color: "from-purple-50 to-pink-50",
-  //     borderColor: "border-purple-300",
-  //     badge: "Enterprise Ready",
-  //     savings: "Save 50%"
-  //   },
-  // ];
 
   const subscribeHandler = async (planName: string, price: string, icon: any) => {
     setSelectedPlan(planName);
@@ -252,30 +47,20 @@ function SubscriptionPlans() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-black shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* {mockLink({
-              to: "/",
-              className: "inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group",
-              children: (
-                <>
-                  <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                  <span className="font-medium">Back to Home</span>
-                </>
-              )
-            })} */}
             <Link to='/' className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
               <>
-                <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                <span className="font-medium">Back to Home</span>
+                <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform text-white" />
+                <span className="font-medium text-white">Back to Home</span>
               </></Link>
 
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                <Award className="w-4 h-4 text-blue-600" />
+              <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
+                <Scale className="w-7 h-7 text-white" />
               </div>
-              <span className="text-lg font-semibold text-gray-900">Legal Portal</span>
+              <span className="text-lg font-semibold text-white">JP Law Suvidha</span>
             </div>
           </div>
         </div>

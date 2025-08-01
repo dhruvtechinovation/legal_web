@@ -6,8 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('about');
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+  const [scrolled, setScrolled] = useState(false);
   const navigate=useNavigate()
 
   const menuItems = [
@@ -31,7 +31,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       // Update scroll state for navbar background
-      setIsScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 520);
 
       // Track active section
       const sections = menuItems.map(item => item.href.substring(1));
@@ -67,15 +67,15 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-card/100 backdrop-blur-lg border-b border-border shadow-lg' 
-        : 'bg-card/70 backdrop-blur-sm'
+    <header className={`fixed w-full z-50  ${
+      scrolled 
+        ? 'bg-black backdrop-blur-lg border-none border-border shadow-lg text-white transition-all duration-300' 
+        : 'bg-card/70 backdrop-blur-lg '
     }`}>
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="flex items-center justify-between py-4">
+      <div className="container mx-auto px-4 max-w-7xl ">
+        <div className="flex items-center justify-between py-4 ">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 items center ">
             <Logo />
           </div>
 
@@ -85,19 +85,19 @@ const Navbar = () => {
               <button
                 key={item.href}
                 onClick={() => handleNavClick(item.href)}
-                className={`text-sm font-medium transition-all duration-200 hover:text-primary relative ${
+                className={`text-sm font-medium transition-all duration-300 hover:text-primary relative ${
                   activeSection === item.href.substring(1)
                     ? 'text-primary'
                     : 'text-muted-foreground'
-                }`}
+                }   ${scrolled ? 'text-white transition-all duration-300 hover:text-white' : 'text-primary'} `}
               >
                 {item.label}
                 {activeSection === item.href.substring(1) && (
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                  <div className={`absolute -bottom-1 left-0 right-0 h-0.5  rounded-full ${scrolled ? 'bg-white':'bg-black'}`} />
                 )}
               </button>
             ))}
-            <Link to='/about' className={`text-muted-foreground text-sm font-medium transition-all duration-200 hover:text-primary`}>AboutUs</Link>
+            <Link to='/about' className={`text-sm font-medium transition-all duration-200 hover:text-primary ${scrolled ? 'text-white hover:text-white':''}`}>AboutUs</Link>
           </nav>
 
           {/* Desktop Actions */}
@@ -109,7 +109,7 @@ const Navbar = () => {
               variant="outline"
               size="sm"
               onClick={handleLogin}
-              className="flex items-center gap-2 border-border hover:bg-muted/50 hover:border-primary/50 transition-all duration-200"
+              className={`flex items-center gap-2 border-border hover:bg-muted/50 hover:border-primary/50  ${scrolled ? 'text-black transition-all duration-300 ':''}`}
             >
               <User className="w-4 h-4" />
               Login
@@ -119,7 +119,7 @@ const Navbar = () => {
             <Button
               size="sm"
               onClick={handleSignup}
-              className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
+              className={`flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 ${scrolled ? 'bg-white text-black hover:text-white hover:bg-muted-foreground':''}`}
             >
               <UserPlus className="w-4 h-4" />
               Subscribe
@@ -128,7 +128,7 @@ const Navbar = () => {
               variant="ghost"
               size="sm"
               onClick={handleLanguageToggle}
-              className="text-muted-foreground hover:text-foreground"
+              className={`text-muted-foreground hover:text-foreground ${scrolled ? 'text-muted-foreground bg-gray-400':''}`}
             >
               <Globe className="w-4 h-4" />
             </Button>

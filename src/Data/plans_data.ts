@@ -46,7 +46,7 @@ const plans = [
       price: "4999",
       originalPrice: "9999",
       period: "month",
-      description: "Premium solution for top advocates who want maximum visibility and unlimited growth.",
+      description: "Premium plan for maximum reach and growth.",
       features: [
         { label: "Up to 30 Verified Leads/month", status: true },
         { label: "CRM support", status: true },
@@ -78,7 +78,7 @@ const plans = [
       ],
       highlight: false,
       icon: "Zap",
-      color: "from-blue-100 to-blue-400",
+      color: "from-gray-100 to-gray-400",
       borderColor: "border-orange-300",
       badge: "Free Trial",
       savings: "Save 40%"
