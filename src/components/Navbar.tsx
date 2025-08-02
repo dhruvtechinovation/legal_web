@@ -1,38 +1,216 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, User, UserPlus, Globe } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Menu, 
+  X, 
+  User, 
+  UserPlus, 
+  Globe, 
+  Bell, 
+  ChevronDown,
+  Search,
+  Phone,
+  Mail,
+  ArrowRight,
+  ExternalLink
+} from 'lucide-react';
 import Logo from './Logo';
 import { Button } from "./ui/button";
-import { Link, useNavigate } from 'react-router-dom';
+import { Badge } from "./ui/badge";
+import { Input } from "./ui/input";
 import Languagechecker from './languagechecker';
+import { useNavigate } from 'react-router-dom';
+
+// // Notification Banner Component
+// const NotificationBanner = ({ onClose }: { onClose: () => void }) => {
+//   return (
+//     <div className="bg-primary text-primary-foreground px-4 py-2 text-sm relative overflow-hidden">
+//       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+//       <div className="container mx-auto max-w-7xl flex items-center justify-between relative z-10">
+//         <div className="flex items-center gap-2">
+//           <Bell className="w-4 h-4" />
+//           <span className="hidden sm:inline">
+//             🎉 New Feature: Advanced Legal Document AI Review now available!
+//           </span>
+//           <span className="sm:hidden">
+//             🎉 New AI Document Review Feature!
+//           </span>
+//           <Button 
+//             variant="ghost" 
+//             size="sm" 
+//             className="text-primary-foreground hover:bg-primary-foreground/20 h-auto p-1"
+//           >
+//             <ArrowRight className="w-3 h-3" />
+//           </Button>
+//         </div>
+//         <Button
+//           variant="ghost"
+//           size="sm"
+//           onClick={onClose}
+//           className="text-primary-foreground hover:bg-primary-foreground/20 h-auto p-1"
+//         >
+//           <X className="w-3 h-3" />
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// Enhanced Mobile Menu Component
+const MobileMenu = ({ 
+  isOpen, 
+  onClose, 
+  menuItems, 
+  activeSection, 
+  handleNavClick, 
+  handleLogin, 
+  handleSignup, 
+  scrolled 
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  menuItems: Array<{ label: string; href: string }>;
+  activeSection: string;
+  handleNavClick: (href: string) => void;
+  handleLogin: () => void;
+  handleSignup: () => void;
+  scrolled: boolean;
+}) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  return (
+    <div className={`lg:hidden fixed inset-x-0 top-0 z-40 transform transition-all duration-300 ease-out ${
+      isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+    }`}>
+      <div className="bg-white border-b border-border shadow-xl">
+        <div className="container mx-auto px-4 max-w-7xl">
+          {/* Mobile Header */}
+          <div className="flex items-center justify-between py-4 border-b border-border">
+            <Logo />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <X className="w-6 h-6" />
+            </Button>
+          </div>
+          {/* Mobile Navigation */}
+          <div className="py-4">
+            <nav className="space-y-1">
+              {menuItems.map((item, index) => (
+                <button
+                  key={item.href}
+                  onClick={() => {
+                    handleNavClick(item.href);
+                    onClose();
+                  }}
+                  className={`group flex items-center justify-between w-full px-4 py-3 text-left rounded-lg transition-all duration-200 ${
+                    activeSection === item.href.substring(1)
+                      ? 'bg-primary/10 text-primary border-l-4 border-primary'
+                      : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
+                  }`}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <span className="font-medium">{item.label}</span>
+                  <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200" />
+                </button>
+              ))}
+              
+              <button
+                onClick={() => {
+                  const element = document.querySelector('#about');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    onClose();
+                  }
+                }}
+                className="group flex items-center justify-between w-full px-4 py-3 text-left rounded-lg transition-all duration-200 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+              >
+                <span className="font-medium">AboutUs</span>
+                <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200" />
+              </button>
+            </nav>
+          </div>
+
+          {/* Mobile Actions */}
+          <div className="py-4 border-t border-border space-y-4">
+            {/* Language Selector */}
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-foreground">Language</span>
+              <div className="p-1 rounded-md">
+                <Languagechecker />
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                variant="outline"
+                onClick={handleLogin}
+                className="flex items-center justify-center gap-2 h-12 group"
+              >
+                <User className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                Login
+              </Button>
+              <Button
+                onClick={handleSignup}
+                className="flex items-center justify-center gap-2 h-12 group transform hover:scale-105 transition-all duration-200"
+              >
+                <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                Subscribe
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const navigate=useNavigate()
+  
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const menuItems = [
     { label: "Services", href: "#services" },
     { label: "Areas of Expertise", href: "#expertise" },
     { label: "FAQ", href: "#faq" },
-    // { label: "Platform Terms", href: "#disclaimers" },
-    // { label: "Profile Demo", href: "#profile" }
   ];
 
-  // Handle smooth scrolling
-  const handleNavClick = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
+  // Enhanced click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
 
-  // Track scroll position and active section
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  // Enhanced scroll handler with hide/show functionality
   useEffect(() => {
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
       // Update scroll state for navbar background
-      setScrolled(window.scrollY > 520);
+      setScrolled(currentScrollY > 520);
+
 
       // Track active section
       const sections = menuItems.map(item => item.href.substring(1));
@@ -44,23 +222,44 @@ const Navbar = () => {
         }
         return false;
       });
-      
+
       if (currentSection) {
         setActiveSection(currentSection);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
-  // Mock login/signup handlers
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen]);
+
+  // Handle smooth scrolling
+  const handleNavClick = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
+
+  // Navigation handlers
   const handleLogin = () => {
-    navigate('/login',{replace:true})
+   navigate('/login',{replace:true})
   };
 
   const handleSignup = () => {
-  navigate('/signup',{replace:true})
+    navigate('/signup',{replace:true})
   };
 
   const handleLanguageToggle = () => {
@@ -68,140 +267,145 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`fixed w-full z-50  ${
-      scrolled 
-        ? 'bg-black backdrop-blur-lg border-none border-border shadow-lg text-white transition-all duration-300' 
-        : 'bg-card/70 backdrop-blur-lg '
-    }`}>
-      <div className="container mx-auto px-4 max-w-7xl ">
-        <div className="flex items-center justify-between py-4 ">
-          {/* Logo */}
-          <div className="flex-shrink-0 items center ">
-            <Logo />
-          </div>
+    <>
+      {/* Notification Banner */}
+      {/* {showBanner && (
+        <NotificationBanner onClose={() => setShowBanner(false)} />
+      )} */}
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-7">
-            {menuItems.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => handleNavClick(item.href)}
-                className={`text-sm font-medium transition-all duration-300 hover:text-primary relative ${
-                  activeSection === item.href.substring(1)
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
-                }   ${scrolled ? 'text-white transition-all duration-300 hover:text-white' : 'text-primary'} `}
-              >
-                {item.label}
-                {activeSection === item.href.substring(1) && (
-                  <div className={`absolute -bottom-1 left-0 right-0 h-0.5  rounded-full ${scrolled ? 'bg-white':'bg-black'}`} />
-                )}
-              </button>
-            ))}
-            <Link to='/about' className={`text-sm font-medium transition-all duration-200 hover:text-primary ${scrolled ? 'text-white hover:text-white':''}`}>AboutUs</Link>
-          </nav>
+      {/* Main Header */}
+      <header 
+        className={`fixed w-full z-50 transform transition-all duration-300 ${
+          isVisible ? 'translate-y-0' : '-translate-y-full'
+        } ${
+          scrolled
+            ? 'bg-black border-b border-border shadow-lg'
+            : 'bg-card/80 backdrop-blur-sm'
+        }`}
+        style={{ top: showBanner ? '0' : '0' }}
+      >
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex items-center justify-between py-4">
+            {/* Logo */}
+            <div className="flex-shrink-0 transform hover:scale-105 transition-transform duration-200">
+              <Logo />
+            </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {/* Language Toggle */}
-
-            {/* Login Button */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleLogin}
-              className={`flex items-center gap-2 border-border hover:bg-muted/50 hover:border-primary/50  ${scrolled ? 'text-black transition-all duration-300 ':''}`}
-            >
-              <User className="w-4 h-4" />
-              Login
-            </Button>
-
-            {/* Subscribe Button */}
-            <Button
-              size="sm"
-              onClick={handleSignup}
-              className={`flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 ${scrolled ? 'bg-white text-black hover:text-white hover:bg-muted-foreground':''}`}
-            >
-              <UserPlus className="w-4 h-4" />
-              Subscribe
-            </Button>
-            {/* </Button> */}
-            <div
-  className={`p-1 border rounded-md ${
-    scrolled ? 'text-white border-white hover:text-white transition-all duration-300' : 'border-gray-300 text-black'
-  }`}
->
-  <Languagechecker />
-</div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="lg:hidden p-2 text-muted-foreground hover:text-foreground"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </Button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden border-t border-border bg-card/95 backdrop-blur-md">
-            <div className="py-4 space-y-2">
-              {/* Navigation Links */}
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
               {menuItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className={`block w-full text-left px-4 py-3 text-sm font-medium transition-colors duration-200 hover:bg-muted/50 rounded-lg ${
+                  className={`group relative text-sm font-medium transition-all duration-300 hover:text-primary ${
                     activeSection === item.href.substring(1)
-                      ? 'text-primary bg-primary/5'
+                      ? 'text-primary'
                       : 'text-muted-foreground'
-                  }`}
+                  } ${scrolled ? 'text-white hover:text-white' : ''}`}
                 >
                   {item.label}
+                  {/* Animated underline */}
+                  <span
+  className={`absolute left-0 right-0 bottom-0 h-0.5 transform origin-left transition-transform duration-300 
+    ${activeSection === item.href.substring(1) 
+      ? 'scale-x-100' 
+      : 'scale-x-0 group-hover:scale-x-100'} 
+    ${scrolled ? 'bg-white' : 'bg-primary'}`}
+/>
                 </button>
               ))}
+              
+              <button
+                onClick={() => handleNavClick('#about')}
+                className={`group relative text-sm font-medium transition-all duration-300 hover:text-primary text-muted-foreground ${
+                  scrolled ? 'text-white hover:text-white' : ''
+                }`}
+              >
+                AboutUs
+                <span className={`absolute left-0 right-0 bottom-0 h-0.5 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${scrolled ?'text-white bg-white':''}`} />
+              </button>
+            </nav>
 
-              {/* Mobile Actions */}
-              <div className="pt-4 space-y-3 border-t border-border mt-4">
-                <div className="flex items-center justify-between px-4">
-                  <span className="text-sm text-muted-foreground">Language</span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleLanguageToggle}
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    <Globe className="w-4 h-4" />
-                  </Button>
-                </div>
+            {/* Desktop Actions */}
+            <div className="hidden lg:flex items-center space-x-4">
 
-                <div className="px-4 space-y-2">
-                  <Button
-                    variant="outline"
-                    className="w-full flex items-center justify-center gap-2 border-border hover:bg-muted/50"
-                    onClick={handleLogin}
-                  >
-                    <User className="w-4 h-4" />
-                    Login
-                  </Button>
-                  <Button
-                    className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transform hover:scale-110 transition duration-200"
-                    onClick={handleSignup}
-                  >
-                    <UserPlus className="w-4 h-4" />
-                    Subscribe
-                  </Button>
-                </div>
+              {/* Login Button */}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleLogin}
+                className="group flex items-center gap-2 border-border hover:bg-muted/50 hover:border-primary/50 transform hover:scale-105 transition-all duration-200"
+              >
+                <User className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                Login
+              </Button>
+
+              {/* Subscribe Button */}
+              <Button
+                size="sm"
+                onClick={handleSignup}
+                className="group flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                Subscribe
+              </Button>
+               {/* Language Toggle */}
+               <div className="p-1 rounded-md transition-colors  ">
+                <Languagechecker />
               </div>
             </div>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="lg:hidden p-2 text-muted-foreground hover:text-foreground group"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <div className="relative w-6 h-6">
+                <Menu className={`w-6 h-6 absolute inset-0 transform transition-all duration-300 ${
+                  isMenuOpen ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
+                }`} />
+                <X className={`w-6 h-6 absolute inset-0 transform transition-all duration-300 ${
+                  isMenuOpen ? 'rotate-0 opacity-100' : '-rotate-180 opacity-0'
+                }`} />
+              </div>
+            </Button>
           </div>
-        )}
-      </div>
-    </header>
+        </div>
+
+        {/* Mobile Menu */}
+        <MobileMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          menuItems={menuItems}
+          activeSection={activeSection}
+          handleNavClick={handleNavClick}
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+          scrolled={scrolled}
+        />
+      </header>
+
+      {/* Backdrop overlay for mobile menu */}
+      {isMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-30 lg:hidden backdrop-blur-sm"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+
+      {/* Custom Styles */}
+      {/* <style jsx>{`
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        .animate-shimmer {
+          animation: shimmer 3s ease-in-out infinite;
+        }
+      `}</style> */}
+    </>
   );
 };
 

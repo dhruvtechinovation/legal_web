@@ -22,7 +22,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     const[isPlaying,setIsPlaying]=useState(false)
   return (
     <video
-      className={`transition-all duration-400 ease-in-out border-none outline-none focus:outline-none p-0 m-0 ${isPlaying ? 'w-[700px] h-[400px]' : 'w-[400px]'} ${className}`}
+    className={`
+      transition-all duration-400 ease-in-out border-none outline-none focus:outline-none p-0 m-0
+      w-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px]
+      h-auto
+      ${className}
+    `}
       src={src}
       poster={poster}
       autoPlay={autoPlay}

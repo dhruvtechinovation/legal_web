@@ -139,7 +139,7 @@ const App = () => {
         </Routes>
         {/* </BrowserRouter> */}
       </TooltipProvider>
-      <div className="fixed top-3/4 left-0 transform -translate-y-1/2 flex flex-col space-y-4 pl-2 z-50">
+      <div className=" hidden lg:block fixed top-3/4 left-0 transform -translate-y-1/2 flex flex-col space-y-4 pl-2 z-50">
       <div className="">
               <a href="#" className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center hover:bg-blue-400 transition-colors mb-2 ">
                 <span className="sr-only">Facebook</span>

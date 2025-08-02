@@ -43,7 +43,7 @@ const AboutUs = () => {
           </div>
           <div className="relative flex justify-center items-center ">
             <VideoPlayer
-              src="/~ohokgmuc/videos/jp2.mp4"
+              src="/videos/jp2.mp4"
               poster=""
               autoPlay={false}
               loop={true}
