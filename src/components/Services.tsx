@@ -1,55 +1,5 @@
-
-// import React from 'react';
-// import { Scale, FileText, Users } from 'lucide-react';
-
-// const Services = () => {
-//   const services = [
-//     {
-//       icon: <Scale className="w-10 h-10" />,
-//       title: "Legal Consultation",
-//       description: "Expert advice on legal matters with a personalized approach tailored to your specific situation and needs."
-//     },
-//     {
-//       icon: <Users className="w-10 h-10" />,
-//       title: "Legal Representation",
-//       description: "Professional representation in court proceedings, negotiations, and other legal forums to protect your interests."
-//     },
-//     {
-//       icon: <FileText className="w-10 h-10" />,
-//       title: "Document Drafting",
-//       description: "Precise drafting of legal documents including contracts, agreements, wills, and other important paperwork."
-//     }
-//   ];
-
-//   return (
-//     <section id="services" className="py-16 bg-gray-50">
-//       <div className="container-custom">
-//         <div className="text-center max-w-3xl mx-auto mb-16">
-//           <h2 className="heading-lg mb-4">Our Legal Services</h2>
-//           <p className="paragraph">Comprehensive legal solutions tailored to meet your unique requirements with precision and care.</p>
-//         </div>
-
-//         <div className="grid md:grid-cols-3 gap-8">
-//           {services.map((service, index) => (
-//             <div 
-//               key={index} 
-//               className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:transform hover:-translate-y-1"
-//             >
-//               <div className="mb-6 text-black">{service.icon}</div>
-//               <h3 className="heading-sm mb-4">{service.title}</h3>
-//               <p className="text-gray-600">{service.description}</p>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Services;
-
-import React, { useState } from 'react';
-import { Scale, FileText, Users, Briefcase, ArrowRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Scale, FileText, Users, Briefcase, ArrowRight, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const Services = () => {
@@ -77,8 +27,18 @@ const Services = () => {
       <Briefcase className="w-10 h-10" />
       
   ];
+  // useEffect(() => {
+  //   if (selectedService) {
+  //     document.body.classList.add('overflow-hidden');
+  //   } else {
+  //     document.body.classList.remove('overflow-hidden');
+  //   }
+  
+  //   return () => document.body.classList.remove('overflow-hidden');
+  // }, [selectedService]);
 
   return (
+    
     <section id="services" className="py-16 bg-gray-50 dark:bg-black dark:text-white">
       <div className="container-custom">
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -133,7 +93,7 @@ const Services = () => {
               >
                 Know More...
               </button> */}
-               <div className="flex items-center gap-2 text-xs text-gray-700 font-medium group-hover:gap-2 transition-all mt-2">
+               <div className="flex items-center gap-2 text-xs text-gray-700 font-medium group-hover:gap-2 transition-all mt-2 hover:cursor-pointer">
           <span>Know More</span>
           <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
         </div>
@@ -161,7 +121,7 @@ const Services = () => {
               aria-labelledby="modal-title"
             >
               <div
-                className="bg-card max-w-4xl w-full mx-4 p-7 rounded-xl shadow-2xl border border-border relative animate-scale-in hover-scale"
+                className="bg-black max-w-4xl w-full mx-4 p-7 rounded-xl shadow-2xl border border-border relative animate-scale-in hover-scale"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
@@ -182,36 +142,39 @@ const Services = () => {
                     <path d="M18 6L6 18M6 6l12 12" />
                   </svg>
                 </button>
+               <div>
 
                 <h3
                   id="modal-title"
-                  className="text-xl font-semibold mb-4 text-primary pr-8"
+                  className="heading-sm font-semibold mb-4 text-primary pr-7 text-center text-white "
                 >
                   {selectedService.title}
                 </h3>
+               </div>
 
-                <div className="text-muted-foreground leading-relaxed">
-                </div>
+                {/* <div className="text-muted-foreground leading-relaxed">
+                </div> */}
 
                 {selectedService && (
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <h4 className="font-medium text-foreground mb-2">Key Features:</h4>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      {selectedService.description.map((feature, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+  <div className="mt-6 pt-6 border-t border-border">
+    <h4 className="text-lg font-semibold  text-white mb-4 underline">Key Features</h4>
+    <ul className="space-y-3">
+      {selectedService.description.map((feature, index) => (
+        <li key={index} className="flex items-start text-sm text-white text-muted-foreground leading-relaxed">
+          <span className="text-primary mt-1 mr-2 text-white">✓</span>
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
               </div>
             </div>
           )}
         </div>
       </div>
     </section>
+    
   );
 };
 

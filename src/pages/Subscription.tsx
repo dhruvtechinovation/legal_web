@@ -244,74 +244,81 @@ function SubscriptionPlans() {
         </div>
       </div>
       {faq && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="relative bg-white rounded-xl shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6">
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+    <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8">
+      
+      {/* Close Button */}
+      <button
+        onClick={() => setfaq(prev => !prev)}
+        className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition-colors"
+        aria-label="Close FAQ"
+      >
+        <X className="w-5 h-5" />
+      </button>
 
-            {/* Close button */}
-            <button
-              onClick={() => setfaq(prev => !prev)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-            >
-              <X className="w-5 h-5" />
-            </button>
+      {/* FAQ Content */}
+      <div className="space-y-8">
+        <h2 className="text-3xl font-bold text-gray-800">Frequently Asked Questions</h2>
 
-            {/* FAQ content */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
-
-              <div>
-                <h3 className="font-semibold text-lg">1. What subscription plans do you offer?</h3>
-                <p className="text-gray-600">
-                  We offer three plans: <strong>Basic</strong>, <strong>Pro</strong>, and <strong>Enterprise</strong>.
-                  Each plan is tailored to different needs, from individuals just getting started to large teams requiring advanced features and support.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg">2. Can I try a plan before committing?</h3>
-                <p className="text-gray-600">
-                  Yes! We offer a <strong>7-day free trial</strong> for all new users. No credit card is required, and you can upgrade to a paid plan anytime during or after the trial.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg">3. Can I upgrade or downgrade my plan later?</h3>
-                <p className="text-gray-600">
-                  Absolutely. You can <strong>upgrade, downgrade, or cancel</strong> your subscription at any time directly from your account dashboard. Changes take effect immediately or at the next billing cycle, depending on the situation.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg">4. What payment methods do you accept?</h3>
-                <p className="text-gray-600">
-                  We accept all major credit and debit cards, including <strong>Visa, MasterCard, American Express</strong>, and <strong>UPI (India)</strong>. For enterprise customers, we also support invoicing.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg">5. Will I be charged automatically?</h3>
-                <p className="text-gray-600">
-                  Yes, subscriptions are <strong>billed automatically</strong> either monthly or annually, based on the plan you choose. You’ll receive an email notification before each renewal.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg">6. Can I cancel anytime?</h3>
-                <p className="text-gray-600">
-                  Yes, you can cancel your subscription at any time. Your access will continue until the end of your current billing period, and <strong>no further charges</strong> will be made.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-lg">7. Is my data safe and secure?</h3>
-                <p className="text-gray-600">
-                  Absolutely. We use industry-standard <strong>encryption</strong> and <strong>secure payment gateways</strong> to protect your data. We also comply with data privacy regulations like <strong>GDPR</strong> to ensure your information is handled responsibly.
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* Question 1 */}
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900">1. What subscription plans do you offer?</h3>
+          <p className="mt-1 text-gray-600">
+            We offer <strong>Basic</strong>, <strong>Pro</strong>, and <strong>Enterprise</strong> plans—tailored for everyone from individuals to large organizations with advanced needs.
+          </p>
         </div>
-      )}
+
+        {/* Question 2 */}
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900">2. Can I try a plan before committing?</h3>
+          <p className="mt-1 text-gray-600">
+            Yes! Enjoy a <strong>7-day free trial</strong> with full access—no credit card required. Upgrade anytime during or after the trial.
+          </p>
+        </div>
+
+        {/* Question 3 */}
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900">3. Can I upgrade or downgrade my plan later?</h3>
+          <p className="mt-1 text-gray-600">
+            Absolutely. You can <strong>upgrade, downgrade, or cancel</strong> your subscription anytime from your dashboard. Changes apply immediately or at the next billing cycle.
+          </p>
+        </div>
+
+        {/* Question 4 */}
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900">4. What payment methods do you accept?</h3>
+          <p className="mt-1 text-gray-600">
+            We accept <strong>Visa, MasterCard, American Express</strong>, and <strong>UPI (India)</strong>. Enterprise clients can also opt for invoicing.
+          </p>
+        </div>
+
+        {/* Question 5 */}
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900">5. Will I be charged automatically?</h3>
+          <p className="mt-1 text-gray-600">
+            Yes, subscriptions are <strong>billed automatically</strong> monthly or annually, depending on your plan. You’ll be notified before each renewal.
+          </p>
+        </div>
+
+        {/* Question 6 */}
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900">6. Can I cancel anytime?</h3>
+          <p className="mt-1 text-gray-600">
+            Yes, cancel anytime. Your access remains active until your billing period ends. <strong>No further charges</strong> will be applied.
+          </p>
+        </div>
+
+        {/* Question 7 */}
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900">7. Is my data safe and secure?</h3>
+          <p className="mt-1 text-gray-600">
+            Absolutely. We use <strong>industry-standard encryption</strong> and secure gateways. Our platform is <strong>GDPR-compliant</strong> to ensure full data protection.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
       <Footer />
     </div>
 

@@ -3,6 +3,7 @@ import { Menu, X, User, UserPlus, Globe } from 'lucide-react';
 import Logo from './Logo';
 import { Button } from "./ui/button";
 import { Link, useNavigate } from 'react-router-dom';
+import Languagechecker from './languagechecker';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -124,14 +125,10 @@ const Navbar = () => {
               <UserPlus className="w-4 h-4" />
               Subscribe
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleLanguageToggle}
-              className={`text-muted-foreground hover:text-foreground ${scrolled ? 'text-muted-foreground bg-gray-400':''}`}
-            >
-              <Globe className="w-4 h-4" />
-            </Button>
+            {/* </Button> */}
+            <Button variant="ghost" size="sm" className={`p-0 ${scrolled ? 'text-white transition-all duration-300':''}`}>
+  <Languagechecker />
+</Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -187,9 +184,8 @@ const Navbar = () => {
                     <User className="w-4 h-4" />
                     Login
                   </Button>
-
                   <Button
-                    className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+                    className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transform hover:scale-110 transition duration-200"
                     onClick={handleSignup}
                   >
                     <UserPlus className="w-4 h-4" />
