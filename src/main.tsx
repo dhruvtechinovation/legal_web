@@ -6,6 +6,6 @@ import './i18n';
 
 
 createRoot(document.getElementById("root")!).render(
-<BrowserRouter basename="/~ohokgmuc/">
+<BrowserRouter>
 <App />
 </BrowserRouter>);

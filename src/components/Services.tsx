@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Scale, FileText, Users, Briefcase, ArrowRight, ChevronDown } from 'lucide-react';
+import { Scale, FileText, Users, Briefcase, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const Services = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('services');
   const [selectedService, setSelectedService] = useState(null);
   type Se = {
     title: string;
@@ -19,7 +19,10 @@ const Services = () => {
   // };
   
   const servicedata = t('services.service', { returnObjects: true }) as Se[]
-  console.log('service translation file is',servicedata )
+//   console.log('raw services',servicedata)
+//   console.log('service translation file is',servicedata )
+//   console.log('Service data:', servicedata);
+// console.log('Is array?', Array.isArray(servicedata));
   const services = [
        <Scale className="w-10 h-10" />,
        <Users className="w-10 h-10" />,
@@ -27,18 +30,17 @@ const Services = () => {
       <Briefcase className="w-10 h-10" />
       
   ];
-  // useEffect(() => {
-  //   if (selectedService) {
-  //     document.body.classList.add('overflow-hidden');
-  //   } else {
-  //     document.body.classList.remove('overflow-hidden');
-  //   }
+  useEffect(() => {
+    if (selectedService) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
   
-  //   return () => document.body.classList.remove('overflow-hidden');
-  // }, [selectedService]);
+    return () => document.body.classList.remove('overflow-hidden');
+  }, [selectedService]);
 
   return (
-    
     <section id="services" className="py-16 bg-gray-50 dark:bg-black dark:text-white">
       <div className="container-custom">
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -93,7 +95,7 @@ const Services = () => {
               >
                 Know More...
               </button> */}
-               <div className="flex items-center gap-2 text-xs text-gray-700 font-medium group-hover:gap-2 transition-all mt-2 hover:cursor-pointer">
+               <div className="flex items-center gap-2 text-xs text-gray-700 font-medium group-hover:gap-2 transition-all mt-2">
           <span>Know More</span>
           <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
         </div>
@@ -121,7 +123,7 @@ const Services = () => {
               aria-labelledby="modal-title"
             >
               <div
-                className="bg-black max-w-4xl w-full mx-4 p-7 rounded-xl shadow-2xl border border-border relative animate-scale-in hover-scale"
+                className="bg-card max-w-4xl w-full mx-4 p-7 rounded-xl shadow-2xl border border-border relative animate-scale-in hover-scale"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
@@ -146,22 +148,22 @@ const Services = () => {
 
                 <h3
                   id="modal-title"
-                  className="heading-sm font-semibold mb-4 text-primary pr-7 text-center text-white "
+                  className="heading-sm font-semibold mb-4 text-primary pr-7 "
                 >
                   {selectedService.title}
                 </h3>
                </div>
 
-                {/* <div className="text-muted-foreground leading-relaxed">
-                </div> */}
+                <div className="text-muted-foreground leading-relaxed">
+                </div>
 
                 {selectedService && (
   <div className="mt-6 pt-6 border-t border-border">
-    <h4 className="text-lg font-semibold  text-white mb-4 underline">Key Features</h4>
+    <h4 className="text-sm font-semibold text-foreground mb-4">Key Features</h4>
     <ul className="space-y-3">
       {selectedService.description.map((feature, index) => (
-        <li key={index} className="flex items-start text-sm text-white text-muted-foreground leading-relaxed">
-          <span className="text-primary mt-1 mr-2 text-white">✓</span>
+        <li key={index} className="flex items-start text-sm text-muted-foreground leading-relaxed">
+          <span className="text-primary mt-1 mr-2">✓</span>
           <span>{feature}</span>
         </li>
       ))}
@@ -174,7 +176,6 @@ const Services = () => {
         </div>
       </div>
     </section>
-    
   );
 };
 

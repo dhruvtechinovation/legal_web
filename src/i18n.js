@@ -10,8 +10,10 @@ i18n
     lng: 'en',
     debug: false,
     backend: {
-      loadPath: '/~ohokgmuc/locales/{{lng}}/translation.json',
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
+    ns: ['services','expertise','Faq'], // list of all your namespaces
+    defaultNS: 'services',
     interpolation: {
       escapeValue: false,
     },

@@ -126,9 +126,13 @@ const Navbar = () => {
               Subscribe
             </Button>
             {/* </Button> */}
-            <Button variant="ghost" size="sm" className={`p-0 ${scrolled ? 'text-white transition-all duration-300':''}`}>
+            <div
+  className={`p-1 border rounded-md ${
+    scrolled ? 'text-white border-white hover:text-white transition-all duration-300' : 'border-gray-300 text-black'
+  }`}
+>
   <Languagechecker />
-</Button>
+</div>
           </div>
 
           {/* Mobile Menu Button */}
