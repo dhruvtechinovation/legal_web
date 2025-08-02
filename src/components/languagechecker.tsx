@@ -69,7 +69,7 @@ const Languagechecker = () => {
       {/* Button that toggles the dropdown */}
       <button
   onClick={() => setOpen(!open)}
-  className="w-7 h-7 flex items-center justify-center rounded-md text-black lg:text-white  transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+  className={`w-7 h-7 flex items-center justify-center rounded-md text-black lg:text-white  transition-colors duration-200 focus:outline-none  focus:ring-offset-2 focus:ring-gray-300 `}
   aria-label="Toggle Language"
 >
   <Globe className="w-7 h-7" />

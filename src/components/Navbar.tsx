@@ -76,6 +76,7 @@ const MobileMenu = ({
   scrolled: boolean;
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate=useNavigate()
   
   return (
     <div className={`lg:hidden fixed inset-x-0 top-0 z-40 transform transition-all duration-300 ease-out ${
@@ -85,7 +86,9 @@ const MobileMenu = ({
         <div className="container mx-auto px-4 max-w-7xl">
           {/* Mobile Header */}
           <div className="flex items-center justify-between py-4 border-b border-border">
+            <div  >
             <Logo />
+            </div>
             <Button
               variant="ghost"
               size="sm"
@@ -119,12 +122,9 @@ const MobileMenu = ({
               
               <button
                 onClick={() => {
-                  const element = document.querySelector('#about');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                    onClose();
+                     navigate('/about')
                   }
-                }}
+                }
                 className="group flex items-center justify-between w-full px-4 py-3 text-left rounded-lg transition-all duration-200 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
               >
                 <span className="font-medium">AboutUs</span>
@@ -176,6 +176,20 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const navigate=useNavigate()
+  useEffect(() => {
+    const isMobile = window.innerWidth < 1024; // lg breakpoint
+  
+    if (isMobile && isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  
+    // Clean up on unmount
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
   
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -262,9 +276,9 @@ const Navbar = () => {
     navigate('/signup',{replace:true})
   };
 
-  const handleLanguageToggle = () => {
-    console.log('Language toggle clicked');
-  };
+  // const handleLanguageToggle = () => {
+  //   console.log('Language toggle clicked');
+  // };
 
   return (
     <>
@@ -274,20 +288,20 @@ const Navbar = () => {
       )} */}
 
       {/* Main Header */}
-      <header 
-        className={`fixed w-full z-50 transform transition-all duration-300 ${
-          isVisible ? 'translate-y-0' : '-translate-y-full'
-        } ${
-          scrolled
-            ? 'bg-black border-b border-border shadow-lg'
-            : 'bg-card/80 backdrop-blur-sm'
-        }`}
+      <div
+  className={`fixed w-full z-50 transform transition-all duration-300 ${
+    isVisible ? 'translate-y-0' : '-translate-y-full'
+  } ${
+    scrolled
+      ? 'bg-white lg:bg-black border-b border-border shadow-lg'
+      : 'bg-card/75  shadow-md'
+  }`}
         style={{ top: showBanner ? '0' : '0' }}
       >
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
-            <div className="flex-shrink-0 transform hover:scale-105 transition-transform duration-200">
+            <div className="flex-shrink-0 transform hover:scale-100 transition-transform duration-200">
               <Logo />
             </div>
 
@@ -316,7 +330,7 @@ const Navbar = () => {
               ))}
               
               <button
-                onClick={() => handleNavClick('#about')}
+                onClick={() => navigate('/about')}
                 className={`group relative text-sm font-medium transition-all duration-300 hover:text-primary text-muted-foreground ${
                   scrolled ? 'text-white hover:text-white' : ''
                 }`}
@@ -344,13 +358,13 @@ const Navbar = () => {
               <Button
                 size="sm"
                 onClick={handleSignup}
-                className="group flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+                className={`group flex items-center gap-2 bg-primary text-primary-foreground hover:bg-white hover:text-black transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl ${scrolled ? 'bg-white text-black hover:bg-muted/50':''}`}
               >
                 <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 Subscribe
               </Button>
                {/* Language Toggle */}
-               <div className="p-1 rounded-md transition-colors  ">
+               <div className="p-1 rounded-md bg-black   ">
                 <Languagechecker />
               </div>
             </div>
@@ -385,7 +399,7 @@ const Navbar = () => {
           handleSignup={handleSignup}
           scrolled={scrolled}
         />
-      </header>
+      </div>
 
       {/* Backdrop overlay for mobile menu */}
       {isMenuOpen && (
@@ -396,7 +410,7 @@ const Navbar = () => {
       )}
 
       {/* Custom Styles */}
-      {/* <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(100%); }
@@ -404,7 +418,7 @@ const Navbar = () => {
         .animate-shimmer {
           animation: shimmer 3s ease-in-out infinite;
         }
-      `}</style> */}
+      `}</style>
     </>
   );
 };

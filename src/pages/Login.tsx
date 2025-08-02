@@ -133,7 +133,7 @@ function LoginForm() {
       setIsSubmitting(false);
       return;
     }
-    if (email !== 'jp.lawsuvidha@gmail.com') {
+    if (email !== 'jp.admin@gmail.com') {
       setError('Only authorized email is allowed.');
       setIsSubmitting(false);
       return;
@@ -284,7 +284,6 @@ function LoginForm() {
                   autoComplete="email"
                   required
                 />
-                <span className='text-sm'>Test use email: jp.lawsuvidha@gmail.com</span>
                 <Label
                   htmlFor="email"
                   className={`absolute left-4 transition-all duration-200 pointer-events-none ${
