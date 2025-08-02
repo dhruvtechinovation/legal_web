@@ -27,15 +27,15 @@ const Services = () => {
       <Briefcase className="w-10 h-10" />
       
   ];
-  useEffect(() => {
-    if (selectedService) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
+  // useEffect(() => {
+  //   if (selectedService) {
+  //     document.body.classList.add('overflow-hidden');
+  //   } else {
+  //     document.body.classList.remove('overflow-hidden');
+  //   }
   
-    return () => document.body.classList.remove('overflow-hidden');
-  }, [selectedService]);
+  //   return () => document.body.classList.remove('overflow-hidden');
+  // }, [selectedService]);
 
   return (
     

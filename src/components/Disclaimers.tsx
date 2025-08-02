@@ -76,16 +76,6 @@ const Disclaimers = () => {
        <div className="bg-black shadow-sm border-b border-gray-200">
                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                  <div className="flex items-center justify-between h-16">
-                   {/* {mockLink({
-                     to: "/signup",
-                     className: "inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group",
-                     children: (
-                       <>
-                         <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                         <span className="font-medium">Back to Plans</span>
-                       </>
-                     )
-                   })} */}
                    <Link to='/' className="inline-flex items-center text-white hover:text-gray-900 transition-colors group">
                      <>
                        <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 text-white transition-transform" />

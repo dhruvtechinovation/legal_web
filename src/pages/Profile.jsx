@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { ArrowLeft, Scale } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, replace } from 'react-router-dom';
 import { Pencil } from 'lucide-react';
 import PhotoUpdateModal from '../components/Webcapture';
 import Footer from '../components/Footer'
@@ -45,7 +45,7 @@ const Profile = () => {
       <div className="bg-black shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link to='/personal_dashboard' className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
+            <Link to='/personal_dashboard' replace className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
               <>
                 <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform text-white" />
                 <span className="font-medium text-white">Back to Dashboard</span>

@@ -397,7 +397,7 @@ function PersonalDashboard() {
     return phone.replace(/^(\d{4})\d{6}$/, '$1******');
   }
   const handleProfile = () => {
-    navigate('/profile')
+    navigate('/profile',{replace:true})
   }
   const handlechangePassword=()=>{
     setpassword(!password)
