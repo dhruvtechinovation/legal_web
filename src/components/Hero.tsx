@@ -1,9 +1,11 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
+import { ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   return (
+    <div>
     <section className="pt-28 pb-16 md:pt-36 md:pb-24 relative">
       {/* Background Image */}
       <div className="absolute inset-0 bg-cover bg-center z-0" 
@@ -23,33 +25,14 @@ const Hero = () => {
               Professional Legal Solutions for Every Challenge
             </h1>
             <p className="paragraph mb-8 text-white/90 dark:text-white">
-              {/* JP Law Suvidha provides expert legal services tailored to your needs. Our team of experienced attorneys is committed to delivering justice and peace of mind through comprehensive legal representation. */}
               JP LAW SUVIDHA is a secure, tech-enabled platform designed to connect clients with the right legal professionals. We combine advanced digital tools with deep legal industry insight to simplify communication and ensure timely, effective access to legal support.
-
-            </p>
-            {/* <div className="flex flex-wrap gap-4">
-            <Button variant="outline" className="btn-secondary border-white text-black hover:bg-white/20">
-                Get Free Consultation
-              </Button>
-              <Button variant="outline" className="btn-secondary border-white text-black hover:bg-white/20">
-                Know More
-              </Button>
-            </div> */}
+            </p>           
           </div>
-          {/* <div className="hidden md:block">
-            <div className="relative animate-scale-in">
-              <div className="w-full h-[500px] bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden shadow-xl border border-white/20">
-                <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-black/30"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black to-transparent text-white">
-                  <div className="font-serif text-2xl font-semibold mb-2">Trusted Legal Partner</div>
-                  <p className="text-white/80">With over 15 years of experience in various practice areas</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
+    
     </section>
+    </div>
   );
 };
 
