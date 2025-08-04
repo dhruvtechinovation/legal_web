@@ -25,9 +25,9 @@ const Services = () => {
   //   console.log('Service data:', servicedata);
   // console.log('Is array?', Array.isArray(servicedata));
   const services = [
-    <Scale className="w-10 h-10" />,
-    <Users className="w-10 h-10" />,
-    <FileText className="w-10 h-10" />,
+    <Scale className="w-10 h-10 text-blue-700 " />,
+    <Users className="w-10 h-10 text-orange-700" />,
+    <FileText className="w-10 h-10 text-pink-700" />,
     <Briefcase className="w-10 h-10" />
 
   ];

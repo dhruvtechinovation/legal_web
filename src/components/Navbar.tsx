@@ -223,7 +223,7 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
       
       // Update scroll state for navbar background
-      setScrolled(currentScrollY > 520);
+      setScrolled(currentScrollY > 634);
 
 
       // Track active section
@@ -350,7 +350,7 @@ const Navbar = () => {
                 onClick={handleLogin}
                 className="group flex items-center gap-2 border-border hover:bg-muted/50 hover:border-primary/50 transform hover:scale-105 transition-all duration-200"
               >
-                <User className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <User className="w-4 h-4 group-hover:scale-110 transition-transform text-yellow-700" />
                 Login
               </Button>
 
@@ -360,7 +360,7 @@ const Navbar = () => {
                 onClick={handleSignup}
                 className={`group flex items-center gap-2 bg-primary text-primary-foreground hover:bg-white hover:text-black transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl ${scrolled ? 'bg-white text-black hover:bg-muted/50':''}`}
               >
-                <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform text-emerald-700" />
                 Subscribe
               </Button>
                {/* Language Toggle */}

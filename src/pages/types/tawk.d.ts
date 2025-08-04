@@ -8,7 +8,9 @@ declare global {
       onLoad?: () => void;
       maximize?: () => void;
       minimize?: () => void;
+      toggle?: () => void;
       // Add other Tawk methods as needed
     };
   }
 }
+

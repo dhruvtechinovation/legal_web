@@ -18,8 +18,9 @@ const AboutUs = () => {
               </></Link>
 
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
-                <Scale className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 bg-white flex items-center rounded-lg  justify-center">
+                {/* <Scale className="w-7 h-7 text-white" /> */}
+                <img src="/jpicon4.png" alt="img" className="w-14 h-14 rounded-lg" />
               </div>
               <span className="text-lg font-semibold text-white">JP Law Suvidha</span>
             </div>

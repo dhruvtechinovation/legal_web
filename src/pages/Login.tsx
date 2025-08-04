@@ -149,19 +149,13 @@ function LoginForm() {
   
 
     // Simulate login process
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      // console.log('Login attempt:', { email, password });
+      // await new Promise(resolve => setTimeout(resolve, 1500));
+      // // console.log('Login attempt:', { email, password });
       const data={email:email,password:password}
-      // const res= axios.post('http://localhost:3000/api/login',data)
-      // res.then((result)=>{
-      //   console.log(result)
-      //   navigate('/personal_dashboard');
-      // })
-      // res.catch((error)=>{
-      //   return console.log(error)
-      // })
-      navigate('/personal_dashboard',{replace:true})
+      try{
+      const response = await axios.post('https://jplawsuvidha.com/api/login', data);
+      console.log('✅ Login success:', response.data);
+      navigate('/personal_dashboard', { replace: true }); // navigate('/personal_dashboard',{replace:true})
     } catch (err) {
       setError('Login failed. Please check your credentials and try again.');
     } 

@@ -72,7 +72,7 @@ const Languagechecker = () => {
   className={`w-7 h-7 flex items-center justify-center rounded-md text-black lg:text-white  transition-colors duration-200 focus:outline-none  focus:ring-offset-2 focus:ring-gray-300 `}
   aria-label="Toggle Language"
 >
-  <Globe className="w-7 h-7" />
+  <Globe className="w-7 h-7 text-cyan-700" />
 </button>
 
       {/* Dropdown */}

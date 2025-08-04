@@ -10,8 +10,8 @@ const Footer = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="mb-6">
-              <Logo />
+            <div className="mb-6 ">
+             <img src="/logo.svg" alt="" className="h-auto w-30" />
             </div>
             <p className="text-gray-400 mb-6">
               {/* JP LAW SUVIDHA is a secure, tech-powered platform that seamlessly connects clients with verified legal experts. We streamline access to legal support through smart tools and deep domain expertise. */}

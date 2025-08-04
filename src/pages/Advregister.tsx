@@ -15,6 +15,7 @@ import ChangePlan from '@/components/Plans';
 import plans from '@/Data/plans_data';
 
 import Footer from '@/components/Footer';
+import axios from 'axios';
 const TermsAndConditionsModalSubscription = ({ onClose, onAccept }: { onClose: () => void; onAccept: () => void }) => (
   <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
     <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
@@ -303,6 +304,8 @@ const SubscriptionForm = () => {
     e.preventDefault();
     setissubmit(!issubmit)
     // console.log('change plan is disabled')
+    console.log('advregister form', formData)
+   
 
     if (!formState.termsAccepted) {
       alert("Please agree to the Terms and Conditions before submitting.");
@@ -330,7 +333,9 @@ const SubscriptionForm = () => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      // console.log('Subscription form submitted:', formData);
+      const res=await axios.post('http://localhost:3000/api/register',{formData})
+      console.log('res from server',res)
+      console.log('Subscription form submitted:', formData);
 
       setFormState(prev => ({
         ...prev,
@@ -341,11 +346,21 @@ const SubscriptionForm = () => {
       setFormState(prev => ({ ...prev, isSubmitting: false }));
       alert("Submission failed. Please try again.");
     }
-  };
-
+    setFormData((prev) => ({
+      ...prev,
+    lawyerName: '',
+    barCouncilId: '',
+    jurisdiction: '',
+    phone: '',
+    email: '',
+    practiceAreas: [] as string[],
+    experience: '',
+    firm: ''
+    }));
+  }
   const handleSuccessClose = () => {
     setFormState(prev => ({ ...prev, showSuccessModal: false }));
-    navigate('/login');
+    navigate('/login',{replace:true});
   };
 
   const setFieldFocus = (field: string, focused: boolean) => {
