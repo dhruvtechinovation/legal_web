@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useAuth} from '@/context/Logincontext'
 
 function ProtectedRoute({ children }) {
-  const isAuthenticated = true; 
+  // const res=localStorage.getItem('token')
+  // console.log(res)
+  const {login}=useAuth()
+  console.log(login)
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!login) {
       navigate('/',{replace:true});
     }
-  }, [isAuthenticated, navigate]);
+  }, [login, navigate]);
 
   // If not authenticated, don't render children
-  if (!isAuthenticated) return null;
+  if (!login) return null;
 
   return children;
 }

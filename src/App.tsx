@@ -66,6 +66,7 @@ import AboutUs from "./components/Aboutus"
 import ScrollToTop from "./components/Scrolltotop";
 import Disclaimers from "./components/Disclaimers";
 import UserDisclaimers from "./components/UserDisclaimers";
+import { AuthProvider } from "@/context/Logincontext";
 // import LanguageSwitcher from "./components/i18n";
 // import GoogleTranslate from "./components/GoogleTranslation";
 
@@ -112,11 +113,13 @@ const App = () => {
   return (
     
     <QueryClientProvider client={queryClient}>
-      <ScrollToTop/>
+      <AuthProvider>
       <TooltipProvider>
+      <ScrollToTop/>
         <Toaster />
         <Sonner />
         {/* <BrowserRouter basename="/~ohokgmuc/"> */}
+
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
@@ -139,6 +142,7 @@ const App = () => {
         </Routes>
         {/* </BrowserRouter> */}
       </TooltipProvider>
+       
       <div className=" hidden lg:block fixed top-3/4 left-0 transform -translate-y-1/2 flex flex-col space-y-4 pl-2 z-50">
       <div className="">
               <a href="#" className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center hover:bg-blue-400 transition-colors mb-2 ">
@@ -161,6 +165,7 @@ const App = () => {
               </a>
             </div>
 </div>
+</AuthProvider>
     </QueryClientProvider>
   );
 };

@@ -13,10 +13,7 @@ const Footer = () => {
             <div className="mb-6 ">
              <img src="/logo.svg" alt="" className="h-auto w-30" />
             </div>
-            <p className="text-gray-400 mb-6">
-              {/* JP LAW SUVIDHA is a secure, tech-powered platform that seamlessly connects clients with verified legal experts. We streamline access to legal support through smart tools and deep domain expertise. */}
-              JP LAW SUVIDHA is a trusted, tech-driven platform that effortlessly connects clients with verified legal experts for fast, reliable support.
-            </p>
+            
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
                 <span className="sr-only">Facebook</span>

@@ -7,6 +7,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Scale, Eye, EyeOff, ArrowLeft, Shield, Lock, CheckCircle, Users, FileText} from 'lucide-react';
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
+import { useAuth } from '@/context/Logincontext';
 
 // Mock navigation functions for demo
 // const mockNavigate = (path: string) => {
@@ -108,6 +109,7 @@ function LoginForm() {
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const navigate=useNavigate()
+  const {setUser,setlogin}=useAuth()
   
 
   const handleSubmit =  async (e: React.FormEvent) => {
@@ -153,9 +155,22 @@ function LoginForm() {
       // // console.log('Login attempt:', { email, password });
       const data={email:email,password:password}
       try{
-      const response = await axios.post('https://jplawsuvidha.com/api/login', data);
+      const response = await axios.post('http://localhost:3000/api/login', data);
       console.log('✅ Login success:', response.data);
+      if(response.data.status === 'force_change' || 'password mismatch')
+      {
+        // localStorage.setItem('token',response.data.token)
+        console.log('inside the if block ')
+        setUser(response.data.status)
+        console.log('user set')
+        setlogin(true)
+        console.log('login set')
+        // navigate('/',{replace:true})
+      }
+      else
+      {
       navigate('/personal_dashboard', { replace: true }); // navigate('/personal_dashboard',{replace:true})
+      }
     } catch (err) {
       setError('Login failed. Please check your credentials and try again.');
     } 

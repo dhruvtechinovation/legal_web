@@ -223,7 +223,7 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
       
       // Update scroll state for navbar background
-      setScrolled(currentScrollY > 634);
+      setScrolled(currentScrollY > 550);
 
 
       // Track active section
@@ -294,7 +294,7 @@ const Navbar = () => {
   } ${
     scrolled
       ? 'bg-white lg:bg-black border-b border-border shadow-lg'
-      : 'bg-card/75  shadow-md'
+      : 'bg-card/90  shadow-md'
   }`}
         style={{ top: showBanner ? '0' : '0' }}
       >
@@ -311,7 +311,7 @@ const Navbar = () => {
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className={`group relative text-sm font-medium transition-all duration-300 hover:text-primary ${
+                  className={`group relative text-md font-medium transition-all duration-300 hover:text-primary ${
                     activeSection === item.href.substring(1)
                       ? 'text-primary'
                       : 'text-muted-foreground'

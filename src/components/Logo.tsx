@@ -7,7 +7,7 @@ const Logo = () => {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 520); // Customize threshold
+      setScrolled(window.scrollY > 506); // Customize threshold
     };
 
     window.addEventListener("scroll", onScroll);
@@ -21,7 +21,7 @@ const Logo = () => {
       </div>
       <div className={` flex flex-col justify-center font-serif font-bold text-xl   ${scrolled ? ' text-black  lg:text-white transition-all duration-300 ' : 'font-bold transition-all duration-100 text-black'}`}>
         JP Law Suvidha
-        <p className="text-sm font-normal  font-merriweather italic">
+        <p className="text-sm font-normal  font-merriweather font-serif">
           Justice for People Driven by Technology
         </p>
       </div>
