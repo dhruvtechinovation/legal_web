@@ -20,6 +20,9 @@ export default {
 			}
 		},
 		extend: {
+			// width:{
+            //   15:'12 rem'
+			// },
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				serif: ['Playfair Display', 'serif'],

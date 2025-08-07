@@ -1,50 +1,39 @@
-// import React from 'react'
-// import {createContext,useContext} from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
-// function Logincontext() {
+const AuthContext = createContext(null);
 
-// const logincontext=createContext(null)
-//   return (
-//     <div>Logincontext</div>
-//   )
-// }
-
-// export default Logincontext
-import { createContext, useEffect, useState, useContext, ReactNode } from 'react';
-
-interface AuthContextType {
-  setUser: (user: string) => void;
-  setlogin: (login: boolean) => void;
-  login: boolean;
-  user: string;
-}
-
-const AuthContext = createContext<AuthContextType | null>(null);
-
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<string>('');
-  const [login, setlogin] = useState<boolean>(false);
-  // console.log(login)
-  console.log(login)
+export const AuthProvider = ({ children }) => {
+  const [login, setLogin] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // useEffect(() => {
-  //   const savedLogin = localStorage.getItem('login');
-  //   if (savedLogin === 'true') {
-  //     setlogin(true);
-  //   }
+  //   axios.get('http://localhost:3000/api/validate', { withCredentials: true })
+  //     .then((res) => {
+  //       console.log("Auth Success:", res.data);
+  //       setLogin(true);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Auth Failed:", err);
+  //       setLogin(false);
+  //     })
+  //     .finally(() => setLoading(false));
   // }, []);
+  
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, setlogin }}>
+    <AuthContext.Provider value={{ login, setLogin, loading }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+export const useAuth = () => 
+{
+  const context=useContext(AuthContext);
+  if(!context)
+  {
+    console.log('use context inside the provider')
   }
-  return context;
-};
+  return context
+}

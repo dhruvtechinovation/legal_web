@@ -131,10 +131,11 @@ function SubscriptionPlans() {
               </></Link>
 
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
-                <Scale className="w-7 h-7 text-white" />
+            <div className="w-14 h-14 bg-white flex items-center rounded-lg  justify-center">
+                {/* <Scale className="w-7 h-7 text-white" /> */}
+                <img src="/jpicon4.png" alt="img" className="w-14 h-14 rounded-lg" />
               </div>
-              <span className="text-lg font-semibold text-white">JP Law Suvidha</span>
+              <span className="text-xl font-semibold text-white font-serif">JP Law Suvidha</span>
             </div>
           </div>
         </div>
@@ -147,8 +148,8 @@ function SubscriptionPlans() {
             <Star className="w-4 h-4" />
             Limited Time Offer - Up to 50% Off
           </div>
-          
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className='underline'>  Want to join us as an Advocate ?</h2>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 font">
             Choose Your Growth Plan
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -296,7 +297,7 @@ function SubscriptionPlans() {
               >
                 {/* <Phone className="w-4 h-4 mr-2" /> */}
                 {/* Talk to an Expert */}
-                LATER CUSTOMER CARE NUMBER CAN BE INTRODUCED
+                Toll free number
               </Button>
               <Button
                 variant="outline"

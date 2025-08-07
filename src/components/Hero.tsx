@@ -36,9 +36,9 @@ const Hero = () => {
                                Tawk_API.toggle()
               }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                <span className="relative z-10 flex items-center gap-2">
-                  <Rocket className="w-5 h-5" />
+                <div className="absolute inset-0 bg-white"></div>
+                <span className="relative z-10 flex items-center gap-2 text-black">
+                  <Rocket className="w-5 h-5 " />
                   Chat With Us
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>

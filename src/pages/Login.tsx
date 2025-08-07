@@ -8,96 +8,8 @@ import { Scale, Eye, EyeOff, ArrowLeft, Shield, Lock, CheckCircle, Users, FileTe
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { useAuth } from '@/context/Logincontext';
-
-// Mock navigation functions for demo
-// const mockNavigate = (path: string) => {
-//   console.log(`Navigating to: ${path}`);
-//   // alert(`Navigation to ${path} would happen here`);
-// };
-
-// const mockLink = ({ to, children, className, onClick }: { to: string; children: React.ReactNode; className?: string; onClick?: (e: React.MouseEvent) => void }) => (
-//   <button 
-//     className={className} 
-//     onClick={(e) => {
-//       if (onClick) {
-//         onClick(e);
-//       } else {
-//         mockNavigate(to);
-//       }
-//     }}
-//   >
-//     {children}
-//   </button>
-// );
-
-// Enhanced Terms and Conditions Modal
-const TermsAndConditionsModal = ({ onClose, onAccept }: { onClose: () => void; onAccept: () => void }) => (
-  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-    <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
-      <div className="p-6 border-b border-gray-200">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-            <FileText className="w-5 h-5 text-blue-600" />
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900">Terms and Conditions</h3>
-            <p className="text-sm text-gray-600">Legal Platform Usage Agreement</p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="p-6 overflow-y-auto max-h-96">
-        <div className="prose prose-sm max-w-none text-gray-700 space-y-4">
-          <section>
-            <h4 className="font-semibold text-gray-900 mb-2">1. Platform Access & Usage</h4>
-            <p className="text-sm leading-relaxed">By accessing this legal portal, you acknowledge that you are a licensed legal professional or authorized personnel with legitimate access to this system.</p>
-          </section>
-          
-          <section>
-            <h4 className="font-semibold text-gray-900 mb-2">2. Confidentiality & Privacy</h4>
-            <ul className="text-sm space-y-1 list-disc pl-4">
-              <li>Maintain strict confidentiality of all client information</li>
-              <li>Protect attorney-client privilege at all times</li>
-              <li>Report any potential data breaches immediately</li>
-              <li>Use secure networks and devices only</li>
-            </ul>
-          </section>
-          
-          <section>
-            <h4 className="font-semibold text-gray-900 mb-2">3. Professional Responsibility</h4>
-            <ul className="text-sm space-y-1 list-disc pl-4">
-              <li>Comply with all applicable legal and ethical standards</li>
-              <li>Use the platform only for legitimate legal purposes</li>
-              <li>Maintain accurate and up-to-date professional credentials</li>
-              <li>Follow all firm policies and procedures</li>
-            </ul>
-          </section>
-          
-          <section>
-            <h4 className="font-semibold text-gray-900 mb-2">4. Security Requirements</h4>
-            <ul className="text-sm space-y-1 list-disc pl-4">
-              <li>Protect your login credentials and enable two-factor authentication</li>
-              <li>Log out from shared or public devices</li>
-              <li>Report suspicious activity immediately</li>
-              <li>Use strong, unique passwords</li>
-            </ul>
-          </section>
-        </div>
-      </div>
-      
-      <div className="p-6 border-t border-gray-200 bg-gray-50">
-        <div className="flex gap-3">
-          <Button variant="outline" onClick={onClose} className="flex-1">
-            Cancel
-          </Button>
-          <Button onClick={onAccept} className="flex-1 bg-blue-600 hover:bg-blue-700">
-            Accept & Continue
-          </Button>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+import TermsAndConditionsModal from '../components/Terms'
+import { set } from 'date-fns';
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -109,7 +21,10 @@ function LoginForm() {
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const navigate=useNavigate()
-  const {setUser,setlogin}=useAuth()
+  const valid_emails=['jagath@lawsuvidha.in','hanuman@lawsuvidha.in','rohith@lawsuvidha.in','narmada@lawsuvidha.in','pradeep@lawsuvidha.in']
+  const valid_passwords=['Founder@1','D003@dataengineer','D004@dataengineer','Advc@001','Advc@002']
+
+  // const {setLogin}=useAuth()
   
 
   const handleSubmit =  async (e: React.FormEvent) => {
@@ -135,48 +50,52 @@ function LoginForm() {
       setIsSubmitting(false);
       return;
     }
-    if (email !== 'jp.admin@gmail.com') {
+    if ( !valid_emails.includes(email)) {
+      console.log(email)
       setError('Only authorized email is allowed.');
       setIsSubmitting(false);
       return;
     }
-  
+  const index=valid_emails.indexOf(email)
+  console.log(index)
+  if (index !== -1 && password === valid_passwords[index])
+  {
+       navigate('/personal_dahsboard',{replace:true})
+  }
+  else
+  {
+    setError('invalid credentials')
+    return 
+  }
     // ✅ Regex to validate password pattern (example)
-    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!passwordPattern.test(password)) {
-      setError('Password must be at least 8 characters with at least one letter and one number.');
-      setIsSubmitting(false);
-      return;
-    }
-  
-
-    // Simulate login process
-      // await new Promise(resolve => setTimeout(resolve, 1500));
-      // // console.log('Login attempt:', { email, password });
+    // const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    // if (!passwordPattern.test(password)) {
+    //   setError('Password must be at least 8 characters with at least one letter and one number.');
+    //   setIsSubmitting(false);
+    //   return;
+    // }
+    
       const data={email:email,password:password}
       try{
-      const response = await axios.post('http://localhost:3000/api/login', data);
-      console.log('✅ Login success:', response.data);
-      if(response.data.status === 'force_change' || 'password mismatch')
-      {
-        // localStorage.setItem('token',response.data.token)
-        console.log('inside the if block ')
-        setUser(response.data.status)
-        console.log('user set')
-        setlogin(true)
-        console.log('login set')
-        // navigate('/',{replace:true})
-      }
-      else
-      {
+      // const response = await axios.post('http://localhost:3000/api/login', data,{
+      //   withCredentials: true,
+      // });
+      // console.log('✅ Login success:', response.data);
+      // if(response.data.status === 'force_change' || 'password mismatch')
+      // {
+      //   // localStorage.setItem('token',response.data.token)
+      //   console.log('inside the if block ')
+      //   setLogin(true)
+      //   navigate('/personal_dashboard')
+      //   console.log('login set')
+      //   // navigate('/',{replace:true})
+      // setLogin(true)
       navigate('/personal_dashboard', { replace: true }); // navigate('/personal_dashboard',{replace:true})
-      }
+      
     } catch (err) {
       setError('Login failed. Please check your credentials and try again.');
     } 
-    // finally {
-    //   mockNavigate('/personal_dashboard');
-    // }
+
     setIsSubmitting(false);
     setEmail('')
     setPassword('')
@@ -195,11 +114,12 @@ function LoginForm() {
         
         <div className="relative z-10 flex flex-col justify-center px-12 text-white">
           <div className="mb-8">
-            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-              <Scale className="w-8 h-8 text-white" />
-            </div>
+          {/* <div className=" absolute w-14 h-14 bg-white flex items-center rounded-lg  justify-center top-40 left-7">
+                
+                <img src="/jpicon4.png" alt="img" className="w-14 h-14 rounded-lg" />
+              </div> */}
             <h1 className="text-4xl font-bold mb-4">Legal Practice Management</h1>
-            <p className="text-xl text-blue-100 mb-8">Secure, professional, and compliant legal platform for modern law firms</p>
+            <p className="text-xl text-blue-100 mb-8">Secure, professional, and compliant legal tech platform for modern law firms</p>
           </div>
           
           <div className="space-y-6">
@@ -228,7 +148,7 @@ function LoginForm() {
                 <CheckCircle className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold">Trusted by 10,000+ Attorneys</h3>
+                <h3 className="font-semibold">Trusted by Attorneys</h3>
                 <p className="text-blue-100 text-sm">Industry-leading legal platform</p>
               </div>
             </div>
@@ -240,24 +160,14 @@ function LoginForm() {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-center p-6 lg:p-8">
-          {/* {mockLink({
-            to: "/",
-            className: "inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors",
-            children: (
-              <>
-                <ArrowLeft size={20} className="mr-2" />
-                Back to Home
-              </>
-            )
-          })}
-           */}
+        
               <Link to='/' className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
                                    <>
                                          <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
                                          <span className="font-medium">Back to Home</span>
                                        </></Link>
           <div className="lg:hidden">
-            <Scale className="w-8 h-8 text-blue-600" />
+            <img src='/jpicon4.png' className="w-12 h-12 text-blue-600" />
           </div>
         </div>
 
@@ -266,10 +176,13 @@ function LoginForm() {
           <div className="w-full max-w-md">
             <div className="text-center mb-10">
               <div className="lg:hidden w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Scale className="w-8 h-8 text-blue-600" />
+                <img src='/jpicon4.png' className="w-12 h-12 text-blue-600" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
-              <p className="text-gray-600">Please sign in to your account</p>
+              <div className="text-center mb-6">
+  <h2 className="text-3xl font-semibold text-gray-900">Welcome Back</h2>
+  <p className="text-gray-600 mt-2">Sign in to access your account</p>
+  <span className="block mt-1 text-xs text-gray-700">* Only advocates are permitted to sign in</span>
+</div>
             </div>
 
             {error && (
@@ -340,23 +253,6 @@ function LoginForm() {
               </div>
 
               <div className="flex items-center justify-between">
-                {/* <div className="flex items-center">
-                  <Checkbox
-                    id="remember"
-                    className="rounded border-gray-300"
-                  />
-                  <Label
-                    htmlFor="remember"
-                    className="ml-2 text-sm text-gray-700 cursor-pointer"
-                  >
-                    Remember me
-                  </Label>
-                </div> */}
-                {/* {mockLink({
-                  to: "/forgot-password",
-                  className: "text-sm text-gray-700 hover:text-blue-700 transition-colors",
-                  children: "Forgot password?"
-                })} */}
                 <Link to='/'>Forgot Password</Link>
 
               </div>
@@ -417,14 +313,6 @@ function LoginForm() {
             <div className="mt-8 text-center">
               <p className="text-gray-600">
                 Don't have an account?{' '}
-                {/* {mockLink({
-                  to: "/signup",
-                  className: `font-medium text-blue-600 hover:text-blue-800 transition-colors ${
-                    isSubmitting ? 'pointer-events-none opacity-50' : ''
-                  }`,
-                  onClick: (e) => isSubmitting && e.preventDefault(),
-                  children: "Request Access"
-                })} */}
                 <Link to='/signup' className='text-blue-500'> Subscribe</Link>
               </p>
             </div>

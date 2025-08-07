@@ -90,21 +90,22 @@ const UserDisclaimers = () => {
 
   return (
     <div>
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-black shadow-sm border-b border-gray-200">
                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                  <div className="flex items-center justify-between h-16">
                    <Link to='/' className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
                      
-                       <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                       <span className="font-medium">Back to Plans</span>
+                       <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform text-white" />
+                       <span className="font-medium text-white">Back to Plans</span>
                      </Link>
        
-                   <div className="flex items-center gap-3">
-                     <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                       <Scale className="w-4 h-4 text-blue-600" />
-                     </div>
-                     <span className="text-lg font-semibold text-gray-900">Legal Portal</span>
-                   </div>
+                     <div className="flex items-center gap-3">
+              <div className="w-14 h-14 bg-white flex items-center rounded-lg  justify-center">
+                {/* <Scale className="w-7 h-7 text-white" /> */}
+                <img src="/jpicon4.png" alt="img" className="w-14 h-14 rounded-lg" />
+              </div>
+              <span className="text-xl font-semibold text-white font-serif">JP Law Suvidha</span>
+            </div>
                  </div>
                </div>
              </div>
