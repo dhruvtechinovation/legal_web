@@ -68,12 +68,12 @@ const Languagechecker = () => {
     <div className="relative" ref={dropdownRef}>
       {/* Button that toggles the dropdown */}
       <button
-        onClick={() => setOpen(!open)}
-        className="w-7 h-7 flex items-center justify-center text-white-700 hover:text-black"
-        aria-label="Toggle Language"
-      >
-        <Globe className="w-5 h-5 hover:bg-white " />
-      </button>
+  onClick={() => setOpen(!open)}
+  className={`w-7 h-7 flex items-center justify-center rounded-md text-black lg:text-white  transition-colors duration-200 focus:outline-none  focus:ring-offset-2 focus:ring-gray-300 `}
+  aria-label="Toggle Language"
+>
+  <Globe className="w-7 h-7" />
+</button>
 
       {/* Dropdown */}
       {open && (

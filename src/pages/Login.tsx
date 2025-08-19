@@ -133,20 +133,35 @@ function LoginForm() {
       setIsSubmitting(false);
       return;
     }
+    if (email !== 'jp.admin@gmail.com') {
+      setError('Only authorized email is allowed.');
+      setIsSubmitting(false);
+      return;
+    }
+  
+    // ✅ Regex to validate password pattern (example)
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!passwordPattern.test(password)) {
+      setError('Password must be at least 8 characters with at least one letter and one number.');
+      setIsSubmitting(false);
+      return;
+    }
+  
 
     // Simulate login process
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Login attempt:', { email, password });
+      // console.log('Login attempt:', { email, password });
       const data={email:email,password:password}
-      const res= axios.post('http://localhost:3000/api/login',data)
-      res.then((result)=>{
-        console.log(result)
-        navigate('/personal_dashboard');
-      })
-      res.catch((error)=>{
-        return console.log(error)
-      })
+      // const res= axios.post('http://localhost:3000/api/login',data)
+      // res.then((result)=>{
+      //   console.log(result)
+      //   navigate('/personal_dashboard');
+      // })
+      // res.catch((error)=>{
+      //   return console.log(error)
+      // })
+      navigate('/personal_dashboard',{replace:true})
     } catch (err) {
       setError('Login failed. Please check your credentials and try again.');
     } 

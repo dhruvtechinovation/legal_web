@@ -1,11 +1,85 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Check, Star, Shield, Users, Zap, Crown, Award, Phone, X, Building, Scale } from 'lucide-react';
+import { ArrowLeft, Check, Star, Shield, Users, Zap, Crown, Award, Phone, X, Building, Scale, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link, useNavigate } from 'react-router-dom';
 import plans from '@/Data/plans_data';
 import Footer from '../components/Footer';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+const FAQModal = ({ onClose }: { onClose: () => void }) => {
+  const faqItems = [
+    {
+      question: "How does the subscription billing work?",
+      answer: "Subscriptions are billed automatically based on your selected plan (monthly or yearly). You'll receive an invoice 3 days before each billing cycle and can cancel anytime with 30 days notice."
+    },
+    {
+      question: "What types of leads will I receive?",
+      answer: "You'll receive verified leads from potential clients actively seeking legal services in your practice areas. All leads include contact information, case details, and urgency level."
+    },
+    {
+      question: "Can I upgrade or downgrade my plan?",
+      answer: "Yes, you can change your plan anytime. Upgrades take effect immediately, while downgrades take effect at your next billing cycle. No fees for plan changes."
+    },
+    {
+      question: "Is there a minimum contract period?",
+      answer: "No, there are no long-term contracts. You can cancel your subscription anytime with 30 days written notice. We believe in earning your business through value."
+    },
+    {
+      question: "How is my data protected?",
+      answer: "We use bank-level encryption and comply with all legal industry standards including attorney-client privilege protection. All data is stored securely and never shared with third parties."
+    },
+    {
+      question: "What support is included?",
+      answer: "All plans include email support. Growth plan includes priority support (24hr response), and Pro Plus includes dedicated account management with real-time support."
+    }
+  ];
+
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl">
+        <div className="p-6 border-b border-gray-200">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <HelpCircle className="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900">Frequently Asked Questions</h3>
+                <p className="text-sm text-gray-600">Common questions about our subscription service</p>
+              </div>
+            </div>
+            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        <div className="p-6 overflow-y-auto max-h-96">
+          <Accordion type="single" collapsible className="w-full">
+            {faqItems.map((item, idx) => (
+              <AccordionItem key={idx} value={`item-${idx}`} className="border-gray-200">
+                <AccordionTrigger className="text-left hover:no-underline">
+                  <span className="font-medium text-gray-900 text-sm">{item.question}</span>
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed text-sm">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+
+        <div className="p-6 border-t border-gray-200 bg-gray-50">
+          <Button onClick={onClose} className="w-full">
+            Close
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 
 function SubscriptionPlans() {
@@ -73,6 +147,7 @@ function SubscriptionPlans() {
             <Star className="w-4 h-4" />
             Limited Time Offer - Up to 50% Off
           </div>
+          
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Choose Your Growth Plan
           </h1>
@@ -243,82 +318,9 @@ function SubscriptionPlans() {
           </div>
         </div>
       </div>
-      {faq && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-    <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8">
-      
-      {/* Close Button */}
-      <button
-        onClick={() => setfaq(prev => !prev)}
-        className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition-colors"
-        aria-label="Close FAQ"
-      >
-        <X className="w-5 h-5" />
-      </button>
-
-      {/* FAQ Content */}
-      <div className="space-y-8">
-        <h2 className="text-3xl font-bold text-gray-800">Frequently Asked Questions</h2>
-
-        {/* Question 1 */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900">1. What subscription plans do you offer?</h3>
-          <p className="mt-1 text-gray-600">
-            We offer <strong>Basic</strong>, <strong>Pro</strong>, and <strong>Enterprise</strong> plans—tailored for everyone from individuals to large organizations with advanced needs.
-          </p>
-        </div>
-
-        {/* Question 2 */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900">2. Can I try a plan before committing?</h3>
-          <p className="mt-1 text-gray-600">
-            Yes! Enjoy a <strong>7-day free trial</strong> with full access—no credit card required. Upgrade anytime during or after the trial.
-          </p>
-        </div>
-
-        {/* Question 3 */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900">3. Can I upgrade or downgrade my plan later?</h3>
-          <p className="mt-1 text-gray-600">
-            Absolutely. You can <strong>upgrade, downgrade, or cancel</strong> your subscription anytime from your dashboard. Changes apply immediately or at the next billing cycle.
-          </p>
-        </div>
-
-        {/* Question 4 */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900">4. What payment methods do you accept?</h3>
-          <p className="mt-1 text-gray-600">
-            We accept <strong>Visa, MasterCard, American Express</strong>, and <strong>UPI (India)</strong>. Enterprise clients can also opt for invoicing.
-          </p>
-        </div>
-
-        {/* Question 5 */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900">5. Will I be charged automatically?</h3>
-          <p className="mt-1 text-gray-600">
-            Yes, subscriptions are <strong>billed automatically</strong> monthly or annually, depending on your plan. You’ll be notified before each renewal.
-          </p>
-        </div>
-
-        {/* Question 6 */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900">6. Can I cancel anytime?</h3>
-          <p className="mt-1 text-gray-600">
-            Yes, cancel anytime. Your access remains active until your billing period ends. <strong>No further charges</strong> will be applied.
-          </p>
-        </div>
-
-        {/* Question 7 */}
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900">7. Is my data safe and secure?</h3>
-          <p className="mt-1 text-gray-600">
-            Absolutely. We use <strong>industry-standard encryption</strong> and secure gateways. Our platform is <strong>GDPR-compliant</strong> to ensure full data protection.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+       {faq && (
+        <FAQModal onClose={() => setfaq(!faq)} />
+      )}
       <Footer />
     </div>
 
