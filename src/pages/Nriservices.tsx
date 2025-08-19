@@ -2,6 +2,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const services = [
   {
@@ -155,6 +160,29 @@ function NriServices() {
             </p>
           </div>
         </div>
+      </section>
+      <section className="h-[700px] container-custom pt-10 text-center">
+      <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          navigation
+          pagination={{ clickable: true }}
+          breakpoints={{
+            768: { slidesPerView: 1 }, // Show 2 slides on medium screens
+            1024: { slidesPerView: 1 }, // Show 3 slides on large screens
+          }}
+          className="px-4 "
+        >
+         {services.map((s,index)=>{
+          return (
+          <SwiperSlide key={index}>{s.category}</SwiperSlide>)
+})}
+ 
+        </Swiper>
+
       </section>
 
       {/* Services Cards */}
