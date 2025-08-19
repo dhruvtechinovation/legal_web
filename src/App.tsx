@@ -1,4 +1,4 @@
-import { useLocation, Routes, Route } from "react-router-dom";
+import { useLocation, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,6 +20,7 @@ import ScrollToTop from "./components/Scrolltotop";
 import Disclaimers from "./components/Disclaimers";
 import UserDisclaimers from "./components/UserDisclaimers";
 import { AuthProvider } from "@/context/Logincontext";
+import Nriservices from "./pages/Nriservices";
 // import LanguageSwitcher from "./components/i18n";
 // import GoogleTranslate from "./components/GoogleTranslation";
 
@@ -39,6 +40,17 @@ const useTawkControl = (pathname: string) => {
         } else {
           window.Tawk_API.showWidget?.();
         }
+        // window.Tawk_API.onPrechatSubmit = function(data) {
+        //   // data contains form fields submitted by visitor
+        //   window.Tawk_API.setAttributes({
+        //     name: data.name || 'Visitor',
+        //     email: data.email || '',
+        //     customVisitorId: data.email || data.name || 'visitor_' + Math.random().toString(36).substr(2, 9),
+        //   }, function(err) {
+        //     if (err) console.error('Failed to set Tawk attributes:', err);
+        //     else console.log('Tawk attributes set successfully on prechat submit');
+        //   });
+        // };
       }
     };
 
@@ -56,6 +68,8 @@ const useTawkControl = (pathname: string) => {
       setTimeout(() => clearInterval(interval), 10000);
     }
   }, [pathname]);
+
+  
 };
 
 
@@ -91,13 +105,15 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/nri" element={<Nriservices/>}></Route>
+          <Route path="*" element={<Navigate to='/' replace />} />
         </Routes>
         {/* </BrowserRouter> */}
+        
       </TooltipProvider>
       {/* </AuthProvider> */}
        
-      <div className=" hidden lg:block fixed top-3/4 left-0 transform -translate-y-1/2 flex flex-col space-y-4 pl-2 z-50">
+      { location.pathname !== '/personal_dashboard'&&(<div className=" hidden lg:block fixed top-3/4 left-0 transform -translate-y-1/2 flex flex-col space-y-4 pl-2 z-50">
       <div className="">
               <a href="https://www.facebook.com/61579231556644/" 
               target="_blank"
@@ -110,7 +126,7 @@ const App = () => {
               </a>
               <a href="https://x.com/jplawsuvidha_in"
                target="_blank"
-  rel="noopener noreferrer"
+               rel="noopener noreferrer"
               
               className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center hover:bg-blue-400 transition-colors mb-2">
                 <span className="sr-only">Twitter</span>
@@ -128,7 +144,7 @@ const App = () => {
                 </svg>
               </a>
             </div>
-</div>
+</div>)}
 
     </QueryClientProvider>
   );

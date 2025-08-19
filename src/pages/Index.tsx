@@ -29,8 +29,8 @@ const Index = () => {
       {/* <GoogleTranslate /> */}
       <main>
         <Hero />
-      {/* <Languagechecker/> */}
         <Services />
+      {/* <Languagechecker/> */}
         <Expertise />
         <Testimonials />
         <div id="faq">

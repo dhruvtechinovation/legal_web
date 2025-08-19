@@ -4,8 +4,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Scale, Eye, EyeOff, ArrowLeft, Shield, Lock, CheckCircle, Users, FileText} from 'lucide-react';
-import {Link, useNavigate} from 'react-router-dom'
+import { Scale, Eye, EyeOff, ArrowLeft, Shield, Lock, CheckCircle, Users, FileText } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { useAuth } from '@/context/Logincontext';
 import TermsAndConditionsModal from '../components/Terms'
@@ -20,14 +20,14 @@ function LoginForm() {
   const [showTerms, setShowTerms] = useState(false);
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
-  const navigate=useNavigate()
-  const valid_emails=['jagath@lawsuvidha.in','hanuman@lawsuvidha.in','rohith@lawsuvidha.in','narmada@lawsuvidha.in','pradeep@lawsuvidha.in']
-  const valid_passwords=['Founder@1','D003@dataengineer','D004@dataengineer','Advc@001','Advc@002']
+  const navigate = useNavigate()
+  const valid_emails = ['jagath@lawsuvidha.in', 'hanuman@lawsuvidha.in', 'rohith@lawsuvidha.in', 'narmada@lawsuvidha.in', 'pradeep@lawsuvidha.in']
+  const valid_passwords = ['Founder@1', 'D003@dataengineer', 'D004@dataengineer', 'Advc@001', 'Advc@002']
 
   // const {setLogin}=useAuth()
-  
 
-  const handleSubmit =  async (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -50,23 +50,21 @@ function LoginForm() {
       setIsSubmitting(false);
       return;
     }
-    if ( !valid_emails.includes(email)) {
+    if (!valid_emails.includes(email)) {
       console.log(email)
       setError('Only authorized email is allowed.');
       setIsSubmitting(false);
       return;
     }
-  const index=valid_emails.indexOf(email)
-  console.log(index)
-  if (index !== -1 && password === valid_passwords[index])
-  {
-       navigate('/personal_dahsboard',{replace:true})
-  }
-  else
-  {
-    setError('invalid credentials')
-    return 
-  }
+    const index = valid_emails.indexOf(email)
+    console.log(index)
+    if (index !== -1 && password === valid_passwords[index]) {
+      navigate('/personal_dahsboard', { replace: true })
+    }
+    else {
+      setError('invalid credentials')
+      return
+    }
     // ✅ Regex to validate password pattern (example)
     // const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     // if (!passwordPattern.test(password)) {
@@ -74,9 +72,9 @@ function LoginForm() {
     //   setIsSubmitting(false);
     //   return;
     // }
-    
-      const data={email:email,password:password}
-      try{
+
+    const data = { email: email, password: password }
+    try {
       // const response = await axios.post('http://localhost:3000/api/login', data,{
       //   withCredentials: true,
       // });
@@ -90,11 +88,16 @@ function LoginForm() {
       //   console.log('login set')
       //   // navigate('/',{replace:true})
       // setLogin(true)
-      navigate('/personal_dashboard', { replace: true }); // navigate('/personal_dashboard',{replace:true})
-      
+      const login = true
+      // navigate('/personal_dashboard',{state:{login,replace:true}}); // navigate('/personal_dashboard',{replace:true})
+      navigate('/personal_dashboard', {
+        replace: true,   // replaces current history entry
+        state: { login } // data passed to the route
+      });
+
     } catch (err) {
       setError('Login failed. Please check your credentials and try again.');
-    } 
+    }
 
     setIsSubmitting(false);
     setEmail('')
@@ -111,17 +114,17 @@ function LoginForm() {
           <div className="absolute top-40 right-32 w-24 h-24 border-2 border-white/20 rounded-full"></div>
           <div className="absolute bottom-32 left-40 w-16 h-16 border-2 border-white/20 rounded-full"></div>
         </div>
-        
+
         <div className="relative z-10 flex flex-col justify-center px-12 text-white">
           <div className="mb-8">
-          {/* <div className=" absolute w-14 h-14 bg-white flex items-center rounded-lg  justify-center top-40 left-7">
+            {/* <div className=" absolute w-14 h-14 bg-white flex items-center rounded-lg  justify-center top-40 left-7">
                 
                 <img src="/jpicon4.png" alt="img" className="w-14 h-14 rounded-lg" />
               </div> */}
             <h1 className="text-4xl font-bold mb-4">Legal Practice Management</h1>
             <p className="text-xl text-blue-100 mb-8">Secure, professional, and compliant legal tech platform for modern law firms</p>
           </div>
-          
+
           <div className="space-y-6">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -132,7 +135,7 @@ function LoginForm() {
                 <p className="text-blue-100 text-sm">End-to-end encryption and compliance</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                 <Users className="w-5 h-5 text-white" />
@@ -142,7 +145,7 @@ function LoginForm() {
                 <p className="text-blue-100 text-sm">Seamless team collaboration tools</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                 <CheckCircle className="w-5 h-5 text-white" />
@@ -160,12 +163,12 @@ function LoginForm() {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-center p-6 lg:p-8">
-        
-              <Link to='/' className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
-                                   <>
-                                         <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                                         <span className="font-medium">Back to Home</span>
-                                       </></Link>
+
+          <Link to='/' className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors group">
+            <>
+              <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+              <span className="font-medium">Back to Home</span>
+            </></Link>
           <div className="lg:hidden">
             <img src='/jpicon4.png' className="w-12 h-12 text-blue-600" />
           </div>
@@ -179,10 +182,10 @@ function LoginForm() {
                 <img src='/jpicon4.png' className="w-12 h-12 text-blue-600" />
               </div>
               <div className="text-center mb-6">
-  <h2 className="text-3xl font-semibold text-gray-900">Welcome Back</h2>
-  <p className="text-gray-600 mt-2">Sign in to access your account</p>
-  <span className="block mt-1 text-xs text-gray-700">* Only advocates are permitted to sign in</span>
-</div>
+                <h2 className="text-3xl font-semibold text-gray-900">Welcome Back</h2>
+                <p className="text-gray-600 mt-2">Sign in to access your account</p>
+                <span className="block mt-1 text-xs text-gray-700">* Only advocates are permitted to sign in</span>
+              </div>
             </div>
 
             {error && (
@@ -208,11 +211,10 @@ function LoginForm() {
                 />
                 <Label
                   htmlFor="email"
-                  className={`absolute left-4 transition-all duration-200 pointer-events-none ${
-                    emailFocused || email
+                  className={`absolute left-4 transition-all duration-200 pointer-events-none ${emailFocused || email
                       ? 'top-2 text-xs text-blue-700 font-medium'
                       : 'top-4 text-base text-gray-400'
-                  }`}
+                    }`}
                 >
                   Email Address
                 </Label>
@@ -234,11 +236,10 @@ function LoginForm() {
                 />
                 <Label
                   htmlFor="password"
-                  className={`absolute left-4 transition-all duration-200 pointer-events-none ${
-                    passwordFocused || password
+                  className={`absolute left-4 transition-all duration-200 pointer-events-none ${passwordFocused || password
                       ? 'top-2 text-xs text-blue-700 font-medium'
                       : 'top-4 text-base text-gray-400'
-                  }`}
+                    }`}
                 >
                   Password
                 </Label>

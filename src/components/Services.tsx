@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Scale, FileText, Users, Briefcase, ArrowRight } from 'lucide-react';
+import { Scale, FileText, Users, Briefcase, ArrowRight,Plane } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const Services = () => {
   const { t } = useTranslation('services');
@@ -11,6 +12,7 @@ const Services = () => {
     basic:string
     description: string[];
   };
+  const navigate=useNavigate()
   // type ServicesContent = {
   //   section_title: string;
   //   section_desc: string;
@@ -25,10 +27,10 @@ const Services = () => {
   //   console.log('Service data:', servicedata);
   // console.log('Is array?', Array.isArray(servicedata));
   const services = [
+    // <Plane className="w-10 h-10 text-yellow-700" />,
     <Scale className="w-10 h-10 text-blue-700 " />,
     <Users className="w-10 h-10 text-orange-700" />,
     <FileText className="w-10 h-10 text-pink-700" />,
-    <Briefcase className="w-10 h-10" />
 
   ];
   useEffect(() => {
@@ -78,6 +80,10 @@ const Services = () => {
               key={index}
               className="group  relative bg-card p-7 rounded-xl border gray-400 transition-all duration-400 ease-out hover:scale-100 hover:shadow-xl animate-slide-up transform-gpu will-change-transform"
               onClick={() =>{
+                if(service.title === 'NRI Legal')
+                {
+                  navigate('/nri')
+                }
                 if(window.innerWidth >=1024)
                 {
                    setSelectedService(service)

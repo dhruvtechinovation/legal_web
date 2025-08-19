@@ -20,7 +20,7 @@ const AboutUs = () => {
             <div className="flex items-center gap-3">
               <div className="w-14 h-14 bg-white flex items-center rounded-lg  justify-center">
                 {/* <Scale className="w-7 h-7 text-white" /> */}
-                <img src="/jpicon5.svg" alt="img" className="w-14 h-14 rounded-lg" />
+                <img src="/jpicon4.png" alt="img" className="w-14 h-14 rounded-lg" />
               </div>
               <span className="text-xl font-semibold text-white font-serif">JP Law Suvidha</span>
             </div>

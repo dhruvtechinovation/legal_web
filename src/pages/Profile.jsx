@@ -74,7 +74,7 @@ const Profile = () => {
       </div> */}
 
         <div className="max-w-4xl mx-auto ">
-          <div className="bg-white shadow-xl rounded-2xl p-8 bg-gradient-to-br from-blue-200 via-gold to-gray-400">
+          <div className="bg-white shadow-xl rounded-2xl p-8 bg-gradient-to-br from-gray-200 via-gold to-black">
             <div className="flex flex-col items-center mb-6 relative">
               {/* Profile Photo with Upload Overlay */}
               <div className="relative group w-28 h-28 mb-4">

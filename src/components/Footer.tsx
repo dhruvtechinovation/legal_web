@@ -1,12 +1,33 @@
 
-import React from 'react';
+import { HashLink } from "react-router-hash-link";
+import React, { useEffect } from 'react';
 import Logo from './Logo';
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Mail, Phone, MapPin, Hash } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+
+function ScrollToHashElement() {
+  const { pathname, hash } = useLocation();
+  console.log('hash value',hash)
+  console.log('pathname',pathname)
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.scrollTo(0,0); // Default scroll to top
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
 
 const Footer = () => {
   return (
     <footer className="bg-black text-white pt-16 pb-8">
+      <ScrollToHashElement/>
       <div className="container-custom">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div>
@@ -18,11 +39,20 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
-              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Areas of Expertise</a></li>
-              <li><a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+              <li><HashLink to="/#" className="text-gray-400 hover:text-white transition-colors">Home</HashLink></li>
+              <li><HashLink to="/#services" className="text-gray-400 hover:text-white transition-colors"
+              scroll={el => {
+                const yOffset = -200; // adjust this value as per your header height
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }}>Services</HashLink></li>
+              <li><HashLink to="/#expertise" className="text-gray-400 hover:text-white transition-colors"
+               scroll={el => {
+                const yOffset = -100; // adjust this value as per your header height
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }}>Areas of Expertise</HashLink></li>
+              <li><HashLink to="/#" className="text-gray-400 hover:text-white transition-colors">Contact Us</HashLink></li>
 
             </ul>
           </div>
@@ -30,11 +60,37 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Practice Areas</h3>
             <ul className="space-y-3">
-              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Family Law</a></li>
-              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Corporate Law</a></li>
-              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Criminal Law</a></li>
-              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Civil Law</a></li>
-              <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Business Law</a></li>
+              {/* <li><a href="#expertise" className="text-gray-400 hover:text-white transition-colors">Family Law</a></li> */}
+              <li> <HashLink to="/#expertise" className="text-gray-400 hover:text-white transition-colors"
+              scroll={el => {
+                const yOffset = -100; // adjust this value as per your header height
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }}>Family Law</HashLink></li>
+              <li><HashLink to="/#expertise" className="text-gray-400 hover:text-white transition-colors"
+              scroll={el => {
+                const yOffset = -100; // adjust this value as per your header height
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }}>Corporate Law</HashLink></li>
+              <li><HashLink to="/#expertise" className="text-gray-400 hover:text-white transition-colors"
+              scroll={el => {
+                const yOffset = -100; // adjust this value as per your header height
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }}>Criminal Law</HashLink></li>
+              <li><HashLink to="/#expertise" className="text-gray-400 hover:text-white transition-colors"
+              scroll={el => {
+                const yOffset = 900; // adjust this value as per your header height
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }}>Civil Law</HashLink></li>
+              <li><HashLink to="/#expertise" className="text-gray-400 hover:text-white transition-colors"
+              scroll={el => {
+                const yOffset = 900; // adjust this value as per your header height
+                const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }}>Business Law</HashLink></li>
               {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Labour Law</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Tax Law</a></li> */}
             </ul>
@@ -51,7 +107,7 @@ const Footer = () => {
               </li>
               <li className="flex">
                 <Phone className="w-5 h-5 mr-3 text-gray-400" />
-                <a href="tel:+911234567890" className="text-gray-400 hover:text-white transition-colors">+91 123-456-7890</a>
+                <a href="tel:+911234567890" className="text-gray-400 hover:text-white transition-colors">+91 8639930413</a>
               </li>
               <li className="flex">
                 <Mail className="w-5 h-5 mr-3 text-gray-400" />
@@ -114,3 +170,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

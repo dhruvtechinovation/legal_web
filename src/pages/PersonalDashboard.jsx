@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Menu, CircleUserRound, Inbox, Users, Settings, LogOut, FileText, MapPin, Gavel, Landmark, Tag, Hourglass } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 const mockLeads = [
   {
     id: 1,
@@ -467,7 +468,7 @@ function PersonalDashboard() {
                 <Landmark size={20} className="text-gray-600" />
                 {sidebarOpen && <span className="text-sm font-medium">Jurisdiction</span>}
                 {!sidebarOpen && (
-                  <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-gray-700 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-gray-700 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
                     Jurisdiction
                   </span>
                 )}
@@ -489,7 +490,7 @@ function PersonalDashboard() {
             <li className="relative group flex flex-col gap-1 p-2 rounded hover:bg-gray-100 cursor-pointer">
               <div className="flex items-center gap-2">
                 {/* <Gavel size={20} /> */}
-                <Tag size={20} className="text-yellow-700" />
+                <Tag size={20} className="text-gray-600" />
                 {sidebarOpen && <span className="text-sm font-medium">CaseType</span>}
                 {!sidebarOpen && (
                   <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-gray-700 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
@@ -512,7 +513,7 @@ function PersonalDashboard() {
             </li>
             <li className="relative group flex flex-col gap-1 p-2 rounded hover:bg-gray-100 cursor-pointer">
               <div className="flex items-center gap-2">
-                <Hourglass size={18} className="text-yellow-700" />
+                <Hourglass size={18} className="text-gray-600" />
                 {sidebarOpen && <span className="text-sm font-medium">Status</span>}
                 {!sidebarOpen && (
                   <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-gray-700 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
@@ -910,6 +911,7 @@ function PersonalDashboard() {
       )}
     </div>
   );
+
 }
 
 export default PersonalDashboard;

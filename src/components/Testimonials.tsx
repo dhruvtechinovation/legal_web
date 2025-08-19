@@ -126,7 +126,7 @@ const Testimonials = () => {
     {
       name: "Jagath Reddy Vemula",
       designation: "CTO & Co-founder",
-      qualification: "MBA, MS in Cyber Securty",
+      qualification: "MBA, MS in Cyber Security",
       image: "/jagath.jpeg", // Replace with actual path or URL
     },
     {
@@ -139,7 +139,7 @@ const Testimonials = () => {
       name: "Narmada M",
       designation: " Managing Director",
       qualification: "MBA",
-      image: "/narmada.jpeg", // Replace with actual path or URL
+      image: "/narmada1.jpeg", // Replace with actual path or URL
     },
   ];
 

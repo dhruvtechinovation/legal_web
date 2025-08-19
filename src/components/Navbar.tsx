@@ -18,7 +18,7 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
 import Languagechecker from './languagechecker';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // // Notification Banner Component
 // const NotificationBanner = ({ onClose }: { onClose: () => void }) => {
@@ -68,7 +68,7 @@ const MobileMenu = ({
 }: {
   isOpen: boolean;
   onClose: () => void;
-  menuItems: Array<{ label: string; href: string }>;
+  menuItems: Array<{ label: string; href ?: string }>;
   activeSection: string;
   handleNavClick: (href: string) => void;
   handleLogin: () => void;
@@ -196,7 +196,8 @@ const Navbar = () => {
   const menuItems = [
     { label: "Services", href: "#services" },
     { label: "Areas of Expertise", href: "#expertise" },
-    { label: "FAQ", href: "#faq" },
+    {label:' NRI Services',href:'nri'}
+    // { label: "FAQ", href: "#faq" },
   ];
 
   // Enhanced click outside handler
@@ -223,7 +224,7 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
       
       // Update scroll state for navbar background
-      setScrolled(currentScrollY > 550);
+      setScrolled(currentScrollY > 540);
 
 
       // Track active section
@@ -310,7 +311,13 @@ const Navbar = () => {
               {menuItems.map((item) => (
                 <button
                   key={item.href}
-                  onClick={() => handleNavClick(item.href)}
+                  onClick={() => {
+                    if (item.href === "nri") {
+                    navigate('/nri')
+                    } else {
+                      handleNavClick(item.href); // 👈 normal function
+                    }
+                  }}
                   className={`group relative text-md font-medium transition-all duration-300 hover:text-primary ${
                     activeSection === item.href.substring(1)
                       ? 'text-primary'
@@ -329,9 +336,18 @@ const Navbar = () => {
                 </button>
               ))}
               
-              <button
+              {/* <button
                 onClick={() => navigate('/about')}
                 className={`group relative text-sm font-medium transition-all duration-300 hover:text-primary text-muted-foreground ${
+                  scrolled ? 'text-white hover:text-white' : ''
+                }`}
+              >
+               NRI Services
+                <span className={`absolute left-0 right-0 bottom-0 h-0.5 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${scrolled ?'text-white bg-white':''}`} />
+              </button> */}
+              <button
+                onClick={() => navigate('/about')}
+                className={`group relative text-md font-medium transition-all duration-300 hover:text-primary text-muted-foreground ${
                   scrolled ? 'text-white hover:text-white' : ''
                 }`}
               >
@@ -351,7 +367,7 @@ const Navbar = () => {
                 className="group flex items-center gap-2 border-border hover:bg-muted/50 hover:border-primary/50 transform hover:scale-105 transition-all duration-200"
               >
                 <User className="w-4 h-4 group-hover:scale-110 transition-transform text-yellow-700" />
-                Login
+                Advocate Login
               </Button>
 
               {/* Subscribe Button */}
