@@ -109,3 +109,6 @@
 .notranslate {
   translate: no;
 }
+.swiper-pagination-bullet-active {
+  @apply scale-125 bg-white;
+}

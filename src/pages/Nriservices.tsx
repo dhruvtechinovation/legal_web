@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 const services = [
   {
     category: "Property and Real Estate Services",
+    image:'/property.jpeg',
     items: [
       "Property dispute resolution (with tenants, relatives, or encroachers).",
       "Title verification and property due diligence before purchase/sale.",
@@ -24,6 +25,7 @@ const services = [
   },
   {
     category: "Family and Matrimonial Services",
+    // image:'/jpicon2.jpeg',
     items: [
       "Divorce filing and representation in India.",
       "Child custody and visitation rights.",
@@ -35,6 +37,7 @@ const services = [
   },
   {
     category: "Inheritance and Succession",
+    image:'/jpicon.jpeg',
     items: [
       "Drafting wills and succession planning for Indian assets.",
       "Probate of wills.",
@@ -45,6 +48,7 @@ const services = [
   },
   {
     category: "Civil and Criminal Services",
+    image:'/jpicon2.jpeg',
     items: [
       "Civil disputes (contracts, agreements, money recovery).",
       "Criminal defense for false FIRs or complaints.",
@@ -163,25 +167,41 @@ function NriServices() {
       </section>
       <section className="h-[700px] container-custom pt-10 text-center">
       <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={20}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          navigation
-          pagination={{ clickable: true }}
-          breakpoints={{
-            768: { slidesPerView: 1 }, // Show 2 slides on medium screens
-            1024: { slidesPerView: 1 }, // Show 3 slides on large screens
-          }}
-          className="px-4 "
-        >
-         {services.map((s,index)=>{
-          return (
-          <SwiperSlide key={index}>{s.category}</SwiperSlide>)
-})}
- 
-        </Swiper>
+  modules={[Autoplay,Pagination]}
+  spaceBetween={0} // no space since we want big slide
+  slidesPerView={1} // only 1 slide visible
+  loop={true}
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  pagination={{
+    clickable: true,
+    renderBullet: (index, className) => {
+      // default inactive bullet style
+      return `<span class="${className} inline-block w-2.5 h-2.5 rounded-full bg-blue transition-transform duration-300"></span>`;
+    },
+  }}
+  className="w-full h-[500px]" // height of carousel
+>
+  {services.map((slide, index) => (
+    <SwiperSlide key={index}>
+      <div className="relative w-full h-full  overflow-hidden shadow-lg">
+        {/* Background Image */}
+        <img
+          src={slide.image}
+          alt={slide.category}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40" />
+        {/* Text on top */}
+        <div className="relative z-10 flex flex-col items-end justify-center h-full px-6 text-center text-white">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-2">{slide.category}</h2>
+          <h3 className="text-xl sm:text-2xl mb-4">{slide.category}</h3>
+          <p className="max-w-2xl">{slide.category}</p>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
 
       </section>
 

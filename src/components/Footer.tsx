@@ -5,29 +5,29 @@ import Logo from './Logo';
 import { Mail, Phone, MapPin, Hash } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
-function ScrollToHashElement() {
-  const { pathname, hash } = useLocation();
-  console.log('hash value',hash)
-  console.log('pathname',pathname)
+// function ScrollToHashElement() {
+//   const { pathname, hash } = useLocation();
+//   console.log('hash value',hash)
+//   console.log('pathname',pathname)
 
-  useEffect(() => {
-    if (hash) {
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      window.scrollTo(0,0); // Default scroll to top
-    }
-  }, [pathname, hash]);
+//   useEffect(() => {
+//     if (hash) {
+//       const element = document.querySelector(hash);
+//       if (element) {
+//         element.scrollIntoView({ behavior: "smooth" });
+//       }
+//     } else {
+//       window.scrollTo(0,0); // Default scroll to top
+//     }
+//   }, [pathname, hash]);
 
-  return null;
-}
+//   return null;
+// }
 
 const Footer = () => {
   return (
     <footer className="bg-black text-white pt-16 pb-8">
-      <ScrollToHashElement/>
+      {/* <ScrollToHashElement/> */}
       <div className="container-custom">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div>
