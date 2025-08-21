@@ -105,8 +105,13 @@ const MobileMenu = ({
                 <button
                   key={item.href}
                   onClick={() => {
+                    if (item.href === "nri") {
+                      navigate('/nri')
+                    }
+                      else{
                     handleNavClick(item.href);
                     onClose();
+                      }
                   }}
                   className={`group flex items-center justify-between w-full px-4 py-3 text-left rounded-lg transition-all duration-200 ${
                     activeSection === item.href.substring(1)

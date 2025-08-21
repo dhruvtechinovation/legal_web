@@ -10,6 +10,17 @@ export default {
 		"./src/**/*.{ts,tsx,jsx,js}",
 	],
 	prefix: "",
+	safelist: [
+		"text-red-500",
+		"text-blue-500",
+		"text-green-400",
+		"text-yellow-500",
+		"text-amber-600",
+		"text-cyan-600",
+		"text-indigo-700",
+		"text-stone-900",
+		"text-white",
+	  ],
 	theme: {
 		container: {
 			center: true,
@@ -23,6 +34,10 @@ export default {
 			// width:{
             //   15:'12 rem'
 			// },
+			margin:
+			{
+              'm':'70px'
+			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				serif: ['Playfair Display', 'serif'],

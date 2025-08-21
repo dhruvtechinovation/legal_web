@@ -243,7 +243,7 @@ function PersonalDashboard() {
   const [showYesModal, setShowYesModal] = useState(false)
   const [connectInfo, setConnectInfo] = useState({})
   const [currentPage, setCurrentPage] = useState(1);
-  const [clickCount, setClickCount] = useState(0)
+  const [clickCount, setClickCount] = useState({})
   const [response, setResponse] = useState(false)
   const [password,setpassword]=useState(false)
   const [form, setForm] = useState({ current: '', newPass: '', confirm: '' });
@@ -343,6 +343,7 @@ function PersonalDashboard() {
       ...clickCount[phone],
       [decision]: (clickCount[phone]?.[decision] || 0) + 1
     };
+    console.log('clickcout',clickCount)
     setClickCount(prev => ({
       ...prev,
       [phone]: updatedClicks
@@ -560,7 +561,7 @@ function PersonalDashboard() {
           {menuOpen && (
             <div className="absolute right-0 mt-2 w-64 bg-white shadow-xl rounded-xl border overflow-hidden">
               <div className="p-4 border-b">
-                <p className="font-semibold text-gray-800">John Doe</p>
+                <p className="font-semibold text-gray-800">Jagath Reddy</p>
                 <p className="text-sm text-gray-500">Advocate</p>
               </div>
               <ul className="py-2 text-sm text-gray-700">

@@ -7,8 +7,8 @@ import Footer from '../components/Footer'
 
 const Profile = () => {
   const [profile, setProfile] = useState({
-    name: 'Adv. Pradeep',
-    email: 'pradeep@example.com',
+    name: 'Adv. Jagath Reddy vemula',
+    email: 'jagath.vemula@example.com',
     photo: 'https://via.placeholder.com/120',
     phone: '',
     address: '',
@@ -93,7 +93,7 @@ const Profile = () => {
                 </button>
                 {showModal && (
                   <PhotoUpdateModal
-                    onClose={() => setShowModal(false)}
+                  onClose={() => setShowModal(false)}
                     onImageSelect={handleImageUpdate}
                   />
                 )}

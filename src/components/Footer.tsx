@@ -52,6 +52,8 @@ const Footer = () => {
                 const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
                 window.scrollTo({ top: y, behavior: "smooth" });
               }}>Areas of Expertise</HashLink></li>
+              <li><HashLink to="/nri" className="text-gray-400 hover:text-white transition-colors">NRI Services</HashLink></li>
+
               <li><HashLink to="/#" className="text-gray-400 hover:text-white transition-colors">Contact Us</HashLink></li>
 
             </ul>
@@ -103,7 +105,11 @@ const Footer = () => {
 
               <li className="flex ">
                 <MapPin className="w-6 h-6 mr-3 text-gray-400" />
-                <span className="text-gray-400">Vanasthalipuram Hyderabad, 500070</span>
+                <div className="flex flex-col ">
+                <span className="text-gray-400">Vanasthalipuram, Hyderabad</span>
+                <span className="text-gray-400">Telangana</span>
+                <span className="text-gray-400">India - 500070</span>
+                </div>
               </li>
               <li className="flex">
                 <Phone className="w-5 h-5 mr-3 text-gray-400" />

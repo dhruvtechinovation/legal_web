@@ -109,6 +109,20 @@
 .notranslate {
   translate: no;
 }
-.swiper-pagination-bullet-active {
-  @apply scale-125 bg-white;
+.swiper-pagination-bullet {
+  background-color:black !important; /* Tailwind gray-300 */
+  opacity: 1; /* remove transparency */
 }
+.swiper-pagination-bullet-active {
+  @apply scale-125 bg-white !important;
+}
+
+.text-shadow-emboss {
+  text-shadow: -1px -1px 1px white, 2px 2px 2px #000;
+}
+
+.text-shadow-deboss {
+  text-shadow: 1px 1px 1px #fff, -1px -1px 2px #000;
+}
+
+

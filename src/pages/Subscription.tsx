@@ -104,7 +104,8 @@ function SubscriptionPlans() {
         planName
         , price
         , icon
-      }
+      },
+      
     })
 
     // // Simulate processing
