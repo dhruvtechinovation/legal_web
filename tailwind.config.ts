@@ -11,14 +11,21 @@ export default {
 	],
 	prefix: "",
 	safelist: [
-		"text-red-500",
-		"text-blue-500",
+		"text-red-700",
+		"text-blue-400",
 		"text-green-400",
-		"text-yellow-500",
+		"text-yellow-400",
 		"text-amber-600",
-		"text-cyan-600",
-		"text-indigo-700",
+		"text-cyan-300",
+		"text-indigo-400",
 		"text-stone-900",
+		"text-lime-300",
+		"text-fuchsia-300",
+		"text-emerald-400",
+		"text-slate-700",
+		"text-rose-300",
+		"text-amber-300",
+		"text-teal-300",
 		"text-white",
 	  ],
 	theme: {
@@ -46,6 +53,11 @@ export default {
 			{
 				mx:'1000px'
 			},
+			fontSize: {
+				'xxs': '0.65rem',   // new tiny size
+				'xxxl': '2.75rem',  // bigger than 3xl
+				'hero': '3.1rem',   // custom "hero" size
+			  },
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

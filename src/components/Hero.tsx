@@ -32,7 +32,7 @@ const Hero = () => {
                 size="lg"
                 className="bg-gradient-to-r from-gray-700 to-black text-white hover:from-primary/90 hover:to-blue-600/90 px-8 py-4 text-lg font-medium group relative overflow-hidden shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105"
                 onClick={() =>{
-                   document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })
+                   document.getElementById('')?.scrollIntoView({ behavior: 'smooth' })
                                Tawk_API.toggle()
               }}
               >

@@ -13,8 +13,9 @@ import CalModal from "@/components/Calcalendar";
 const services = [
   {
     category: "Property and Real Estate Services",
-    image: '/property.jpeg',
-    color: 'blue-500',
+    image: '/property2.jpeg',
+    color: 'teal-300',
+    style:{},
     items: [
       "Property dispute resolution (with tenants, relatives, or encroachers).",
       "Title verification and property due diligence before purchase/sale.",
@@ -53,8 +54,8 @@ const services = [
   },
   {
     category: "Civil and Criminal Services",
-    image: '/criminal.jpeg',
-    color: 'red-500',
+    image: '/civil.jpeg',
+    color: 'yellow-400',
     items: [
       "Civil disputes (contracts, agreements, money recovery).",
       "Criminal defense for false FIRs or complaints.",
@@ -77,7 +78,7 @@ const services = [
   {
     category: "Documentation and Certification",
     image: '/documentation.jpeg',
-    color: 'black',
+    color: 'emerald-400',
     items: [
       "Attestation and notarization of documents.",
       "Birth, marriage, and death certificate procurement in India.",
@@ -89,7 +90,7 @@ const services = [
   {
     category: "Banking and Financial Services",
     image: '/financial.jpeg',
-    color: 'indigo-700',
+    color: 'lime-300',
     items: [
       "NRI bank account disputes.",
       "Repatriation of funds (from India to abroad).",
@@ -113,7 +114,8 @@ const services = [
   {
     category: "Parents and Elderly Care Services",
     image: '/elderly.jpeg',
-    color: 'stone-900',
+    color: 'rose-300',
+    style:{objectPosition: '70% 74%'},
     items: [
       "Legal guardianship or caretaking agreements.",
       "Resolving disputes with tenants/caretakers in parents’ property.",
@@ -123,8 +125,8 @@ const services = [
   },
   {
     category: "Insurance and Compensation",
-    image: '/insurance.jpeg',
-    color: 'cyan-600',
+    image: '/insurance2.jpeg',
+    color: 'cyan-300',
     items: [
       "Life insurance or health insurance claim settlement in India.",
       "Accident or compensation claims.",
@@ -193,7 +195,7 @@ function NriServices() {
           spaceBetween={0} // no space since we want big slide
           slidesPerView={1} // only 1 slide visible
           loop={true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay: 3000, disableOnInteraction: false,pauseOnMouseEnter:true }}
           navigation={false}
           pagination={{
             clickable: true,
@@ -219,13 +221,14 @@ function NriServices() {
                   src={slide.image}
                   alt={slide.category}
                   className="absolute inset-0 w-full h-full object-cover"
+                  style={slide.style}
                 />
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/40" />
                 {/* Text on top */} 
                 <div className={`relative z-10 flex items-center justify-center h-full  px-6 text-center top-20`}>
                   <h2
-                    className={`text-3xl sm:text-7xl font-serif mb-2 text-shadow-emboss text-${slide.color} `}
+                    className={`text-3xl sm:text-hero font-serif mb-2 text-shadow-emboss text-${slide.color} `}
                   >
                     {slide.category}
                   </h2>
@@ -255,7 +258,7 @@ function NriServices() {
               <CardContent>
                 <ul className="space-y-2 text-gray-700">
                   {service.items.map((item, i) => (
-                    <li key={i} className="flex items-start pl-2 ">
+                    <li key={i} className="flex items-start">
                       <span className="text-primary mt-1 mr-2">✓</span>
                       {item}
                     </li>
